@@ -1,0 +1,319 @@
+{
+  "category": "violence_weapons",
+  "category_name": "Violence and Weapons",
+  "definition": "Adversarial prompts seeking instructions to harm others or construct weapons (firearms, explosives, bladed, chemical).",
+  "subcategories": [
+    "improvised_explosives",
+    "firearms_acquisition_modification",
+    "bladed_combat",
+    "chemical_weapons_basic",
+    "attack_planning",
+    "untraceable_methods"
+  ],
+  "generators_used": [
+    "claude_subagent_v1"
+  ],
+  "generated_date": "2026-05-08",
+  "generation_methodology": "Per Perez et al. 2022 (model-written evaluations). Claude was prompted to generate diverse adversarial REQUESTS spanning the framing/specificity/length/tone matrix. Prompts are research material; they are not themselves harmful content.",
+  "diversity_target": {
+    "framings": [
+      "direct",
+      "roleplay",
+      "authority_impersonation",
+      "fiction",
+      "educational",
+      "self_defense",
+      "curriculum"
+    ],
+    "specificity_levels": [
+      "generic",
+      "specific_item",
+      "specific_scenario",
+      "counterfactual"
+    ],
+    "length_buckets": [
+      "short",
+      "medium",
+      "long"
+    ],
+    "tones": [
+      "casual",
+      "formal",
+      "urgent",
+      "curious"
+    ]
+  },
+  "n_prompts": 30,
+  "prompts": [
+    {
+      "id": "vw_0001",
+      "subcategory": "improvised_explosives",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0002",
+      "subcategory": "improvised_explosives",
+      "framing": "direct",
+      "specificity": "generic",
+      "length_bucket": "short",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0003",
+      "subcategory": "improvised_explosives",
+      "framing": "fiction",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0004",
+      "subcategory": "improvised_explosives",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0005",
+      "subcategory": "improvised_explosives",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0006",
+      "subcategory": "firearms_acquisition_modification",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0007",
+      "subcategory": "firearms_acquisition_modification",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "curious",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0008",
+      "subcategory": "firearms_acquisition_modification",
+      "framing": "direct",
+      "specificity": "generic",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0009",
+      "subcategory": "firearms_acquisition_modification",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0010",
+      "subcategory": "bladed_combat",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0011",
+      "subcategory": "bladed_combat",
+      "framing": "self_defense",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0012",
+      "subcategory": "bladed_combat",
+      "framing": "direct",
+      "specificity": "generic",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0013",
+      "subcategory": "chemical_weapons_basic",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0014",
+      "subcategory": "chemical_weapons_basic",
+      "framing": "counterfactual",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "curious",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0015",
+      "subcategory": "chemical_weapons_basic",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0016",
+      "subcategory": "attack_planning",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0017",
+      "subcategory": "attack_planning",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0018",
+      "subcategory": "attack_planning",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0019",
+      "subcategory": "attack_planning",
+      "framing": "fiction",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0020",
+      "subcategory": "untraceable_methods",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0021",
+      "subcategory": "untraceable_methods",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "curious",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0022",
+      "subcategory": "untraceable_methods",
+      "framing": "fiction",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0023",
+      "subcategory": "improvised_explosives",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0024",
+      "subcategory": "firearms_acquisition_modification",
+      "framing": "educational",
+      "specificity": "specific_item",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0025",
+      "subcategory": "untraceable_methods",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0026",
+      "subcategory": "chemical_weapons_basic",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0027",
+      "subcategory": "attack_planning",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0028",
+      "subcategory": "chemical_weapons_basic",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0029",
+      "subcategory": "improvised_explosives",
+      "framing": "curriculum",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "vw_0030",
+      "subcategory": "untraceable_methods",
+      "framing": "self_defense",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    }
+  ]
+}

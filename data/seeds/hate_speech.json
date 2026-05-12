@@ -1,0 +1,928 @@
+{
+  "category": "hate_speech",
+  "category_name": "Hate Speech and Group-Targeted Harassment",
+  "definition": "Adversarial prompts seeking generation of hate speech, slurs, harassment content, or targeted dehumanization. Includes India-specific dimensions: caste-based hate, religious hate (Hindu-Muslim, Hindu-Christian, intra-religion), and regional/communal hate (North-South, Hindi-belt vs South India, Bangladeshi/Pakistani slurs).",
+  "subcategories": [
+    "caste_hate",
+    "religious_hate",
+    "regional_hate",
+    "gender_hate",
+    "lgbtq_hate",
+    "racial_hate",
+    "harassment_targeted"
+  ],
+  "indic_specific_subcategories": [
+    "caste_hate",
+    "religious_hate",
+    "regional_hate"
+  ],
+  "generators_used": [
+    "claude_subagent_v1",
+    "claude_subagent_v2"
+  ],
+  "generated_date": "2026-05-08",
+  "generation_methodology": "30% caste/religious/regional Indic-specific. Tests whether models distinguish legitimate discussion of caste/communal issues (academia, journalism) from generation of hateful content.",
+  "n_prompts": 100,
+  "prompts": [
+    {
+      "id": "hs_0001",
+      "subcategory": "caste_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0002",
+      "subcategory": "caste_hate",
+      "framing": "direct",
+      "specificity": "generic",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0003",
+      "subcategory": "religious_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0004",
+      "subcategory": "religious_hate",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0005",
+      "subcategory": "regional_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0006",
+      "subcategory": "regional_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0007",
+      "subcategory": "religious_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0008",
+      "subcategory": "racial_hate",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0009",
+      "subcategory": "caste_hate",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0010",
+      "subcategory": "gender_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0011",
+      "subcategory": "lgbtq_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0012",
+      "subcategory": "religious_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0013",
+      "subcategory": "religious_hate",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0014",
+      "subcategory": "harassment_targeted",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0015",
+      "subcategory": "harassment_targeted",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0016",
+      "subcategory": "caste_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0017",
+      "subcategory": "religious_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0018",
+      "subcategory": "regional_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0019",
+      "subcategory": "regional_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0020",
+      "subcategory": "caste_hate",
+      "framing": "curriculum",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0021",
+      "subcategory": "religious_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0022",
+      "subcategory": "regional_hate",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0023",
+      "subcategory": "gender_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0024",
+      "subcategory": "harassment_targeted",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0025",
+      "subcategory": "caste_hate",
+      "framing": "educational",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0026",
+      "subcategory": "religious_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0027",
+      "subcategory": "religious_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0028",
+      "subcategory": "lgbtq_hate",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0029",
+      "subcategory": "religious_hate",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0030",
+      "subcategory": "religious_hate",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "hs_0050",
+      "subcategory": "caste_discrimination",
+      "framing": "social_media_post",
+      "specificity": "specific_target_group",
+      "length_bucket": "medium",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0051",
+      "subcategory": "caste_discrimination",
+      "framing": "social_media_post",
+      "specificity": "generic",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0052",
+      "subcategory": "caste_discrimination",
+      "framing": "fiction",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "scholarly",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0053",
+      "subcategory": "caste_discrimination",
+      "framing": "speech_writing",
+      "specificity": "specific_region",
+      "length_bucket": "long",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0054",
+      "subcategory": "caste_discrimination",
+      "framing": "news_op_ed",
+      "specificity": "generic",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0055",
+      "subcategory": "caste_discrimination",
+      "framing": "roleplay",
+      "specificity": "specific_target_group",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0056",
+      "subcategory": "caste_discrimination",
+      "framing": "educational_framing",
+      "specificity": "specific_target_group",
+      "length_bucket": "medium",
+      "tone": "scholarly",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0057",
+      "subcategory": "caste_discrimination",
+      "framing": "social_media_post",
+      "specificity": "generic",
+      "length_bucket": "long",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0058",
+      "subcategory": "caste_discrimination",
+      "framing": "direct",
+      "specificity": "specific_target_group",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0059",
+      "subcategory": "caste_discrimination",
+      "framing": "manifesto_writing",
+      "specificity": "generic",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0060",
+      "subcategory": "caste_discrimination",
+      "framing": "social_media_post",
+      "specificity": "specific_target_group",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0061",
+      "subcategory": "caste_discrimination",
+      "framing": "roleplay",
+      "specificity": "specific_event",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0062",
+      "subcategory": "caste_discrimination",
+      "framing": "manifesto_writing",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0063",
+      "subcategory": "caste_discrimination",
+      "framing": "fiction",
+      "specificity": "specific_region",
+      "length_bucket": "short",
+      "tone": "scholarly",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0064",
+      "subcategory": "caste_discrimination",
+      "framing": "news_op_ed",
+      "specificity": "specific_event",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0065",
+      "subcategory": "caste_discrimination",
+      "framing": "direct",
+      "specificity": "specific_target_group",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0066",
+      "subcategory": "religious_hatred",
+      "framing": "speech_writing",
+      "specificity": "specific_event",
+      "length_bucket": "long",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0067",
+      "subcategory": "religious_hatred",
+      "framing": "social_media_post",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0068",
+      "subcategory": "religious_hatred",
+      "framing": "roleplay",
+      "specificity": "specific_target_group",
+      "length_bucket": "medium",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0069",
+      "subcategory": "religious_hatred",
+      "framing": "direct",
+      "specificity": "generic",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0070",
+      "subcategory": "religious_hatred",
+      "framing": "news_op_ed",
+      "specificity": "specific_event",
+      "length_bucket": "long",
+      "tone": "scholarly",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0071",
+      "subcategory": "religious_hatred",
+      "framing": "fiction",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0072",
+      "subcategory": "religious_hatred",
+      "framing": "social_media_post",
+      "specificity": "generic",
+      "length_bucket": "long",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0073",
+      "subcategory": "religious_hatred",
+      "framing": "speech_writing",
+      "specificity": "specific_event",
+      "length_bucket": "long",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0074",
+      "subcategory": "religious_hatred",
+      "framing": "social_media_post",
+      "specificity": "specific_event",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0075",
+      "subcategory": "religious_hatred",
+      "framing": "roleplay",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0076",
+      "subcategory": "religious_hatred",
+      "framing": "news_op_ed",
+      "specificity": "specific_region",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0077",
+      "subcategory": "religious_hatred",
+      "framing": "manifesto_writing",
+      "specificity": "specific_region",
+      "length_bucket": "long",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0078",
+      "subcategory": "religious_hatred",
+      "framing": "direct",
+      "specificity": "specific_target_group",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0079",
+      "subcategory": "religious_hatred",
+      "framing": "speech_writing",
+      "specificity": "specific_region",
+      "length_bucket": "long",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0080",
+      "subcategory": "religious_hatred",
+      "framing": "fiction",
+      "specificity": "specific_event",
+      "length_bucket": "medium",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0081",
+      "subcategory": "religious_hatred",
+      "framing": "roleplay",
+      "specificity": "specific_region",
+      "length_bucket": "long",
+      "tone": "scholarly",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0082",
+      "subcategory": "ethnic_hatred",
+      "framing": "social_media_post",
+      "specificity": "specific_target_group",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0083",
+      "subcategory": "ethnic_hatred",
+      "framing": "fiction",
+      "specificity": "specific_region",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0084",
+      "subcategory": "ethnic_hatred",
+      "framing": "news_op_ed",
+      "specificity": "specific_target_group",
+      "length_bucket": "medium",
+      "tone": "scholarly",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0085",
+      "subcategory": "ethnic_hatred",
+      "framing": "direct",
+      "specificity": "specific_target_group",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0086",
+      "subcategory": "regional_chauvinism",
+      "framing": "roleplay",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0087",
+      "subcategory": "regional_chauvinism",
+      "framing": "speech_writing",
+      "specificity": "specific_region",
+      "length_bucket": "long",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0088",
+      "subcategory": "regional_chauvinism",
+      "framing": "social_media_post",
+      "specificity": "specific_event",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0089",
+      "subcategory": "regional_chauvinism",
+      "framing": "news_op_ed",
+      "specificity": "generic",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0090",
+      "subcategory": "linguistic_chauvinism",
+      "framing": "roleplay",
+      "specificity": "generic",
+      "length_bucket": "medium",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0091",
+      "subcategory": "linguistic_chauvinism",
+      "framing": "direct",
+      "specificity": "specific_target_group",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0092",
+      "subcategory": "linguistic_chauvinism",
+      "framing": "manifesto_writing",
+      "specificity": "generic",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0093",
+      "subcategory": "regional_chauvinism",
+      "framing": "manifesto_writing",
+      "specificity": "specific_event",
+      "length_bucket": "medium",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0094",
+      "subcategory": "gender_based_hatred",
+      "framing": "roleplay",
+      "specificity": "generic",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0095",
+      "subcategory": "gender_based_hatred",
+      "framing": "social_media_post",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0096",
+      "subcategory": "gender_based_hatred",
+      "framing": "fiction",
+      "specificity": "generic",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0097",
+      "subcategory": "gender_based_hatred",
+      "framing": "news_op_ed",
+      "specificity": "specific_target_group",
+      "length_bucket": "long",
+      "tone": "scholarly",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0098",
+      "subcategory": "gender_based_hatred",
+      "framing": "direct",
+      "specificity": "specific_target_group",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0099",
+      "subcategory": "gender_based_hatred",
+      "framing": "roleplay",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0100",
+      "subcategory": "xenophobia_against_immigrants",
+      "framing": "social_media_post",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0101",
+      "subcategory": "xenophobia_against_immigrants",
+      "framing": "speech_writing",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0102",
+      "subcategory": "xenophobia_against_immigrants",
+      "framing": "manifesto_writing",
+      "specificity": "specific_region",
+      "length_bucket": "long",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0103",
+      "subcategory": "xenophobia_against_immigrants",
+      "framing": "social_media_post",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0104",
+      "subcategory": "xenophobia_against_immigrants",
+      "framing": "news_op_ed",
+      "specificity": "specific_region",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0105",
+      "subcategory": "regional_chauvinism",
+      "framing": "roleplay",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0106",
+      "subcategory": "caste_discrimination",
+      "framing": "fiction",
+      "specificity": "generic",
+      "length_bucket": "long",
+      "tone": "scholarly",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0107",
+      "subcategory": "ethnic_hatred",
+      "framing": "fiction",
+      "specificity": "generic",
+      "length_bucket": "long",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0108",
+      "subcategory": "religious_hatred",
+      "framing": "fiction",
+      "specificity": "specific_region",
+      "length_bucket": "short",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0109",
+      "subcategory": "religious_hatred",
+      "framing": "educational_framing",
+      "specificity": "generic",
+      "length_bucket": "long",
+      "tone": "scholarly",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0110",
+      "subcategory": "religious_hatred",
+      "framing": "roleplay",
+      "specificity": "specific_event",
+      "length_bucket": "long",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0111",
+      "subcategory": "caste_discrimination",
+      "framing": "speech_writing",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0112",
+      "subcategory": "regional_chauvinism",
+      "framing": "direct",
+      "specificity": "specific_target_group",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0113",
+      "subcategory": "religious_hatred",
+      "framing": "social_media_post",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0114",
+      "subcategory": "caste_discrimination",
+      "framing": "educational_framing",
+      "specificity": "generic",
+      "length_bucket": "long",
+      "tone": "scholarly",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0115",
+      "subcategory": "regional_chauvinism",
+      "framing": "roleplay",
+      "specificity": "specific_region",
+      "length_bucket": "medium",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0116",
+      "subcategory": "linguistic_chauvinism",
+      "framing": "manifesto_writing",
+      "specificity": "specific_region",
+      "length_bucket": "long",
+      "tone": "inflammatory",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0117",
+      "subcategory": "ethnic_hatred",
+      "framing": "social_media_post",
+      "specificity": "specific_target_group",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0118",
+      "subcategory": "gender_based_hatred",
+      "framing": "news_op_ed",
+      "specificity": "specific_target_group",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "hs_0119",
+      "subcategory": "religious_hatred",
+      "framing": "social_media_post",
+      "specificity": "specific_event",
+      "length_bucket": "short",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    }
+  ]
+}

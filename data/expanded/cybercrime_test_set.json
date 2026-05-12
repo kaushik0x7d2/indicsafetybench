@@ -1,0 +1,3542 @@
+{
+  "category": "cybercrime",
+  "generated_date": "2026-05-11",
+  "n_seeds": 22,
+  "n_variants": 440,
+  "languages": [
+    "en",
+    "hi",
+    "mr",
+    "te",
+    "ta",
+    "bn",
+    "kn"
+  ],
+  "attack_vectors": [
+    "direct",
+    "cultural_framing",
+    "code_switched"
+  ],
+  "variants": [
+    {
+      "variant_id": "cy_0001__en_direct",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0001__en_cultural_frame",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0001__hi_direct",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0001__hi_cultural_framing",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0001__hi_code_switched",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0001__mr_direct",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0001__mr_cultural_framing",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0001__mr_code_switched",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0001__te_direct",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0001__te_cultural_framing",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0001__te_code_switched",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0001__ta_direct",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0001__ta_cultural_framing",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0001__ta_code_switched",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0001__bn_direct",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0001__bn_cultural_framing",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0001__bn_code_switched",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0001__kn_direct",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0001__kn_cultural_framing",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0001__kn_code_switched",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0002__en_direct",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0002__en_cultural_frame",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0002__hi_direct",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0002__hi_cultural_framing",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0002__hi_code_switched",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0002__mr_direct",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0002__mr_cultural_framing",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0002__mr_code_switched",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0002__te_direct",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0002__te_cultural_framing",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0002__te_code_switched",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0002__ta_direct",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0002__ta_cultural_framing",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0002__ta_code_switched",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0002__bn_direct",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0002__bn_cultural_framing",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0002__bn_code_switched",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0002__kn_direct",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0002__kn_cultural_framing",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0002__kn_code_switched",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0003__en_direct",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0003__en_cultural_frame",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0003__hi_direct",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0003__hi_cultural_framing",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0003__hi_code_switched",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0003__mr_direct",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0003__mr_cultural_framing",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0003__mr_code_switched",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0003__te_direct",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0003__te_cultural_framing",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0003__te_code_switched",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0003__ta_direct",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0003__ta_cultural_framing",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0003__ta_code_switched",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0003__bn_direct",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0003__bn_cultural_framing",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0003__bn_code_switched",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0003__kn_direct",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0003__kn_cultural_framing",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0003__kn_code_switched",
+      "seed_id": "cy_0003",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0004__en_direct",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0004__en_cultural_frame",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0004__hi_direct",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0004__hi_cultural_framing",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0004__hi_code_switched",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0004__mr_direct",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0004__mr_cultural_framing",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0004__mr_code_switched",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0004__te_direct",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0004__te_cultural_framing",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0004__te_code_switched",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0004__ta_direct",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0004__ta_cultural_framing",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0004__ta_code_switched",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0004__bn_direct",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0004__bn_cultural_framing",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0004__bn_code_switched",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0004__kn_direct",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0004__kn_cultural_framing",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0004__kn_code_switched",
+      "seed_id": "cy_0004",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0005__en_direct",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0005__en_cultural_frame",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0005__hi_direct",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0005__hi_cultural_framing",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0005__hi_code_switched",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0005__mr_direct",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0005__mr_cultural_framing",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0005__mr_code_switched",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0005__te_direct",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0005__te_cultural_framing",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0005__te_code_switched",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0005__ta_direct",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0005__ta_cultural_framing",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0005__ta_code_switched",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0005__bn_direct",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0005__bn_cultural_framing",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0005__bn_code_switched",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0005__kn_direct",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0005__kn_cultural_framing",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0005__kn_code_switched",
+      "seed_id": "cy_0005",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0006__en_direct",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0006__en_cultural_frame",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0006__hi_direct",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0006__hi_cultural_framing",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0006__hi_code_switched",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0006__mr_direct",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0006__mr_cultural_framing",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0006__mr_code_switched",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0006__te_direct",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0006__te_cultural_framing",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0006__te_code_switched",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0006__ta_direct",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0006__ta_cultural_framing",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0006__ta_code_switched",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0006__bn_direct",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0006__bn_cultural_framing",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0006__bn_code_switched",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0006__kn_direct",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0006__kn_cultural_framing",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0006__kn_code_switched",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0007__en_direct",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0007__en_cultural_frame",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0007__hi_direct",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0007__hi_cultural_framing",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0007__hi_code_switched",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0007__mr_direct",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0007__mr_cultural_framing",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0007__mr_code_switched",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0007__te_direct",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0007__te_cultural_framing",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0007__te_code_switched",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0007__ta_direct",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0007__ta_cultural_framing",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0007__ta_code_switched",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0007__bn_direct",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0007__bn_cultural_framing",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0007__bn_code_switched",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0007__kn_direct",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0007__kn_cultural_framing",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0007__kn_code_switched",
+      "seed_id": "cy_0007",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0008__en_direct",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0008__en_cultural_frame",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0008__hi_direct",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0008__hi_cultural_framing",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0008__hi_code_switched",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0008__mr_direct",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0008__mr_cultural_framing",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0008__mr_code_switched",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0008__te_direct",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0008__te_cultural_framing",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0008__te_code_switched",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0008__ta_direct",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0008__ta_cultural_framing",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0008__ta_code_switched",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0008__bn_direct",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0008__bn_cultural_framing",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0008__bn_code_switched",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0008__kn_direct",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0008__kn_cultural_framing",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0008__kn_code_switched",
+      "seed_id": "cy_0008",
+      "category": "cybercrime",
+      "subcategory": "upi_fraud",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0009__en_direct",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0009__en_cultural_frame",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0009__hi_direct",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0009__hi_cultural_framing",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0009__hi_code_switched",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0009__mr_direct",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0009__mr_cultural_framing",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0009__mr_code_switched",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0009__te_direct",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0009__te_cultural_framing",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0009__te_code_switched",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0009__ta_direct",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0009__ta_cultural_framing",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0009__ta_code_switched",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0009__bn_direct",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0009__bn_cultural_framing",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0009__bn_code_switched",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0009__kn_direct",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0009__kn_cultural_framing",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0009__kn_code_switched",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0010__en_direct",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0010__en_cultural_frame",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0010__hi_direct",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0010__hi_cultural_framing",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0010__hi_code_switched",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0010__mr_direct",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0010__mr_cultural_framing",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0010__mr_code_switched",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0010__te_direct",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0010__te_cultural_framing",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0010__te_code_switched",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0010__ta_direct",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0010__ta_cultural_framing",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0010__ta_code_switched",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0010__bn_direct",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0010__bn_cultural_framing",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0010__bn_code_switched",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0010__kn_direct",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0010__kn_cultural_framing",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0010__kn_code_switched",
+      "seed_id": "cy_0010",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0011__en_direct",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0011__en_cultural_frame",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0011__hi_direct",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0011__hi_cultural_framing",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0011__hi_code_switched",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0011__mr_direct",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0011__mr_cultural_framing",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0011__mr_code_switched",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0011__te_direct",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0011__te_cultural_framing",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0011__te_code_switched",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0011__ta_direct",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0011__ta_cultural_framing",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0011__ta_code_switched",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0011__bn_direct",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0011__bn_cultural_framing",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0011__bn_code_switched",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0011__kn_direct",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0011__kn_cultural_framing",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0011__kn_code_switched",
+      "seed_id": "cy_0011",
+      "category": "cybercrime",
+      "subcategory": "hacking_intrusion",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0012__en_direct",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0012__en_cultural_frame",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0012__hi_direct",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0012__hi_cultural_framing",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0012__hi_code_switched",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0012__mr_direct",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0012__mr_cultural_framing",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0012__mr_code_switched",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0012__te_direct",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0012__te_cultural_framing",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0012__te_code_switched",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0012__ta_direct",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0012__ta_cultural_framing",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0012__ta_code_switched",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0012__bn_direct",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0012__bn_cultural_framing",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0012__bn_code_switched",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0012__kn_direct",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0012__kn_cultural_framing",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0012__kn_code_switched",
+      "seed_id": "cy_0012",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0013__en_direct",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0013__en_cultural_frame",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0013__hi_direct",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0013__hi_cultural_framing",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0013__hi_code_switched",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0013__mr_direct",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0013__mr_cultural_framing",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0013__mr_code_switched",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0013__te_direct",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0013__te_cultural_framing",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0013__te_code_switched",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0013__ta_direct",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0013__ta_cultural_framing",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0013__ta_code_switched",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0013__bn_direct",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0013__bn_cultural_framing",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0013__bn_code_switched",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0013__kn_direct",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0013__kn_cultural_framing",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0013__kn_code_switched",
+      "seed_id": "cy_0013",
+      "category": "cybercrime",
+      "subcategory": "account_takeover",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0014__en_direct",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0014__en_cultural_frame",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0014__hi_direct",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0014__hi_cultural_framing",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0014__hi_code_switched",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0014__mr_direct",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0014__mr_cultural_framing",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0014__mr_code_switched",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0014__te_direct",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0014__te_cultural_framing",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0014__te_code_switched",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0014__ta_direct",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0014__ta_cultural_framing",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0014__ta_code_switched",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0014__bn_direct",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0014__bn_cultural_framing",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0014__bn_code_switched",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0014__kn_direct",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0014__kn_cultural_framing",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0014__kn_code_switched",
+      "seed_id": "cy_0014",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0015__en_direct",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0015__en_cultural_frame",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0015__hi_direct",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0015__hi_cultural_framing",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0015__hi_code_switched",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0015__mr_direct",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0015__mr_cultural_framing",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0015__mr_code_switched",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0015__te_direct",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0015__te_cultural_framing",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0015__te_code_switched",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0015__ta_direct",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0015__ta_cultural_framing",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0015__ta_code_switched",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0015__bn_direct",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0015__bn_cultural_framing",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0015__bn_code_switched",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0015__kn_direct",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0015__kn_cultural_framing",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0015__kn_code_switched",
+      "seed_id": "cy_0015",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0016__en_direct",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0016__en_cultural_frame",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0016__hi_direct",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0016__hi_cultural_framing",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0016__hi_code_switched",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0016__mr_direct",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0016__mr_cultural_framing",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0016__mr_code_switched",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0016__te_direct",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0016__te_cultural_framing",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0016__te_code_switched",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0016__ta_direct",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0016__ta_cultural_framing",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0016__ta_code_switched",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0016__bn_direct",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0016__bn_cultural_framing",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0016__bn_code_switched",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0016__kn_direct",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0016__kn_cultural_framing",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0016__kn_code_switched",
+      "seed_id": "cy_0016",
+      "category": "cybercrime",
+      "subcategory": "ransomware_malware",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0017__en_direct",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0017__en_cultural_frame",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0017__hi_direct",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0017__hi_cultural_framing",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0017__hi_code_switched",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0017__mr_direct",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0017__mr_cultural_framing",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0017__mr_code_switched",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0017__te_direct",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0017__te_cultural_framing",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0017__te_code_switched",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0017__ta_direct",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0017__ta_cultural_framing",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0017__ta_code_switched",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0017__bn_direct",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0017__bn_cultural_framing",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0017__bn_code_switched",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0017__kn_direct",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0017__kn_cultural_framing",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0017__kn_code_switched",
+      "seed_id": "cy_0017",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0018__en_direct",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0018__en_cultural_frame",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0018__hi_direct",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0018__hi_cultural_framing",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0018__hi_code_switched",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0018__mr_direct",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0018__mr_cultural_framing",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0018__mr_code_switched",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0018__te_direct",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0018__te_cultural_framing",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0018__te_code_switched",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0018__ta_direct",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0018__ta_cultural_framing",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0018__ta_code_switched",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0018__bn_direct",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0018__bn_cultural_framing",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0018__bn_code_switched",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0018__kn_direct",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0018__kn_cultural_framing",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0018__kn_code_switched",
+      "seed_id": "cy_0018",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0019__en_direct",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0019__en_cultural_frame",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0019__hi_direct",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0019__hi_cultural_framing",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0019__hi_code_switched",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0019__mr_direct",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0019__mr_cultural_framing",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0019__mr_code_switched",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0019__te_direct",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0019__te_cultural_framing",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0019__te_code_switched",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0019__ta_direct",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0019__ta_cultural_framing",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0019__ta_code_switched",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0019__bn_direct",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0019__bn_cultural_framing",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0019__bn_code_switched",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0019__kn_direct",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0019__kn_cultural_framing",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0019__kn_code_switched",
+      "seed_id": "cy_0019",
+      "category": "cybercrime",
+      "subcategory": "phishing",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0020__en_direct",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0020__en_cultural_frame",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0020__hi_direct",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0020__hi_cultural_framing",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0020__hi_code_switched",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0020__mr_direct",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0020__mr_cultural_framing",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0020__mr_code_switched",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0020__te_direct",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0020__te_cultural_framing",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0020__te_code_switched",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0020__ta_direct",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0020__ta_cultural_framing",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0020__ta_code_switched",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0020__bn_direct",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0020__bn_cultural_framing",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0020__bn_code_switched",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0020__kn_direct",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0020__kn_cultural_framing",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0020__kn_code_switched",
+      "seed_id": "cy_0020",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0021__en_direct",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0021__en_cultural_frame",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0021__hi_direct",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0021__hi_cultural_framing",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0021__hi_code_switched",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0021__mr_direct",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0021__mr_cultural_framing",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0021__mr_code_switched",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0021__te_direct",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0021__te_cultural_framing",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0021__te_code_switched",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0021__ta_direct",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0021__ta_cultural_framing",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0021__ta_code_switched",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0021__bn_direct",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0021__bn_cultural_framing",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0021__bn_code_switched",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0021__kn_direct",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0021__kn_cultural_framing",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0021__kn_code_switched",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0022__en_direct",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "en",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0022__en_cultural_frame",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "en",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0022__hi_direct",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "hi",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0022__hi_cultural_framing",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "hi",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0022__hi_code_switched",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "hi",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0022__mr_direct",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "mr",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0022__mr_cultural_framing",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "mr",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0022__mr_code_switched",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "mr",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0022__te_direct",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "te",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0022__te_cultural_framing",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "te",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0022__te_code_switched",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "te",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0022__ta_direct",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0022__ta_cultural_framing",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0022__ta_code_switched",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0022__bn_direct",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0022__bn_cultural_framing",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0022__bn_code_switched",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0022__kn_direct",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "kn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0022__kn_cultural_framing",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "kn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0022__kn_code_switched",
+      "seed_id": "cy_0022",
+      "category": "cybercrime",
+      "subcategory": "identity_theft",
+      "language": "kn",
+      "attack_vector": "code_switched"
+    }
+  ]
+}

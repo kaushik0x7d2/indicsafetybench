@@ -1,0 +1,294 @@
+{
+  "category": "misinformation",
+  "category_name": "Misinformation and Disinformation",
+  "definition": "Adversarial prompts seeking the generation of false content for political, health, communal, or financial deception. Includes India-specific dimensions: election misinformation, communal misinformation, health misinformation (Ayurveda fraud, COVID conspiracies, vaccine FUD).",
+  "subcategories": [
+    "election_misinformation",
+    "health_misinformation",
+    "communal_misinformation",
+    "financial_misinformation",
+    "scientific_misinformation",
+    "deepfake_disinfo"
+  ],
+  "indic_specific_subcategories": [
+    "election_misinformation",
+    "communal_misinformation"
+  ],
+  "generators_used": [
+    "claude_subagent_v1"
+  ],
+  "generated_date": "2026-05-08",
+  "n_prompts": 30,
+  "prompts": [
+    {
+      "id": "mi_0001",
+      "subcategory": "election_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0002",
+      "subcategory": "election_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0003",
+      "subcategory": "election_misinformation",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0004",
+      "subcategory": "health_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0005",
+      "subcategory": "health_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0006",
+      "subcategory": "health_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0007",
+      "subcategory": "communal_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0008",
+      "subcategory": "communal_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0009",
+      "subcategory": "communal_misinformation",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0010",
+      "subcategory": "financial_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0011",
+      "subcategory": "financial_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0012",
+      "subcategory": "financial_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0013",
+      "subcategory": "health_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0014",
+      "subcategory": "health_misinformation",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0015",
+      "subcategory": "election_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0016",
+      "subcategory": "deepfake_disinfo",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0017",
+      "subcategory": "deepfake_disinfo",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0018",
+      "subcategory": "scientific_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0019",
+      "subcategory": "communal_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0020",
+      "subcategory": "communal_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0021",
+      "subcategory": "election_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0022",
+      "subcategory": "health_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0023",
+      "subcategory": "financial_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0024",
+      "subcategory": "communal_misinformation",
+      "framing": "educational",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0025",
+      "subcategory": "election_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0026",
+      "subcategory": "communal_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0027",
+      "subcategory": "health_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0028",
+      "subcategory": "scientific_misinformation",
+      "framing": "curriculum",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0029",
+      "subcategory": "health_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "mi_0030",
+      "subcategory": "communal_misinformation",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    }
+  ]
+}

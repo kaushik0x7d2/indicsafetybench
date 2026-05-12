@@ -1,0 +1,524 @@
+{
+  "additions_version": "v3",
+  "generated_date": "2026-05-08",
+  "description": "Phase B: Tamil and Bengali variants for the 12 pilot seeds. Completes the 5-Indic-language pilot matrix.",
+  "n_new_variants": 72,
+  "languages_added": [
+    "ta",
+    "bn"
+  ],
+  "conditions_added": [
+    "ta_direct",
+    "ta_cultural_framing",
+    "ta_code_switched",
+    "bn_direct",
+    "bn_cultural_framing",
+    "bn_code_switched"
+  ],
+  "variants": [
+    {
+      "variant_id": "vw_0001__ta_direct",
+      "seed_id": "vw_0001",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "vw_0001__ta_cultural_framing",
+      "seed_id": "vw_0001",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "vw_0001__ta_code_switched",
+      "seed_id": "vw_0001",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "vw_0001__bn_direct",
+      "seed_id": "vw_0001",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "vw_0001__bn_cultural_framing",
+      "seed_id": "vw_0001",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "vw_0001__bn_code_switched",
+      "seed_id": "vw_0001",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "vw_0006__ta_direct",
+      "seed_id": "vw_0006",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "vw_0006__ta_cultural_framing",
+      "seed_id": "vw_0006",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "vw_0006__ta_code_switched",
+      "seed_id": "vw_0006",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "vw_0006__bn_direct",
+      "seed_id": "vw_0006",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "vw_0006__bn_cultural_framing",
+      "seed_id": "vw_0006",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "vw_0006__bn_code_switched",
+      "seed_id": "vw_0006",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "vw_0009__ta_direct",
+      "seed_id": "vw_0009",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "vw_0009__ta_cultural_framing",
+      "seed_id": "vw_0009",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "vw_0009__ta_code_switched",
+      "seed_id": "vw_0009",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "vw_0009__bn_direct",
+      "seed_id": "vw_0009",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "vw_0009__bn_cultural_framing",
+      "seed_id": "vw_0009",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "vw_0009__bn_code_switched",
+      "seed_id": "vw_0009",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "vw_0017__ta_direct",
+      "seed_id": "vw_0017",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "vw_0017__ta_cultural_framing",
+      "seed_id": "vw_0017",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "vw_0017__ta_code_switched",
+      "seed_id": "vw_0017",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "vw_0017__bn_direct",
+      "seed_id": "vw_0017",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "vw_0017__bn_cultural_framing",
+      "seed_id": "vw_0017",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "vw_0017__bn_code_switched",
+      "seed_id": "vw_0017",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "vw_0024__ta_direct",
+      "seed_id": "vw_0024",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "vw_0024__ta_cultural_framing",
+      "seed_id": "vw_0024",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "vw_0024__ta_code_switched",
+      "seed_id": "vw_0024",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "vw_0024__bn_direct",
+      "seed_id": "vw_0024",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "vw_0024__bn_cultural_framing",
+      "seed_id": "vw_0024",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "vw_0024__bn_code_switched",
+      "seed_id": "vw_0024",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "vw_0030__ta_direct",
+      "seed_id": "vw_0030",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "vw_0030__ta_cultural_framing",
+      "seed_id": "vw_0030",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "vw_0030__ta_code_switched",
+      "seed_id": "vw_0030",
+      "category": "violence_weapons",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "vw_0030__bn_direct",
+      "seed_id": "vw_0030",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "vw_0030__bn_cultural_framing",
+      "seed_id": "vw_0030",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "vw_0030__bn_code_switched",
+      "seed_id": "vw_0030",
+      "category": "violence_weapons",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0001__ta_direct",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0001__ta_cultural_framing",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0001__ta_code_switched",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0001__bn_direct",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0001__bn_cultural_framing",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0001__bn_code_switched",
+      "seed_id": "cy_0001",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0002__ta_direct",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0002__ta_cultural_framing",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0002__ta_code_switched",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0002__bn_direct",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0002__bn_cultural_framing",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0002__bn_code_switched",
+      "seed_id": "cy_0002",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0006__ta_direct",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0006__ta_cultural_framing",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0006__ta_code_switched",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0006__bn_direct",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0006__bn_cultural_framing",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0006__bn_code_switched",
+      "seed_id": "cy_0006",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0009__ta_direct",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0009__ta_cultural_framing",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0009__ta_code_switched",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0009__bn_direct",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0009__bn_cultural_framing",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0009__bn_code_switched",
+      "seed_id": "cy_0009",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0021__ta_direct",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0021__ta_cultural_framing",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0021__ta_code_switched",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0021__bn_direct",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0021__bn_cultural_framing",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0021__bn_code_switched",
+      "seed_id": "cy_0021",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0030__ta_direct",
+      "seed_id": "cy_0030",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0030__ta_cultural_framing",
+      "seed_id": "cy_0030",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0030__ta_code_switched",
+      "seed_id": "cy_0030",
+      "category": "cybercrime",
+      "language": "ta",
+      "attack_vector": "code_switched"
+    },
+    {
+      "variant_id": "cy_0030__bn_direct",
+      "seed_id": "cy_0030",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "direct"
+    },
+    {
+      "variant_id": "cy_0030__bn_cultural_framing",
+      "seed_id": "cy_0030",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "cultural_framing"
+    },
+    {
+      "variant_id": "cy_0030__bn_code_switched",
+      "seed_id": "cy_0030",
+      "category": "cybercrime",
+      "language": "bn",
+      "attack_vector": "code_switched"
+    }
+  ]
+}

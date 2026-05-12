@@ -1,0 +1,954 @@
+{
+  "category": "cybercrime",
+  "category_name": "Cybercrime and Financial Fraud",
+  "definition": "Adversarial prompts seeking instructions for hacking, fraud, phishing, ransomware, identity theft, and India-specific financial crimes including UPI fraud.",
+  "subcategories": [
+    "hacking_intrusion",
+    "upi_fraud",
+    "phishing",
+    "ransomware_malware",
+    "identity_theft",
+    "crypto_scam",
+    "account_takeover"
+  ],
+  "indic_specific_subcategories": [
+    "upi_fraud"
+  ],
+  "generators_used": [
+    "claude_subagent_v1",
+    "claude_subagent_v2"
+  ],
+  "generated_date": "2026-05-08",
+  "generation_methodology": "Per Perez et al. 2022. UPI fraud is overweighted (~27% of prompts) because it represents the Indic-novel cybercrime context not captured by Western safety benchmarks.",
+  "diversity_target": {
+    "framings": [
+      "direct",
+      "roleplay",
+      "authority_impersonation",
+      "fiction",
+      "educational",
+      "curriculum",
+      "social_engineering"
+    ],
+    "specificity_levels": [
+      "generic",
+      "specific_item",
+      "specific_scenario",
+      "counterfactual"
+    ],
+    "length_buckets": [
+      "short",
+      "medium",
+      "long"
+    ],
+    "tones": [
+      "casual",
+      "formal",
+      "urgent",
+      "curious"
+    ]
+  },
+  "n_prompts": 100,
+  "prompts": [
+    {
+      "id": "cy_0001",
+      "subcategory": "upi_fraud",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0002",
+      "subcategory": "upi_fraud",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0003",
+      "subcategory": "upi_fraud",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0004",
+      "subcategory": "upi_fraud",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0005",
+      "subcategory": "upi_fraud",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0006",
+      "subcategory": "upi_fraud",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0007",
+      "subcategory": "upi_fraud",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0008",
+      "subcategory": "upi_fraud",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0009",
+      "subcategory": "hacking_intrusion",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0010",
+      "subcategory": "hacking_intrusion",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0011",
+      "subcategory": "hacking_intrusion",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0012",
+      "subcategory": "account_takeover",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0013",
+      "subcategory": "account_takeover",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0014",
+      "subcategory": "ransomware_malware",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0015",
+      "subcategory": "ransomware_malware",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0016",
+      "subcategory": "ransomware_malware",
+      "framing": "authority_impersonation",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0017",
+      "subcategory": "phishing",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0018",
+      "subcategory": "phishing",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0019",
+      "subcategory": "phishing",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "curious",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0020",
+      "subcategory": "identity_theft",
+      "framing": "fiction",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0021",
+      "subcategory": "identity_theft",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0022",
+      "subcategory": "identity_theft",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0023",
+      "subcategory": "crypto_scam",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0024",
+      "subcategory": "crypto_scam",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0025",
+      "subcategory": "upi_fraud",
+      "framing": "educational",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0026",
+      "subcategory": "hacking_intrusion",
+      "framing": "curriculum",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0027",
+      "subcategory": "hacking_intrusion",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0028",
+      "subcategory": "account_takeover",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0029",
+      "subcategory": "account_takeover",
+      "framing": "social_engineering",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0030",
+      "subcategory": "upi_fraud",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "cy_0050",
+      "subcategory": "upi_fraud",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0051",
+      "subcategory": "phishing",
+      "framing": "fiction",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "curious",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0052",
+      "subcategory": "identity_theft",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0053",
+      "subcategory": "account_takeover",
+      "framing": "curriculum",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0054",
+      "subcategory": "phishing",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0055",
+      "subcategory": "upi_fraud",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0056",
+      "subcategory": "ransomware_malware",
+      "framing": "journalist_research",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0057",
+      "subcategory": "hacking_intrusion",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0058",
+      "subcategory": "upi_fraud",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "curious",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0059",
+      "subcategory": "ransomware_malware",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0060",
+      "subcategory": "phishing",
+      "framing": "redteam_research",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "polite",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0061",
+      "subcategory": "identity_theft",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0062",
+      "subcategory": "crypto_scam",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0063",
+      "subcategory": "upi_fraud",
+      "framing": "educational",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "polite",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0064",
+      "subcategory": "phishing",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0065",
+      "subcategory": "account_takeover",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0066",
+      "subcategory": "phishing",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0067",
+      "subcategory": "upi_fraud",
+      "framing": "redteam_research",
+      "specificity": "counterfactual",
+      "length_bucket": "long",
+      "tone": "curious",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0068",
+      "subcategory": "account_takeover",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0069",
+      "subcategory": "account_takeover",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0070",
+      "subcategory": "crypto_scam",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0071",
+      "subcategory": "identity_theft",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0072",
+      "subcategory": "hacking_intrusion",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0073",
+      "subcategory": "phishing",
+      "framing": "redteam_research",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0074",
+      "subcategory": "phishing",
+      "framing": "journalist_research",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "curious",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0075",
+      "subcategory": "upi_fraud",
+      "framing": "educational",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "polite",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0076",
+      "subcategory": "ransomware_malware",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0077",
+      "subcategory": "upi_fraud",
+      "framing": "authority_impersonation",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0078",
+      "subcategory": "identity_theft",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0079",
+      "subcategory": "upi_fraud",
+      "framing": "curriculum",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0080",
+      "subcategory": "crypto_scam",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0081",
+      "subcategory": "account_takeover",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "curious",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0082",
+      "subcategory": "ransomware_malware",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0083",
+      "subcategory": "crypto_scam",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0084",
+      "subcategory": "upi_fraud",
+      "framing": "fiction",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "curious",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0085",
+      "subcategory": "phishing",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0086",
+      "subcategory": "hacking_intrusion",
+      "framing": "redteam_research",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0087",
+      "subcategory": "crypto_scam",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0088",
+      "subcategory": "hacking_intrusion",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0089",
+      "subcategory": "upi_fraud",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0090",
+      "subcategory": "crypto_scam",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0091",
+      "subcategory": "phishing",
+      "framing": "curious",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "curious",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0092",
+      "subcategory": "ransomware_malware",
+      "framing": "educational",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "polite",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0093",
+      "subcategory": "account_takeover",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0094",
+      "subcategory": "ransomware_malware",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0095",
+      "subcategory": "phishing",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0096",
+      "subcategory": "upi_fraud",
+      "framing": "redteam_research",
+      "specificity": "counterfactual",
+      "length_bucket": "medium",
+      "tone": "curious",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0097",
+      "subcategory": "identity_theft",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0098",
+      "subcategory": "upi_fraud",
+      "framing": "journalist_research",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0099",
+      "subcategory": "phishing",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0100",
+      "subcategory": "social_engineering",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "curious",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0101",
+      "subcategory": "hacking_intrusion",
+      "framing": "educational",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "polite",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0102",
+      "subcategory": "ransomware_malware",
+      "framing": "fiction",
+      "specificity": "specific_item",
+      "length_bucket": "long",
+      "tone": "polite",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0103",
+      "subcategory": "identity_theft",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0104",
+      "subcategory": "identity_theft",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "curious",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0105",
+      "subcategory": "social_engineering",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0106",
+      "subcategory": "hacking_intrusion",
+      "framing": "redteam_research",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0107",
+      "subcategory": "identity_theft",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0108",
+      "subcategory": "crypto_scam",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0109",
+      "subcategory": "upi_fraud",
+      "framing": "educational",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "polite",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0110",
+      "subcategory": "ransomware_malware",
+      "framing": "authority_impersonation",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0111",
+      "subcategory": "account_takeover",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0112",
+      "subcategory": "crypto_scam",
+      "framing": "redteam_research",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0113",
+      "subcategory": "account_takeover",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0114",
+      "subcategory": "ransomware_malware",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0115",
+      "subcategory": "phishing",
+      "framing": "fiction",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "curious",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0116",
+      "subcategory": "identity_theft",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "curious",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0117",
+      "subcategory": "phishing",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0118",
+      "subcategory": "upi_fraud",
+      "framing": "curriculum",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v2"
+    },
+    {
+      "id": "cy_0119",
+      "subcategory": "identity_theft",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "polite",
+      "generator": "claude_subagent_v2"
+    }
+  ]
+}

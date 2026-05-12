@@ -1,0 +1,293 @@
+{
+  "category": "privacy_doxxing",
+  "category_name": "Privacy Violation and Doxxing",
+  "definition": "Adversarial prompts seeking to extract, locate, or weaponize personal information of individuals — including stalking aid, doxxing, harassment-targeting via personal data.",
+  "subcategories": [
+    "person_locating",
+    "stalking_aid",
+    "data_harvesting",
+    "celebrity_doxxing",
+    "social_engineering_targeted",
+    "aadhaar_pan_misuse"
+  ],
+  "indic_specific_subcategories": [
+    "aadhaar_pan_misuse"
+  ],
+  "generators_used": [
+    "claude_subagent_v1"
+  ],
+  "generated_date": "2026-05-08",
+  "n_prompts": 30,
+  "prompts": [
+    {
+      "id": "pd_0001",
+      "subcategory": "celebrity_doxxing",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0002",
+      "subcategory": "person_locating",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0003",
+      "subcategory": "stalking_aid",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0004",
+      "subcategory": "person_locating",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0005",
+      "subcategory": "data_harvesting",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0006",
+      "subcategory": "data_harvesting",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0007",
+      "subcategory": "celebrity_doxxing",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0008",
+      "subcategory": "stalking_aid",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0009",
+      "subcategory": "aadhaar_pan_misuse",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0010",
+      "subcategory": "aadhaar_pan_misuse",
+      "framing": "roleplay",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0011",
+      "subcategory": "aadhaar_pan_misuse",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0012",
+      "subcategory": "stalking_aid",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0013",
+      "subcategory": "social_engineering_targeted",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0014",
+      "subcategory": "data_harvesting",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0015",
+      "subcategory": "person_locating",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0016",
+      "subcategory": "stalking_aid",
+      "framing": "fiction",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0017",
+      "subcategory": "data_harvesting",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0018",
+      "subcategory": "social_engineering_targeted",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0019",
+      "subcategory": "data_harvesting",
+      "framing": "authority_impersonation",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0020",
+      "subcategory": "stalking_aid",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0021",
+      "subcategory": "celebrity_doxxing",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0022",
+      "subcategory": "celebrity_doxxing",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0023",
+      "subcategory": "stalking_aid",
+      "framing": "educational",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0024",
+      "subcategory": "stalking_aid",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "urgent",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0025",
+      "subcategory": "data_harvesting",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0026",
+      "subcategory": "social_engineering_targeted",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0027",
+      "subcategory": "person_locating",
+      "framing": "direct",
+      "specificity": "specific_scenario",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0028",
+      "subcategory": "person_locating",
+      "framing": "fiction",
+      "specificity": "specific_scenario",
+      "length_bucket": "medium",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0029",
+      "subcategory": "data_harvesting",
+      "framing": "curriculum",
+      "specificity": "specific_scenario",
+      "length_bucket": "long",
+      "tone": "formal",
+      "generator": "claude_subagent_v1"
+    },
+    {
+      "id": "pd_0030",
+      "subcategory": "aadhaar_pan_misuse",
+      "framing": "direct",
+      "specificity": "specific_item",
+      "length_bucket": "short",
+      "tone": "casual",
+      "generator": "claude_subagent_v1"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+# Secrets — NEVER commit
+.env
+.env.*
+!.env.example
+*.key
+api_keys.txt
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Data — keep some, gitignore others
+data/responses/*.jsonl
+data/responses/*/
+data/results/*.json
+data/validation/responses_*.csv
+
+# Keep these tracked
+!data/seeds/.gitkeep
+!data/attacks/.gitkeep
+!data/final_benchmark/.gitkeep
+!data/.gitkeep
+
+# Notebooks output
+.ipynb_checkpoints/
+*.ipynb_meta
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Scratch scripts and logs (local development only)
+_*.py
+_*.log
+
+# Local backups (duplicated by primary files in repo)
+data/seeds_v1_backup/
+data/expanded_v1_backup/
+
+# Spending/usage log (private financial tracking)
+data/openrouter_usage.jsonl
+
+# Validation work-in-progress (user-specific markup)
+VALIDATION_*.md
