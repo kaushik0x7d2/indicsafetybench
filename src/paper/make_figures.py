@@ -1,8 +1,12 @@
 """Generate paper-grade figures from finalized judgments.
 
+Default: LLM judge (judgments_llm.jsonl) as primary source-of-truth (paper v2).
+Pass --judge heuristic to use the heuristic judge (paper v1 / pre-flip).
+
 Outputs to data/pilot/figures/ as PNG + matplotlib pdf.
 """
 from __future__ import annotations
+import argparse
 import json
 from collections import defaultdict
 from pathlib import Path
@@ -12,7 +16,6 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-JUDGMENTS = Path("data/pilot/judgments.jsonl")
 FIGDIR = Path("data/pilot/figures")
 FIGDIR.mkdir(parents=True, exist_ok=True)
 
@@ -34,12 +37,12 @@ ATTACK_LABELS = {"direct": "Direct", "cultural_framing": "Cultural Framing",
                  "code_switched": "Code-Switched"}
 
 
-def load():
+def load(judgments_path: Path):
     by_model_lang = defaultdict(lambda: {"refused": 0, "n": 0})
     by_model_attack = defaultdict(lambda: {"refused": 0, "n": 0})
     by_model_lang_attack = defaultdict(lambda: {"refused": 0, "n": 0})
     by_cat_lang = defaultdict(lambda: {"refused": 0, "n": 0})
-    with open(JUDGMENTS, encoding="utf-8") as f:
+    with open(judgments_path, encoding="utf-8") as f:
         for line in f:
             j = json.loads(line)
             r = j.get("refusal")
@@ -199,16 +202,64 @@ def fig5_cultural_framing_by_lang(by_model_lang_attack):
     print(f"  fig5: {FIGDIR / 'fig5_cultural_framing_effect.png'}")
 
 
+def make_disagreement_heatmap(by_model_lang_llm, by_model_lang_heur):
+    """Figure 6: Δ between LLM and heuristic judge per (model × language)."""
+    fig, ax = plt.subplots(figsize=(9, 4.5))
+    Z = np.full((len(MODEL_ORDER), len(LANG_ORDER)), np.nan)
+    for i, m in enumerate(MODEL_ORDER):
+        for j, l in enumerate(LANG_ORDER):
+            llm = by_model_lang_llm.get((m, l), {"refused": 0, "n": 0})
+            heur = by_model_lang_heur.get((m, l), {"refused": 0, "n": 0})
+            if llm["n"] > 0 and heur["n"] > 0:
+                Z[i, j] = (llm["refused"] / llm["n"] - heur["refused"] / heur["n"]) * 100
+    vmax = max(abs(np.nanmin(Z)), abs(np.nanmax(Z)))
+    im = ax.imshow(Z, cmap="RdBu_r", vmin=-vmax, vmax=vmax, aspect="auto")
+    ax.set_xticks(range(len(LANG_ORDER)))
+    ax.set_xticklabels([LANG_LABELS[l] for l in LANG_ORDER], rotation=20, ha="right")
+    ax.set_yticks(range(len(MODEL_ORDER)))
+    ax.set_yticklabels([MODEL_LABELS[m] for m in MODEL_ORDER])
+    for i in range(len(MODEL_ORDER)):
+        for j in range(len(LANG_ORDER)):
+            v = Z[i, j]
+            if not np.isnan(v):
+                color = "white" if abs(v) > vmax * 0.6 else "black"
+                ax.text(j, i, f"{v:+.0f}", ha="center", va="center", color=color, fontsize=9)
+    cbar = plt.colorbar(im, ax=ax)
+    cbar.set_label("Δ refusal rate (pp): LLM judge − heuristic")
+    ax.set_title("Measurement Crisis: Heuristic Undercounts Reasoning-Model Refusals in Indic Languages")
+    plt.tight_layout()
+    plt.savefig(FIGDIR / "fig6_measurement_crisis.png", dpi=150)
+    plt.savefig(FIGDIR / "fig6_measurement_crisis.pdf")
+    plt.close()
+    print(f"  fig6: {FIGDIR / 'fig6_measurement_crisis.png'}")
+
+
 def main():
-    print("Loading judgments...")
-    by_model_lang, by_model_attack, by_model_lang_attack, by_cat_lang = load()
-    print(f"  loaded.")
+    p = argparse.ArgumentParser()
+    p.add_argument("--judge", choices=["llm", "heuristic"], default="llm",
+                   help="Which judge to treat as primary (default: llm)")
+    args = p.parse_args()
+
+    if args.judge == "llm":
+        primary_path = Path("data/pilot/judgments_llm.jsonl")
+        secondary_path = Path("data/pilot/judgments.jsonl")
+    else:
+        primary_path = Path("data/pilot/judgments.jsonl")
+        secondary_path = Path("data/pilot/judgments_llm.jsonl")
+    print(f"Primary judge: {primary_path.name}")
+    by_model_lang, by_model_attack, by_model_lang_attack, by_cat_lang = load(primary_path)
+    print(f"  loaded primary.")
+    by_model_lang_alt, _, _, _ = load(secondary_path)
+    print(f"  loaded secondary for disagreement plot.")
     print("Generating figures:")
     fig1_model_lang_heatmap(by_model_lang)
     fig2_attack_vector_effect(by_model_attack)
     fig3_sister_script_telugu_kannada(by_model_lang)
     fig4_reasoning_vs_legacy(by_model_lang)
     fig5_cultural_framing_by_lang(by_model_lang_attack)
+    # Fig 6: LLM-vs-heuristic disagreement (only meaningful when llm is primary)
+    if args.judge == "llm":
+        make_disagreement_heatmap(by_model_lang, by_model_lang_alt)
     print("Done.")
 
 

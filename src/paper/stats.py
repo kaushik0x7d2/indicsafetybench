@@ -14,7 +14,14 @@ import random
 from collections import defaultdict
 from pathlib import Path
 
-JUDGMENTS = Path("data/pilot/judgments.jsonl")
+import sys
+
+# Default: LLM judge as primary (paper v2). Override with --judge heuristic.
+JUDGMENTS = Path("data/pilot/judgments_llm.jsonl")
+if "--judge" in sys.argv:
+    i = sys.argv.index("--judge")
+    if i + 1 < len(sys.argv) and sys.argv[i + 1] == "heuristic":
+        JUDGMENTS = Path("data/pilot/judgments.jsonl")
 OUT = Path("data/pilot/STATS_REPORT.md")
 
 N_BOOT = 1000
