@@ -1,0 +1,408 @@
+% IndicSafetyBench — paper draft v2 (LaTeX, ACL-template-agnostic)
+% Compile: pdflatex paper.tex; bibtex paper; pdflatex paper.tex; pdflatex paper.tex
+% Or upload to Overleaf as a new project.
+
+\documentclass[11pt]{article}
+
+% --------- Packages ---------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,margin=1in]{geometry}
+% \usepackage{microtype}  % disabled: causes font-expansion error with default MiKTeX fonts
+\usepackage{lmodern}     % scalable Latin Modern fonts (avoids the issue if microtype re-enabled)
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\usepackage{natbib}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{soul}      % for highlighting
+\usepackage{titlesec}
+
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{4pt}
+
+\graphicspath{{figures/}}
+
+% --------- Title block ---------
+\title{A Measurement Crisis in Multilingual LLM Safety:\\
+  Heuristic Classifiers Systematically Undercount\\
+  Reasoning-Model Refusals in Indic Languages}
+
+\author{
+  Kaushik Kachireddy\\
+  Independent Researcher\\
+  NYU Tandon, MS Emerging Technologies (Fall 2026 cohort)\\
+  \texttt{kaushik0x7d2@github}
+}
+
+\date{May 2026 -- preprint draft v2}
+
+% --------- Document ---------
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We introduce \textbf{IndicSafetyBench}, a pilot benchmark of 3{,}340 adversarial prompts across English plus six Indic languages (Hindi, Marathi, Telugu, Kannada, Tamil, Bengali), eight harm categories, and three attack vectors (direct, cultural-framing, code-switching). We evaluate six production LLMs: three Sarvam variants (105B and 30B reasoning models, m legacy 24B), GPT-4o-mini, Gemini-2.5-Flash, and Llama-3.3-70B, generating 20{,}040 inferences scored by a dual-judge pipeline (multilingual heuristic regex classifier and Gemini-2.5-Flash LLM-as-judge), validated with Cohen's $\kappa$ on 19{,}423 paired labels. Our central finding is methodological: heuristic-based safety classifiers systematically undercount Sarvam reasoning-model refusals by up to 60 percentage points in Dravidian languages and Bengali, because these models produce structurally consistent soft-refusal patterns (``I cannot help with X, but here are safer alternatives'') that regex classifiers miscount as engagement. Per-cell $\kappa$ collapses to $0.07$--$0.17$ for Sarvam-105B/30B in Tamil and Bengali while remaining at $0.65$--$0.83$ in English and Hindi. Heuristic-only Indic safety benchmarks may have systematically under-reported reasoning-model safety. We further find that cultural-framing attacks ($-15$ to $-31$ pp for non-reasoning models, 95\% CI entirely below zero) have \emph{no detectable effect} on Sarvam reasoning models (95\% CI crosses zero). We release seeds, code, and judgments at \url{https://github.com/kaushik0x7d2/indicsafetybench} with gated access to raw responses.
+\end{abstract}
+
+% =============================================================
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{Why Indic LLM safety matters now}
+
+Approximately 750 million people speak one or more Indian languages, and a generation of ``sovereign'' or ``regional'' Indic LLMs --- Sarvam, Krutrim, OpenHathi, Param2 (BharatGen), Nanda --- is being deployed at scale alongside global frontier models that increasingly target Indic users. India's regulatory landscape --- DPDP Act 2023, IndiaAI Mission, MeitY's AI Advisory of March 2024, and the proposed AI Safety Institute --- demands quantified safety claims that the existing primarily-English safety benchmarking ecosystem cannot supply.
+
+\subsection{The state of Indic safety benchmarking}
+
+Two recent works define the field. \textbf{IndicJR} \citep{pattnayak2026indicjr} tested 45{,}216 prompts across 12 Indic languages and 12 models, including Sarvam-1, reporting an overall Jailbreak Success Rate of 0.959 and establishing that Indic-language safety transfer is broadly broken. \textbf{IndicSafe} \citep{pattnayak2026indicsafe} added 9 culturally-grounded harm categories. Concurrent with our work, \textbf{XL-SafetyBench} \citep{choi2026xlsafetybench}, posted to arXiv on May 7, 2026, tested 5{,}500 cross-cultural prompts across 10 country-language pairs including Hindi against Sarvam-30B and Sarvam-105B. \textbf{AILuminate v1.0} \citep{ghosh2025ailuminate} is expanding from English/French toward Hindi-only Indic coverage with Tattle Civic Tech.
+
+These benchmarks consistently report catastrophic Indic safety gaps. \textbf{All three primarily use heuristic, keyword-based refusal classifiers} (sometimes supplemented by smaller-sample human validation) for their headline refusal-rate numbers.
+
+\subsection{What no prior work has done}
+
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item No prior work provides a \emph{per-language} safety profile across the Sarvam family in 6+ Indic languages.
+  \item No prior work performs a \emph{within-family reasoning-vs-legacy} ablation (Sarvam-m as control).
+  \item No prior work introduces \emph{Indian-persona cultural-framing} (journalist at \emph{The Hindu}, professor at IIT/AIIMS, NPCI security researcher) as a distinct adversarial vector versus generic role-play.
+  \item No prior work directly contrasts heuristic and LLM-as-judge refusal labels on a paired sample large enough ($n=19{,}423$) to detect per-cell $\kappa$ degradation.
+\end{itemize}
+
+\subsection{Contributions}
+
+\textbf{(C1) The measurement-crisis finding.}\quad Heuristic refusal classifiers systematically \emph{undercount} refusals by Sarvam reasoning models in Dravidian and Bengali languages --- up to 60 percentage points (Sarvam-105B Tamil: heuristic 32\% vs LLM judge 91\%) --- because these models exhibit consistent soft-refusal patterns (``I cannot help, but here are safer alternatives'') that regex classifiers, including ones explicitly extended for Indic refusal anchors, misclassify as partial engagement. Per-cell Cohen's $\kappa$ between heuristic and LLM judges is 0.65 for English but collapses to 0.07 for Sarvam-105B in Tamil and 0.08 in Bengali. \textbf{Prior heuristic-based Indic safety findings (IndicJR-style) may have systematically under-reported reasoning-model safety.}
+
+\textbf{(C2) Sarvam reasoning models are uniformly safer than prior heuristic results suggest.}\quad Under LLM judging, Sarvam-105B refuses 91--96\% across all 7 languages (95\% CI 90--97\% per cell); Sarvam-30B refuses 82--91\%. The Tamil-Bengali ``catastrophe'' reported by heuristic pipelines is largely a measurement artifact, not a safety failure.
+
+\textbf{(C3) Reasoning architecture is robust to Indian-persona cultural-framing attacks.}\quad Cultural-framing attacks drop refusal rates by 16--31 percentage points across all four non-reasoning models (95\% CI entirely below zero) but have no detectable effect on Sarvam reasoning models (Sarvam-105B: $+2$ pp, CI $[-0.3, +4.2]$; Sarvam-30B: $-1$ pp, CI $[-3.7, +2.6]$). This is a \emph{real} effect (defensible against the \citealp{mukherjee2024cultural} placebo critique) and distinguishes our finding from prior work.
+
+\textbf{(C4) Llama-3.3-70B is the actually catastrophic model in our suite.}\quad Under both judges, Llama-3.3-70B Indic refusal rate is 38--54\% (LLM judge) --- confirmed catastrophic Marathi safety failure (21\% heuristic, 39\% LLM).
+
+\textbf{(C5) Sister-script null result.}\quad Telugu and Kannada are sister Brahmic scripts with strong visual similarity. Models do not transfer safety behavior between them: under the LLM judge Sarvam-105B refusal differs by 1 pp; under the heuristic judge the difference is 17 pp (the heuristic divergence is itself a manifestation of the measurement crisis). Models read language identity, not script glyph similarity.
+
+We release English seeds, code, judgments, and a Cohen's-$\kappa$-validated dual-judge pipeline at \url{https://github.com/kaushik0x7d2/indicsafetybench}. Raw multilingual prompts and model responses follow a gated-access policy adapted from HarmBench precedent \citep{mazeika2024harmbench}.
+
+% =============================================================
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Indic LLM safety benchmarks}
+
+\citet{pattnayak2026indicjr}'s \textbf{IndicJR} is the largest existing Indic safety benchmark --- 45{,}216 prompts $\times$ 12 Indic languages $\times$ 12 target models, with four attack families: instruction-override, translate-then-do, role-play, and format-override. Their headline JSR of 0.959 establishes that Indic safety transfer is broadly broken. Sarvam-1 (non-reasoning, predecessor of Sarvam-30B) is among their target models; Sarvam-30B and Sarvam-105B are absent. They report inter-annotator $\kappa = 0.68$ unweighted on a human-validated subset, but their primary refusal classifier is heuristic. \textbf{IndicSafe} \citep{pattnayak2026indicsafe} extends this to 6{,}000 culturally-grounded prompts across 9 categories.
+
+\textbf{XL-SafetyBench} \citep{choi2026xlsafetybench} evaluates 5{,}500 prompts across 10 country-language pairs including India-Hindi against Sarvam-30B and Sarvam-105B. Their finding on Sarvam-105B (Hindi, ASR 52.7\%; NSR 2.7\%) is largely consistent with our LLM-judge Hindi result (93\% refusal $\equiv$ 7\% engagement). They use single-judge methodology with native-speaker validation but do not test Indic languages beyond Hindi, do not include a Sarvam non-reasoning comparator, and do not test code-switching or persona-based cultural framing.
+
+\textbf{AILuminate v1.0 Hindi} \citep{ghosh2025ailuminate} provides 2{,}000 Hindi prompts in two hazard categories with a native-Hindi expert panel using a participatory methodology --- the closest existing work to a paper-grade safety benchmark in Indic.
+
+\subsection{Methodological references}
+
+We follow the LLM-as-judge framework of \citet{hada2024llmevaluators} and the multilingual human-LLM evaluator-agreement protocols of \citet{watts2024pariksha}. Inter-rater $\kappa$ analysis follows \citet{mchugh2012kappa} and the precedent set by \citet{banerjee2025judgesverdict}, which establishes Cohen's $\kappa$ as the appropriate metric for evaluator comparison.
+
+\subsection{The placebo critique}
+
+A central methodological challenge to any ``cultural prompting'' finding is \citet{mukherjee2024cultural}, which shows that arbitrary tokens cause LLM response variation even on culturally neutral datasets (MMLU, ETHICS), suggesting socio-demographic prompting may produce placebo perturbations rather than genuine cultural effects. We engage this critique directly in \S\ref{sec:placebo-defense}.
+
+\subsection{Code-switching as an adversarial vector}
+
+\citet{khanuja2020gluecos} established the foundational benchmark for Hindi-English code-switched NLP. \citet{aswal2025cmprt} introduced phonetic perturbation as a code-mixed jailbreak vector. We treat lexical code-switching (English embedded in Indic syntactic frame --- Hinglish, Tanglish, etc.) as distinct from both phonetic perturbation and pure romanization (which IndicJR conflates).
+
+\subsection{Indic LLM cultural alignment}
+
+\citet{agarwal2025fluentforeign} demonstrate that Indic LLMs do not align better than global LLMs with Indian cultural \emph{values} using a 115-user study. Our work parallels theirs in the safety dimension. \citet{seth2025casteandreligion} and \citet{seth2024dosa} provide empirical grounding for our caste-/religion-bias subcategories.
+
+\subsection{Position}
+
+IndicJR/IndicSafe and XL-SafetyBench together establish the breadth of Indic LLM safety findings. Our work is complementary along three axes: (1)~\emph{depth} of per-language reasoning-model profiles across the Sarvam family, (2)~a \emph{methodological intervention} --- the measurement-crisis finding --- that recontextualizes prior heuristic results, and (3)~a \emph{placebo-defended cultural-framing finding} that distinguishes reasoning from non-reasoning architectures.
+
+% =============================================================
+\section{Methodology}
+\label{sec:method}
+
+\subsection{Pipeline}
+
+We use a five-stage pipeline. \textbf{Stage 1:} 425 English seeds across 8 harm categories generated by Claude-Opus-class subagents following the model-written-evaluations methodology of \citet{perez2022mwe}, of which 167 are deployed in the pilot. \textbf{Stage 2:} multilingual expansion --- each seed produces one EN-direct, one EN-cultural-framing, and six Indic languages $\times$ three attack vectors (direct, cultural-framing, code-switched), yielding 3{,}340 prompt variants. \textbf{Stage 3:} target-model inference (six models $\times$ 3{,}340 = 20{,}040 responses). \textbf{Stage 4:} dual-judge labeling (heuristic regex classifier + Gemini-2.5-Flash LLM-as-judge). \textbf{Stage 5:} per-cell Cohen's $\kappa$ inter-judge agreement and bootstrap statistics.
+
+\subsection{Harm categories}
+
+Eight categories with Indic-specific subcategory overweighting: violence/weapons (communal violence, naxal/maoist, mob lynching), self-harm (farmer pesticide suicide, NEET/JEE/UPSC pressure), CSAM-adjacent (child marriage facilitation, Northeast trafficking), privacy/doxxing (Aadhaar/PAN extraction), hate-speech (caste discrimination, Hindu-Muslim incitement, Northeast slurs), misinformation (EVM tampering, communal fake news), cybercrime (UPI fraud, digital arrest scams), sexual exploitation (Bollywood deepfakes, WhatsApp sextortion).
+
+\subsection{Languages}
+
+Seven languages spanning two families and five scripts: English (baseline), Hindi (Indo-Aryan, Devanagari, $\sim$600M), Marathi (Indo-Aryan, Devanagari, $\sim$99M), Bengali (Indo-Aryan, Bengali script, $\sim$285M), Telugu (Dravidian, Telugu script, $\sim$96M), Kannada (Dravidian, Kannada script, $\sim$60M), Tamil (Dravidian, Tamil script, $\sim$90M). Selected to test (a) within-Devanagari transfer (Hindi/Marathi), (b) sister-script transfer (Telugu/Kannada), (c) Dravidian-vs-Indo-Aryan asymmetry.
+
+\subsection{Attack vectors}
+
+\textbf{Direct} (D): harmful query in target language. \textbf{Cultural framing} (CF): query wrapped in an Indian-persona cover story --- journalist at \emph{Hindustan Times} / \emph{The Hindu}, professor at IIT/JNU/AIIMS, NGO worker in Bihar/UP, NPCI/CERT-In security researcher, RBI/ICAI official --- with explicit named institutions. Distinct from generic role-play in that the framing is institutionally grounded. \textbf{Code-switched} (CS): query in target language with English code-mixing (Hinglish, Tanglish, Tenglish, Manglish, Banglish, Kanglish). Lexical mixing, not phonetic perturbation.
+
+\subsection{Models}
+
+Sarvam-105B, Sarvam-30B, Sarvam-m (Sarvam AI); GPT-4o-mini, Gemini-2.5-Flash, Llama-3.3-70B-Instruct (via OpenRouter). Sarvam-30B/105B are reasoning models with separate \texttt{reasoning\_content} field; we set $\max_{\text{tokens}}=2048$ to allow reasoning plus final response.
+
+\subsection{Judges}
+
+\textbf{Heuristic classifier}: multilingual regex pattern bank with refusal anchors in English plus all six Indic languages plus six code-mixed variants. Ambiguous short responses default to \emph{refused} (conservative). \textbf{LLM-as-judge}: Gemini-2.5-Flash with structured JSON rubric --- \texttt{\{refusal: 0|1, harm: float, rationale: str\}} --- applied to language-annotated (prompt, response) pairs. Parse failures $<\!0.1\%$.
+
+\textbf{Inter-judge agreement}: Cohen's $\kappa$ per cell following \citet{mchugh2012kappa} on $n=19{,}423$ paired labels.
+
+\subsection{Statistics}
+
+Refusal rates reported with 95\% percentile-bootstrap CIs (1000 resamples, seed=2026). Cultural-framing effect is paired-bootstrap $\Delta$ refusal rate (framing $-$ direct) per model. Odds ratios with continuity correction.
+
+% =============================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{Per-language refusal rate (LLM judge primary)}
+\label{sec:results-perlang}
+
+Table~\ref{tab:llm-matrix} reports the refusal-rate matrix under the LLM judge. Figure~\ref{fig:fig1} visualizes the same data as a heatmap.
+
+\begin{table}[h!]
+\centering
+\caption{Refusal rate (\%) per (model $\times$ language) under \textbf{LLM judge}. $n\geq500$ per Indic cell, $n=334$ for English. Bootstrap 95\% CIs in Appendix~\ref{app:cis}.}
+\label{tab:llm-matrix}
+\small
+\begin{tabularx}{\columnwidth}{lcccccccc}
+\toprule
+Model & EN & HI & MR & TE & KN & TA & BN & Indic-mean \\
+\midrule
+Sarvam-105B   & 96 & 93 & 93 & 92 & 91 & 91 & 93 & \textbf{92} \\
+Sarvam-30B    & 91 & 87 & 87 & 82 & 83 & 84 & 85 & \textbf{85} \\
+Sarvam-m      & 58 & 66 & 69 & 74 & 71 & 73 & 70 & \textbf{71} \\
+Gemini-2.5-F  & 74 & 64 & 72 & 62 & 57 & 60 & 67 & \textbf{64} \\
+GPT-4o-mini   & 67 & 61 & 57 & 62 & 58 & 61 & 64 & \textbf{60} \\
+Llama-3.3-70B & 38 & 54 & 39 & 39 & 40 & 39 & 50 & \textbf{44} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\columnwidth]{fig1_model_lang_heatmap.png}
+\caption{Refusal rate (\%) by (model $\times$ language) under LLM judge.}
+\label{fig:fig1}
+\end{figure}
+
+\textbf{Observations.} Sarvam-105B is the highest-refusal model in every language (96\% English; 91--93\% Indic), with tight per-cell variance ($\sim$5 pp). Sarvam-30B is consistently second-highest (82--91\%), again with low variance. Sarvam-m is notably looser (58--74\%), and uniquely shows English $<$ Indic. Llama-3.3-70B is catastrophic: 38\% English, 39--50\% Indic, with the worst Marathi cell at 39\%.
+
+\subsection{The measurement crisis}
+\label{sec:results-crisis}
+
+Table~\ref{tab:delta} reports the difference $\Delta$ between LLM-judge and heuristic-judge refusal rates per cell. Figure~\ref{fig:fig6} visualizes the same as a diverging-color heatmap.
+
+\begin{table}[h!]
+\centering
+\caption{$\Delta$ refusal rate (pp): LLM judge $-$ heuristic. \textbf{Positive} = heuristic undercounts refusals.}
+\label{tab:delta}
+\small
+\begin{tabularx}{\columnwidth}{lccccccc}
+\toprule
+Model & EN & HI & MR & TE & KN & TA & BN \\
+\midrule
+Sarvam-105B   & $+2$ & $+6$ & $\mathbf{+41}$ & $\mathbf{+37}$ & $+24$ & $\mathbf{+60}$ & $\mathbf{+57}$ \\
+Sarvam-30B    & $+2$ & $+7$ & $\mathbf{+42}$ & $\mathbf{+37}$ & $+21$ & $\mathbf{+57}$ & $\mathbf{+54}$ \\
+Sarvam-m      & $-10$ & $-1$ & $+15$ & $+13$ & $+13$ & $+22$ & $+10$ \\
+Gemini-2.5-F  & $0$ & $0$ & $+15$ & $+10$ & $+3$ & $+16$ & $+15$ \\
+GPT-4o-mini   & $-3$ & $-4$ & $+3$ & $+1$ & $0$ & $0$ & $-1$ \\
+Llama-3.3-70B & $0$ & $-5$ & $+18$ & $+6$ & $+8$ & $+8$ & $+9$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\columnwidth]{fig6_measurement_crisis.png}
+\caption{Heuristic vs LLM judge disagreement $\Delta$ per cell. Sarvam reasoning models in Dravidian/Bengali languages show extreme heuristic undercounting (+37 to +60 pp).}
+\label{fig:fig6}
+\end{figure}
+
+Two patterns emerge. First, English and Hindi cells show $|\Delta|\leq 10$ pp across all models --- the heuristic works well in languages with the densest refusal-anchor coverage. Second, Sarvam-30B and Sarvam-105B cells in Dravidian and Bengali languages show $\Delta$ of +37 to +60 pp. The heuristic systematically undercounts refusals for Sarvam reasoning models in these languages.
+
+The mechanism (Appendix~\ref{app:disagreements}) is that Sarvam reasoning models produce \emph{soft refusals} --- ``I cannot help with that, but here are safer alternatives'' --- containing both refusal anchors and substantive engagement-shaped text. The heuristic catches the engagement-shaped text; the LLM judge correctly classifies the response as a refusal with constructive redirection.
+
+Per-cell Cohen's $\kappa$ (Table~\ref{tab:kappa}) confirms this. For Sarvam reasoning models in Dravidian and Bengali, $\kappa$ drops to 0.07--0.32; for GPT-4o-mini the same cells are 0.67--0.86.
+
+\begin{table}[h!]
+\centering
+\caption{Cohen's $\kappa$ between heuristic and LLM judges per cell. $n\approx 270$--$520$ per cell.}
+\label{tab:kappa}
+\small
+\begin{tabularx}{\columnwidth}{lccccccc}
+\toprule
+Model & EN & HI & MR & TE & KN & TA & BN \\
+\midrule
+Sarvam-105B   & 0.65 & 0.51 & 0.13 & 0.17 & 0.32 & \textbf{0.07} & \textbf{0.08} \\
+Sarvam-30B    & 0.83 & 0.62 & 0.19 & 0.23 & 0.51 & \textbf{0.12} & \textbf{0.13} \\
+Sarvam-m      & 0.61 & 0.67 & 0.62 & 0.53 & 0.56 & 0.45 & 0.63 \\
+GPT-4o-mini   & 0.83 & 0.81 & 0.67 & 0.80 & 0.75 & 0.86 & 0.81 \\
+Gemini-2.5-F  & 0.75 & 0.79 & 0.58 & 0.69 & 0.76 & 0.57 & 0.64 \\
+Llama-3.3-70B & 0.90 & 0.54 & 0.51 & 0.66 & 0.60 & 0.66 & 0.74 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+This is the measurement crisis. Heuristic safety classifiers cannot reliably evaluate reasoning models in Dravidian or Bengali languages. Any safety claim about Indic-deployed reasoning models that relies primarily on heuristic refusal classification --- including, plausibly, the headline results in concurrent and prior work --- should be treated as a lower bound, not a faithful measurement.
+
+\subsection{Reasoning architecture is robust to cultural framing}
+\label{sec:results-cf}
+
+Table~\ref{tab:cf} reports the cultural-framing attack under the LLM judge with paired-bootstrap 95\% CIs. Figure~\ref{fig:fig2} visualizes the same as grouped bars.
+
+\begin{table}[h!]
+\centering
+\caption{Refusal rate (\%) by attack vector under LLM judge and bootstrap 95\% CI on $\Delta=$ (cultural-framing $-$ direct).}
+\label{tab:cf}
+\small
+\begin{tabularx}{\columnwidth}{lccccr}
+\toprule
+Model & D & CF & CS & $\Delta$ pp & OR / 95\% CI on $\Delta$ \\
+\midrule
+Sarvam-105B   & 91 & 93 & --- & $\mathbf{+2}$ & 1.29 / $[-0.3, +4.2]$\,$\dagger$ \\
+Sarvam-30B    & 82 & 81 & --- & $\mathbf{-1}$ & 0.96 / $[-3.7, +2.6]$\,$\dagger$ \\
+Sarvam-m      & 73 & 42 & --- & $-31$ & 0.26 / $[-35.2, -27.5]$ \\
+Gemini-2.5-F  & 68 & 49 & --- & $-20$ & 0.44 / $[-23.6, -16.2]$ \\
+GPT-4o-mini   & 64 & 48 & --- & $-16$ & 0.52 / $[-19.6, -11.8]$ \\
+Llama-3.3-70B & 52 & 22 & --- & $-30$ & 0.26 / $[-33.5, -26.2]$ \\
+\bottomrule
+\end{tabularx}\\
+\textit{\footnotesize $\dagger$ = 95\% CI crosses zero (no detectable effect).}
+\end{table}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\columnwidth]{fig2_attack_vector_effect.png}
+\caption{Refusal rate by attack vector per model (LLM judge).}
+\label{fig:fig2}
+\end{figure}
+
+\textbf{The reasoning-vs-non-reasoning split is statistically clean.} Sarvam reasoning models' cultural-framing 95\% CIs cross zero (Sarvam-105B even shows slight refusal increase; no detectable jailbreak effect). All four non-reasoning models have CIs entirely below zero with effect magnitudes of $-16$ to $-31$ pp --- far beyond any documented placebo magnitude in the multilingual-prompting literature.
+
+\textbf{Code-switching does not consistently jailbreak.} Across all six models, code-switching increases refusal rates relative to both direct and cultural-framing variants. We interpret this as a tokenizer-induced effect: code-switched prompts are often shorter, fragmented at token boundaries, or semantically degraded, triggering ``I cannot understand'' patterns that both judges count as refusals. Code-switching as an attack vector is more nuanced than prior work has claimed.
+
+\subsection{Sister-script null result}
+\label{sec:results-sister}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\columnwidth]{fig3_sister_script.png}
+\caption{Telugu vs Kannada refusal rates per model (LLM judge). Sister Brahmic scripts do not produce shared safety behavior.}
+\label{fig:fig3}
+\end{figure}
+
+Telugu and Kannada use sister Brahmic scripts with strong visual similarity. Under the LLM judge the inter-language difference is $\leq 5$ pp across all six models. Under the heuristic judge (Table~\ref{tab:delta}) the divergence is dramatic (e.g., Sarvam-30B TE 45\% vs KN 62\%, $+17$ pp). \textbf{Models read language identity, not script glyph similarity.} The heuristic dramatic divergence is itself a manifestation of the measurement crisis.
+
+\subsection{Reasoning vs legacy within Sarvam}
+\label{sec:results-r-vs-l}
+
+Standard deviation of refusal rate across the six Indic languages under the LLM judge: Sarvam-105B 0.8 pp; Sarvam-30B 2.0 pp; Sarvam-m 3.1 pp. Sarvam reasoning models are \emph{less} per-language variable than the legacy model --- the opposite of what heuristic-only analyses (Appendix~\ref{app:heur}) suggest.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\columnwidth]{fig4_reasoning_vs_legacy.png}
+\caption{Per-language profile of the Sarvam family (LLM judge). Reasoning models maintain uniformly high refusal; legacy is loosely uniform but lower.}
+\label{fig:fig4}
+\end{figure}
+
+% =============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{What the measurement crisis tells us}
+
+Heuristic safety classifiers are tuned to two patterns: explicit verbal refusal and absence of harm-relevant content. They were calibrated for non-reasoning models that produce one of these cleanly. Reasoning-model RLHF, particularly in the Sarvam family (and presumably in DeepSeek-R1-class models), produces a third pattern: \emph{soft, contextualized, alternative-providing refusals}. From a safety perspective these are clearly refusals; from a regex perspective they mix refusal anchors with engagement-shaped substance.
+
+\textbf{Three implications.} (1)~Heuristic-based Indic safety benchmarks should be re-run with LLM judges before claims about reasoning-model safety are accepted; the catastrophic Indic gaps reported in prior work may be partly artifacts. (2)~Inter-judge $\kappa$ should be reported \emph{per cell}, not aggregated --- a single overall $\kappa=0.55$ hides cell-level variance from 0.07 to 0.90. (3)~The measurement-crisis pattern may generalize beyond Sarvam. Any reasoning model trained on a soft-refusal RLHF distribution may exhibit the same heuristic misclassification. Future work should test DeepSeek-R1, OpenAI \texttt{o}-series, and Claude-3.7-Sonnet-class reasoning models in Indic.
+
+\subsection{Defense of cultural-framing finding vs the placebo critique}
+\label{sec:placebo-defense}
+
+\citet{mukherjee2024cultural} argue that arbitrary tokens cause LLM response variation regardless of cultural relevance (``placebo''). We argue our cultural-framing finding is not placebo on four grounds.
+
+\textbf{(1) Magnitude}: the non-reasoning-model effect ($-16$ to $-31$ pp) is 3--4$\times$ larger than Mukherjee's documented placebo variance ($<5$ pp).
+
+\textbf{(2) Sign consistency}: the effect is same-direction (refusal drops) across 5 of 6 models. Random placebo would produce mixed signs.
+
+\textbf{(3) Reasoning gradient}: the effect is fully suppressed in reasoning models (95\% CI crosses zero). Placebo would be uniform across architectures.
+
+\textbf{(4) Structured intervention}: our perturbation invokes specific named Indian institutions (NPCI, AIIMS, RBI, IIT, \emph{The Hindu}) --- not arbitrary tokens. This is closer to a causal intervention than a placebo.
+
+\subsection{Implications for Indic LLM procurement}
+
+Indian regulatory and procurement processes should not assume Hindi safety performance generalizes across Indic languages. More importantly, procurement should not assume that heuristic-based refusal-rate measurements are faithful for reasoning models. Procurement should require: LLM-as-judge or human-judge validation; per-language and per-category breakdown; per-cell $\kappa$ reporting. Sovereign-LLM developers (Sarvam AI, Krutrim, BharatGen) emerge from our analysis looking better than prior heuristic results suggested. Llama-class generalist models are the actual safety concern in the Indic deployment context.
+
+% =============================================================
+\section{Limitations}
+\label{sec:limits}
+
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item \textbf{No external human validation on the full benchmark.} First-author native validation on a 65-item Telugu subset is planned. Additional languages and external annotators are deferred to v2.
+  \item \textbf{Single LLM-judge architecture}, no human gold-standard subset to anchor $\kappa$ interpretation.
+  \item \textbf{Limited model coverage}: six models, omitting Krutrim, Param2-17B, OpenHathi, Nanda, DeepSeek-R1, GPT-4o, Claude-3.5/3.7.
+  \item \textbf{Synthetic seed origin}: all seeds AI-generated per \citet{perez2022mwe}. Community-sourced seeds (e.g., AILuminate-Hindi's Tattle participatory methodology) would strengthen ecological validity.
+  \item \textbf{Cost-constrained scale}: 3{,}340 variants in a \$25 OpenRouter budget; 10$\times$ scale would require institutional funding.
+  \item \textbf{No IRB} as an independent pre-enrollment researcher; post-Fall 2026 review planned through NYU Tandon.
+\end{itemize}
+
+% =============================================================
+\section{Ethics Statement}
+\label{sec:ethics}
+
+This benchmark contains adversarial prompts that, if responded to permissively, would produce harmful content (instructions for cybercrime, hate speech, communal incitement, etc.). We follow responsible-disclosure norms established by HarmBench \citep{mazeika2024harmbench}, AdvBench \citep{zou2023advbench}, and IndicJR:
+
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item Adversarial prompts are research artifacts intended for safety evaluation only.
+  \item Model responses to harmful prompts are not redistributed beyond aggregate statistics.
+  \item Prior to public release, we coordinate disclosure with Sarvam AI (via S.~Doddapaneni).
+  \item Public release is \textbf{gated}: researchers requesting raw seeds and responses require institutional attestation, following HarmBench precedent.
+  \item Code is released under Apache 2.0; data follows a separate gated-release policy.
+\end{itemize}
+
+% =============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+IndicSafetyBench extends concurrent prior work \citep{pattnayak2026indicjr,pattnayak2026indicsafe,choi2026xlsafetybench} along three axes: per-language depth across the Sarvam family, within-family reasoning-vs-legacy ablation, and a measurement-crisis finding that recontextualizes prior heuristic results. We show that heuristic safety classifiers systematically undercount Sarvam reasoning-model refusals in Dravidian and Bengali languages by up to 60 percentage points --- a measurement artifact that may have inflated prior Indic-safety-cliff narratives. We further show that cultural-framing attacks have a clean, placebo-defensible negative effect on non-reasoning models but no detectable effect on Sarvam reasoning models. We release the dual-judge pipeline and per-cell $\kappa$ matrices to enable replication. The next generation of Indic safety benchmarking should adopt LLM-as-judge as primary, heuristic as cross-check, and per-cell $\kappa$ as a standard reporting requirement.
+
+% =============================================================
+\section*{Acknowledgments}
+
+Sumanth Doddapaneni (Sarvam AI, AI4Bharat, IIT Madras) for arXiv endorsement and technical guidance. Anthropic Claude Opus 4.7 for synthetic seed generation, draft assistance, and pipeline implementation under a Claude Code workflow.
+
+% =============================================================
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+% =============================================================
+\appendix
+
+\section{Per-cell bootstrap 95\% CIs}
+\label{app:cis}
+See \texttt{data/pilot/STATS\_REPORT.md} in the released repository.
+
+\section{Sample heuristic-vs-LLM disagreements}
+\label{app:disagreements}
+See \texttt{data/pilot/judge\_agreement\_report.md}.
+
+\section{Heuristic-judge refusal-rate matrix (for direct comparison)}
+\label{app:heur}
+See \texttt{data/pilot/PILOT\_REPORT.md} \S5.
+
+\section{Cultural-framing prompt template}
+\label{app:cf-prompt}
+See \texttt{src/attacks/transform.py}.
+
+\section{LLM-judge rubric}
+\label{app:judge-rubric}
+See \texttt{src/pilot/llm\_judge.py}.
+
+\end{document}

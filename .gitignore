@@ -66,3 +66,14 @@ data/openrouter_usage.jsonl
 
 # Validation work-in-progress (user-specific markup)
 VALIDATION_*.md
+
+# LaTeX build artifacts
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out
+paper/*.toc
+paper/*.synctex.gz
+paper/*.fls
+paper/*.fdb_latexmk
