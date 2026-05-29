@@ -575,6 +575,8 @@ Indian regulatory and procurement processes should not assume Hindi safety perfo
 
 The benchmark contains adversarial prompts that, if responded to permissively, would produce harmful content. We follow the responsible-disclosure norms established by HarmBench \citep{mazeika2024harmbench}, AdvBench \citep{zou2023advbench}, and IndicJR: adversarial prompts are research artifacts; model responses are not redistributed beyond aggregate statistics; we coordinate disclosure with Sarvam AI prior to release; public release of raw seeds and responses is \textbf{gated} (researcher attestation required, following HarmBench precedent). Code is released under Apache 2.0; data follows a separate gated-release policy.
 
+\textbf{Model-specific licensing.} Results for BharatGen Param2-17B-A2.4B-Thinking (introduced in v3) are reported under the academic-research provision of the \textbf{BharatGen Research License} (BRL, \S2): non-commercial use of the model and its outputs is royalty-free for academic and scientific purposes. We retain the required notice ``Licensed by BharatGen under the BharatGen Research License'' in this paper and the released code repository, do not redistribute the model or its raw outputs, and report only aggregate per-cell refusal statistics --- consistent with BRL \S3 (which restricts redistribution of Models, Derivatives, or Outputs but does not restrict citation of aggregate research measurements).
+
 % =============================================================
 \section{Conclusion}
 \label{sec:conclusion}
@@ -584,7 +586,7 @@ IndicSafetyBench extends concurrent prior work \citep{pattnayak2026indicjr,pattn
 % =============================================================
 \section*{Acknowledgments}
 
-S.~Doddapaneni (Sarvam AI / AI4Bharat / IIT Madras) for arXiv endorsement, technical review, and the Likert-scale validation protocol that shaped \S\ref{sec:method-validation}. Anthropic Claude (Opus 4.7) for synthetic seed generation and pipeline assistance under a Claude Code workflow.
+S.~Doddapaneni (Sarvam AI / AI4Bharat / IIT Madras) for arXiv endorsement, technical review, and the Likert-scale validation protocol that shaped \S\ref{sec:method-validation}. BharatGen (IIT Bombay / IIT Madras) for releasing Param2-17B-A2.4B-Thinking under the BharatGen Research License (BRL); Param2 results in v3 are reported under the BRL academic-research provision. Anthropic Claude (Opus 4.7) for synthetic seed generation and pipeline assistance under a Claude Code workflow.
 
 % =============================================================
 \balance
