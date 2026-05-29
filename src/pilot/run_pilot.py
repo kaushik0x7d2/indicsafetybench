@@ -21,6 +21,7 @@ from pathlib import Path
 
 from src.providers.sarvam import SarvamClient, SarvamError
 from src.providers.openrouter import OpenRouterClient, OpenRouterError, OpenRouterBudgetExceeded
+from src.providers.krutrim import KrutrimClient, KrutrimError, KrutrimBudgetExceeded
 
 
 TEST_SET_PATH = Path("data/pilot/test_set.json")
@@ -41,6 +42,11 @@ MODELS = {
     "openai/gpt-4o-mini":                 ("openrouter", "openai/gpt-4o-mini",                 "gpt_4o_mini"),
     "meta-llama/llama-3.3-70b-instruct":  ("openrouter", "meta-llama/llama-3.3-70b-instruct",  "llama_33_70b"),
     "mistralai/mistral-small-3":          ("openrouter", "mistralai/mistral-small-3",          "mistral_small_3"),
+    # Krutrim (paid in INR, budget tracked separately)
+    "krutrim/gpt-oss-120b":               ("krutrim", "gpt-oss-120b",       "krutrim_gpt_oss_120b"),
+    "krutrim/gpt-oss-20b":                ("krutrim", "gpt-oss-20b",        "krutrim_gpt_oss_20b"),
+    "krutrim/gemma-4-31b-it":             ("krutrim", "gemma-4-31b-it",     "krutrim_gemma_4_31b"),
+    "krutrim/qwen3.6-35b-a3b":            ("krutrim", "Qwen3.6-35B-A3B",    "krutrim_qwen36_35b"),
 }
 
 
@@ -70,6 +76,7 @@ def run_one_model(
     variants: list[dict],
     sarvam_client: SarvamClient,
     openrouter_client: OpenRouterClient,
+    krutrim_client: KrutrimClient | None = None,
     max_tokens: int = 2048,
     temperature: float = 0.7,
     limit: int | None = None,
@@ -123,6 +130,15 @@ def run_one_model(
                         max_tokens=max_tokens,
                         provider_order=provider_order,
                     )
+                elif provider == "krutrim":
+                    if krutrim_client is None:
+                        raise ValueError("Krutrim provider requested but no KrutrimClient was passed")
+                    r = krutrim_client.chat(
+                        v["prompt"],
+                        model=model_name,
+                        temperature=temperature,
+                        max_tokens=max_tokens,
+                    )
                 else:
                     raise ValueError(f"Unknown provider: {provider}")
 
@@ -162,7 +178,8 @@ def run_one_model(
                 successes += 1
                 tag = "[OK]" if content_status == "ok" else f"[{content_status.upper()}]"
                 print(f"  [{i:>2}/{len(todo)}] {tag} {elapsed:>5.1f}s  {v['variant_id']}")
-            except (SarvamError, OpenRouterError, OpenRouterBudgetExceeded) as e:
+            except (SarvamError, OpenRouterError, OpenRouterBudgetExceeded,
+                    KrutrimError, KrutrimBudgetExceeded) as e:
                 failures += 1
                 err_record = {
                     "variant_id": v["variant_id"],
@@ -173,8 +190,8 @@ def run_one_model(
                 f.write(json.dumps(err_record, ensure_ascii=False) + "\n")
                 f.flush()
                 print(f"  [{i:>2}/{len(todo)}] [FAIL] {v['variant_id']}: {str(e)[:80]}")
-                if isinstance(e, OpenRouterBudgetExceeded):
-                    print("\nBudget exceeded — stopping.")
+                if isinstance(e, (OpenRouterBudgetExceeded, KrutrimBudgetExceeded)):
+                    print("\nBudget exceeded -- stopping.")
                     break
 
     total_time = time.time() - t_start
@@ -201,6 +218,10 @@ def main():
 
     sarvam_client = SarvamClient()
     openrouter_client = OpenRouterClient()
+    try:
+        krutrim_client = KrutrimClient()
+    except ValueError:
+        krutrim_client = None  # only required if a Krutrim model is requested
 
     if args.all:
         # Default lineup for pilot — fast & cheap models first
@@ -214,6 +235,7 @@ def main():
         for m in lineup:
             try:
                 run_one_model(m, variants, sarvam_client, openrouter_client,
+                              krutrim_client=krutrim_client,
                               max_tokens=args.max_tokens,
                               temperature=args.temperature,
                               limit=args.limit)
@@ -222,6 +244,7 @@ def main():
                 sys.exit(130)
     else:
         run_one_model(args.model, variants, sarvam_client, openrouter_client,
+                      krutrim_client=krutrim_client,
                       max_tokens=args.max_tokens,
                       temperature=args.temperature,
                       limit=args.limit)
