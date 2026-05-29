@@ -63,9 +63,12 @@ data/expanded_v1_backup/
 
 # Spending/usage log (private financial tracking)
 data/openrouter_usage.jsonl
+data/krutrim_usage.jsonl
 
 # Validation work-in-progress (user-specific markup)
 VALIDATION_*.md
+# but DO track the canonical protocol doc
+!docs/VALIDATION_PROTOCOL.md
 
 # LaTeX build artifacts
 paper/*.aux
