@@ -7,74 +7,77 @@ Scope: compute only. No human-validator compensation.
 
 ## Vendor architecture
 
-**Primary: Prime Intellect** (`api.pinference.ai/api/v1`). Single account
-serves 123 models including Claude Opus 4.7, Sonnet 4.6, GPT-5.x, Gemini
-3.1 Pro, DeepSeek R1/V4, Llama-4 Maverick, gpt-oss-120b. User has working
-access verified 2026-05-19 (6/7 candidate models passed smoke test).
+PI access is **scoped to BharatGen Param2 self-hosting only**. Other v3 models route through their existing providers (OpenRouter, Anthropic console, OpenAI direct, Sarvam direct).
 
-**Secondary:**
-- OpenRouter — fallback if a PI model returns 4xx (e.g. DeepSeek thinking-param issue)
-- HuggingFace or PI GPU rental — for Param2-17B (not on PI serverless)
-- Sarvam direct API — free, already used in v1
-- Krutrim direct API — partial gpt-oss-120b run (200 of 3,340 already done; finish via PI instead)
+| Vendor | What it serves in v3 | Status |
+|---|---|---|
+| **Prime Intellect** (GPU rental, single H100/H200 + vLLM) | Param2-17B-A2.4B-Thinking only | Have access; limited credits |
+| OpenRouter | Gemini-3.1-Pro, DeepSeek-R1, Llama-4 (targets + judge) | Have key; needs top-up |
+| Anthropic console | Claude Opus 4.7 (target + judge) | Need signup |
+| OpenAI direct | GPT-5.x (target + judge) | Need signup |
+| Krutrim direct | gpt-oss-120b (200 done; finish 3,140 more) | Have key; ₹121 remaining of ₹300 |
+| Sarvam direct | Sarvam-105B/30B/m | Free, already used |
 
-Three vendor accounts eliminated vs prior plan: Anthropic console, OpenAI
-direct, Google AI Studio. All three routed through PI instead.
+PI's serverless inference catalogue (`api.pinference.ai/api/v1`) does include
+Claude/GPT/Gemini/DeepSeek/Llama-4 as confirmed by smoke test 2026-05-19, but
+the user's PI credit balance is reserved for Param2. PI is NOT used as a
+multi-vendor consolidator in this budget.
 
 ## Target-model runs (3,340 prompts each)
 
-| Model | PI route | Cost (PI passthrough est.) |
+| Model | Route | Cost |
 |---|---|---:|
-| Claude Opus 4.7 (+35% tokenizer) | `anthropic/claude-opus-4.7` | $44 |
-| GPT-5.4 (Responses API, max_completion_tokens) | `openai/gpt-5.4` | $21 |
-| Gemini 3.1 Pro | `google/gemini-3.1-pro-preview` | $16 |
-| DeepSeek R1-0528 | `deepseek/deepseek-r1-0528` | $3 |
-| Llama-4 Maverick | `meta-llama/llama-4-maverick` | $1 |
-| gpt-oss-120b (finish 3,140 remaining) | `openai/gpt-oss-120b` | $34 |
-| Param2-17B-Thinking | **NOT on PI serverless** — HF Endpoint or PI GPU rental | ~$8 |
-| **Target subtotal** | | **$127** |
+| Claude Opus 4.7 (+35% tokenizer) | Anthropic console (or OR) | $44 |
+| GPT-5.5 | OpenAI direct (or OR) | $39 |
+| Gemini 3.1 Pro | OpenRouter | $16 |
+| DeepSeek R1-0528 | OpenRouter | $3 |
+| Llama-4 Maverick | OpenRouter | $1 |
+| gpt-oss-120b (finish 3,140 remaining) | Krutrim direct API | ~$30 (₹2,490) |
+| **Param2-17B-Thinking** | **Prime Intellect H100/H200 spot + vLLM** | **~$0.40 partial pilot / $5–9 full coverage; absorbed by PI credits** |
+| **Target subtotal** | | **~$133** |
 
 ## LLM judge ensemble (19,423 paired labels each)
 
-All judges via PI serverless, single API key.
-
-| Judge | PI route | Standard | Batch-API path |
+| Judge | Route | Standard | Batch API |
 |---|---|---:|---:|
-| Claude Opus 4.7 | `anthropic/claude-opus-4.7` | $197 | unclear if PI exposes batch |
-| GPT-5.4 (Responses API) | `openai/gpt-5.4` | $75 | unclear |
-| Gemini 3.1 Pro | `google/gemini-3.1-pro-preview` | $60 | unclear |
-| **Judge subtotal** | | **$332** | TBD |
+| Claude Opus 4.7 | Anthropic console | $197 | $99 |
+| GPT-5.5 | OpenAI direct | $151 | $76 |
+| Gemini 3.1 Pro | OpenRouter | $60 | n/a |
+| **Judge subtotal** | | **$408** | **$235** |
 
 ## Totals
 
 | Scenario | Targets | Judges | Margin (15%) | Total |
 |---|---:|---:|---:|---:|
-| Standard PI passthrough | $127 | $332 | $69 | **$528** |
-| If user's existing PI credits absorb part | $127 | $332 | $69 | **$0–$528** |
+| Standard API throughout | $133 | $408 | $81 | **$622** |
+| Batch API for Anthropic + OpenAI judges | $133 | $235 | $55 | **$423** |
 
-**Commit budget: $533** (rounded). If existing PI credits cover any portion,
-out-of-pocket drops proportionally.
+**Commit budget: $533** (standard for targets + batch for judges + safety margin).
+Param2 cost is absorbed by existing PI credits.
 
-## Where the money goes (per vendor, consolidated)
+## Where the money goes (per vendor)
 
-| Vendor | Spend | Setup |
+| Vendor | Anticipated spend | Setup |
 |---|---:|---|
-| **Prime Intellect** (Opus + Sonnet + GPT-5 + Gemini + gpt-oss + DeepSeek + Llama-4 target + judge) | $450 | Already have access |
-| HuggingFace Inference Endpoint OR PI GPU rental (Param2) | ~$8 | If HF: card. If PI GPU: same PI account. |
-| Krutrim wallet (already topped up) | ₹179 spent of ₹300 | Already done |
-| OpenRouter (fallback / safety margin) | $0–$70 | Already have key |
+| Anthropic console (Opus target + judge) | $143–$241 | Credit card; $5 starter credit |
+| OpenAI direct (GPT-5.5 target + judge) | $115–$190 | Credit card |
+| OpenRouter top-up | $80 | Already signed up |
+| Krutrim wallet | already spent ₹179; need ~₹2,490 more for finish | Already signed up |
+| Prime Intellect (Param2 GPU rental) | absorbed by existing credits | Already signed up |
 | Sarvam direct | $0 | Already have key |
 
 ## Out of scope
 
 - Krutrim-2 — not currently on Krutrim or PI inference APIs
 - Nanda — institutional access only
-- 10× corpus scaling (3,340 → 33,400) — would push budget to ~$4,200
-- Human-validator compensation — separate track via institutional collaboration
+- 10× corpus scaling — would push budget to ~$4,200
+- Routing non-Param2 models through PI — user's PI credits reserved for Param2
 
-## Status
+## Param2 deployment plan
 
-- Verified working on PI 2026-05-19: Opus 4.7, Sonnet 4.6, GPT-5.4,
-  gpt-oss-120b, Gemini 3.1 Pro, Llama-4 Maverick
-- Needs tweaking: DeepSeek-R1 (400 error; param adjustment required)
-- Self-host needed: Param2-17B-Thinking (HF or PI GPU rental)
+1. PI dashboard → **Compute → On-Demand GPUs** → deploy single H100 spot ($0.94/hr) or H200 low-tier ($0.47/hr)
+2. SSH into the pod, run vLLM serving `bharatgenai/Param2-17B-A2.4B-Thinking` on port 8000
+3. Set `PI_ENDPOINT_URL=http://<pod-ip>:8000/v1` in `.env` (no API key needed for self-hosted vLLM)
+4. `python -m src.pilot.run_pi_partial --n 200` → ~25 min, ~$0.40 of credits
+5. Heuristic + LLM-judge the 200 responses
+6. Param2 row added to paper §4.1; §4.3 extended if measurement-crisis pattern holds
