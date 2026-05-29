@@ -16,7 +16,7 @@ Scope: compute only. No human-validator compensation.
 | DeepSeek R1 (0528) | `deepseek/deepseek-r1-0528` | 0.50 | 2.15 | $3 |
 | Llama-4 Maverick | `meta-llama/llama-4-maverick` | 0.15 | 0.60 | $1 |
 | gpt-oss-120b (finish 3,140 remaining) | Krutrim direct API | empirical ₹0.89/prompt | — | $34 |
-| Param2-17B-Thinking | HF Inference Endpoint A10G | $1.10/hr × ~9 hrs | — | $10 |
+| Param2-17B-Thinking | Prime Intellect H100 spot ($0.94/hr × ~9 hrs) | — | — | ~$8 (or $0 if existing PI credits) |
 | **Target subtotal** | | | | **$147** |
 
 ## LLM judge ensemble (19,423 paired labels each)
@@ -44,7 +44,7 @@ Scope: compute only. No human-validator compensation.
 | Anthropic console (Opus 4.7 target + judge) | $143–$241 (batch dependent) | Credit card; $5 starter credit |
 | OpenAI (GPT-5.5 target + judge) | $115–$190 (batch dependent) | Credit card |
 | OpenRouter top-up (Gemini-3.1-Pro target + judge, DeepSeek, Llama-4) | $80 | Already signed up |
-| Hugging Face Inference Endpoints (Param2-17B) | $10 | Credit card |
+| Prime Intellect (Param2-17B; possibly also gpt-oss-120b finish) | $0–$8 | Existing access |
 | Krutrim wallet top-up (gpt-oss-120b finish) | ~$35 (~₹2,900) | Already signed up |
 | **Sum** | **$383–$556** | |
 
