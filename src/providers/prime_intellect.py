@@ -44,7 +44,13 @@ from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_ex
 load_dotenv()
 
 DEFAULT_TIMEOUT = 240.0  # generous: 17B MoE first-token latency can be ~30s
+DEFAULT_BASE_URL = "https://api.pinference.ai/api/v1"  # PI's serverless inference
 USAGE_LOG_PATH = Path("data/prime_intellect_usage.jsonl")
+
+# Models that require OpenAI's Responses API max_completion_tokens param
+# instead of max_tokens. PI proxies OpenAI's GPT-5.x and o-series models
+# through the Responses API path.
+RESPONSES_API_MODELS_PREFIX = ("openai/gpt-5", "openai/o3", "openai/o4", "openai/o5")
 
 
 @dataclass
@@ -88,14 +94,18 @@ class PrimeIntellectClient:
         api_key: Optional[str] = None,
         timeout: float = DEFAULT_TIMEOUT,
     ):
-        self.endpoint_url = (endpoint_url or os.getenv("PI_ENDPOINT_URL", "")).rstrip("/")
-        if not self.endpoint_url:
+        # Default to PI's serverless inference. Override via PI_ENDPOINT_URL
+        # for self-hosted vLLM pods or per-deployment URLs.
+        self.endpoint_url = (
+            endpoint_url
+            or os.getenv("PI_ENDPOINT_URL")
+            or DEFAULT_BASE_URL
+        ).rstrip("/")
+        self.api_key = api_key or os.getenv("PI_API_KEY")
+        if not self.api_key and "pinference.ai" in self.endpoint_url:
             raise ValueError(
-                "Set PI_ENDPOINT_URL in .env. "
-                "Format: https://<deployment-id>.primeintellect.ai/v1 "
-                "or http://<pod-ip>:8000/v1 for self-hosted vLLM."
+                "Set PI_API_KEY in .env (https://app.primeintellect.ai -> Token -> Create API Key)"
             )
-        self.api_key = api_key or os.getenv("PI_API_KEY")  # optional for self-hosted
         self.timeout = timeout
         self.usage = PrimeIntellectUsage()
 
@@ -136,8 +146,13 @@ class PrimeIntellectClient:
             "model": model,
             "messages": messages,
             "temperature": temperature,
-            "max_tokens": max_tokens,
         }
+        # OpenAI Responses API (GPT-5.x, o-series) uses max_completion_tokens;
+        # everything else uses max_tokens.
+        if model.startswith(RESPONSES_API_MODELS_PREFIX):
+            payload["max_completion_tokens"] = max_tokens
+        else:
+            payload["max_tokens"] = max_tokens
 
         t0 = time.time()
         raw = self._post("/chat/completions", payload)
@@ -182,24 +197,29 @@ def smoke_test():
     print(f"Endpoint: {c.endpoint_url}")
     print(f"API key set: {bool(c.api_key)}")
     print()
-    # Model name depends on what's served. Common defaults:
+    # Smoke-test against PI's serverless catalog: one model from each major lab
     candidates = [
-        "bharatgenai/Param2-17B-A2.4B-Thinking",
-        "Param2-17B-A2.4B-Thinking",
-        "param2",
+        "anthropic/claude-opus-4.7",
+        "anthropic/claude-sonnet-4.6",
+        "openai/gpt-5.4",
+        "openai/gpt-oss-120b",
+        "google/gemini-3.1-pro-preview",
+        "deepseek/deepseek-r1-0528",
+        "meta-llama/llama-4-maverick",
     ]
+    ok = 0
     for model in candidates:
-        print(f"--- trying model={model} ---")
         try:
             r = c.chat(prompt="Reply with exactly the word: pong",
-                       model=model, temperature=0.0, max_tokens=20)
-            print(f"  OK ({r['latency_ms']:.0f} ms)  tokens={r['prompt_tokens']}/{r['completion_tokens']}")
-            print(f"  reply: {r['content']!r}")
-            return 0
+                       model=model, temperature=0.0, max_tokens=300)
+            tag = "OK" if r["content"] else "EMPTY"
+            print(f"  [{tag}] {model:45s} {r['latency_ms']:>5.0f} ms  tokens={r['prompt_tokens']}/{r['completion_tokens']}  reply={r['content'][:40]!r}")
+            if r["content"]:
+                ok += 1
         except Exception as e:
-            print(f"  FAIL: {str(e)[:200]}")
-    print("\nNo candidate model name worked. Check what model id your deployment is serving.")
-    return 1
+            print(f"  [FAIL] {model:45s} {str(e)[:200]}")
+    print(f"\n{ok}/{len(candidates)} models returned text.")
+    return 0 if ok else 1
 
 
 if __name__ == "__main__":
