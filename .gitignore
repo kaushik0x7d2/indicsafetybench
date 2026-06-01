@@ -67,8 +67,9 @@ data/krutrim_usage.jsonl
 
 # Validation work-in-progress (user-specific markup)
 VALIDATION_*.md
-# but DO track the canonical protocol doc
+# but DO track the canonical protocol + verdict docs
 !docs/VALIDATION_PROTOCOL.md
+!docs/VALIDATION_VERDICT.md
 
 # LaTeX build artifacts
 paper/*.aux

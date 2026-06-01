@@ -207,3 +207,39 @@
   author = {AI4Bharat},
   year   = {2023}
 }
+
+% =========================================================
+% I. LLM-as-validator literature (v3 §3.7 + Appendix X)
+% =========================================================
+
+@inproceedings{doddapaneni2024fbi,
+  title  = {Finding Blind Spots in Evaluator LLMs with Interpretable Checklists},
+  author = {Doddapaneni, Sumanth and Khan, Mohammed Safi Ur Rahman and Verma, Sshubam and Khapra, Mitesh M.},
+  booktitle = {Proceedings of EMNLP (Best Paper)},
+  year   = {2024},
+  note   = {Frontier LLM judges miss >50\% of injected quality drops in reference-less single-answer scoring; reference anchoring drops miss rate to ~11\%.}
+}
+
+@inproceedings{doddapaneni2025cia,
+  title  = {CIA Suite: Hercule, a Fine-Tuned Cross-Lingual LLM Judge for Indian Languages},
+  author = {Doddapaneni, Sumanth and others},
+  booktitle = {Proceedings of ACL},
+  year   = {2025},
+  note   = {Hercule 8B achieves Cohen linear-weighted $\kappa = 0.73$ vs human, beating GPT-4o ($\kappa = 0.64$) and Gemini-1.5-Pro ($\kappa = 0.56$) on Indic evaluation.}
+}
+
+@misc{gradingscale2026,
+  title  = {Grading Scale Impact on LLM-as-a-Judge: Human-LLM Alignment Is Highest on 0--5 Grading Scale},
+  year   = {2026},
+  eprint = {2601.03444},
+  archiveprefix = {arXiv},
+  note   = {Compares 0--5, Likert 1--5, and 1--10 scales; 0--5 (with explicit zero) yields highest human-LLM alignment, 1--5 close second, 1--10 weakest.}
+}
+
+@misc{rouletteratings2025,
+  title  = {Rating Roulette: Self-Inconsistency in LLM-as-a-Judge Across Reruns},
+  year   = {2025},
+  eprint = {2510.27106},
+  archiveprefix = {arXiv},
+  note   = {LLM judges show alarming intra-rater inconsistency across reruns at the same temperature; most benchmarks fail to report self-reliability.}
+}

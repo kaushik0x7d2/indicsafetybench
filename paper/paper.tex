@@ -283,26 +283,21 @@ where $p_o$ is observed agreement (fraction of items where both judges agree) an
 
 We report $\kappa$ per cell rather than pooled because, as Table~\ref{tab:kappa} will show, the cell-level variance ranges from $0.07$ to $0.90$ --- a single pooled value of $\kappa \approx 0.55$ would hide the entire phenomenon this paper is about. This per-cell decomposition is one of our methodological recommendations for future Indic-safety benchmarks.
 
-\subsection{Multilingual data validation}
+\subsection{Corpus validation protocol}
 \label{sec:method-validation}
 
-A benchmark's headline numbers are only as robust as the prompts the numbers are computed on. To make the IndicSafetyBench corpus reusable as a community artifact --- not just as input to this paper --- we plan a structured human validation pass on a stratified sample of the 3{,}340 variants. The protocol is finalised in \texttt{docs/VALIDATION\_PROTOCOL.md} in the released repository; we summarise it here.
+We validate the 600-item v3 corpus (60 English plus 90 items per Indic language) along three axes --- linguistic naturalness, semantic equivalence to the English seed, and attack-vector validity --- using a heterogeneous ensemble of three reference-anchored LLM judges: Claude~Opus~4.7, Gemini~3.1~Pro, and Sarvam-M, the latter included as a fine-tuned cross-lingual Indic judge in the spirit of Hercule~\citep{doddapaneni2025cia}. Each (item, axis) is scored five times per judge with randomised in-context ordering on a Likert 1--5 scale (per the recent grading-scale alignment finding that 0--5 and 1--5 outperform 1--10~\citep{gradingscale2026}), with the English seed always supplied in context to mitigate the reference-less failure regime identified by FBI~\citep{doddapaneni2024fbi}. The three axes are scored in \emph{independent} API calls rather than as a single combined JSON payload, to reduce halo effects and to enable per-axis $\kappa$ reporting.
 
-\textbf{Sampling.} For each (language, attack-vector) cell, sample $N=30$ items uniformly across the eight harm categories ($6~\text{Indic langs}\times 3~\text{vectors} = 18~\text{cells}\times 30 = 540$ items, plus $30$ EN-direct and $30$ EN-cultural items = $600$ items). For code-switched cells we sample separately for the interleaved-script and mono-script sub-variants (so the CS cell has 30 items per sub-variant), giving an enlarged target of $\sim$780 items once the v3 mono-script generator lands. Each item is rated by \textbf{two independent native validators per language}, yielding $1{,}560$ total rating decisions and a per-cell inter-validator Cohen's $\kappa$ as the headline agreement number.
+\textbf{Why LLM-primary rather than human-primary.} We adopt an LLM-primary protocol rather than the native-speaker-primary protocol used by XL-SafetyBench~\citep{choi2026xlsafetybench} and IndicSafe~\citep{pattnayak2026indicsafe} because an initial human-rating pilot at our recruitment scale surfaced two unrecoverable annotator-quality failure modes --- uniform 5/5 rubber-stamping on one Telugu rater (std~=~0 across all 90 items, contradicting that rater's own free-text comments on the same items) and bit-identical per-item score vectors copy-pasted across Tamil, Marathi, and Kannada by a second rater (Hamming distance zero on 82 of 82 join-matched items despite genuinely language-distinct prompts). We document and taxonomise these failure modes in Appendix~\ref{app:rater-failures}; reporting $\kappa$ values computed on contaminated annotations would be misleading per the skewed-distribution caveat of \citet{hada2024llmevaluators}, so we discard those data from primary validation. Following IndicJR's judge-free precedent~\citep{pattnayak2026indicjr}, we treat the LLM-ensemble agreement structure itself as the object of measurement rather than a substitute for human ground truth.
 
-\textbf{Rating axes.} Each annotator rates each item on three 1--5 Likert scales:
+\textbf{Rating axes.}
 \begin{enumerate}[leftmargin=*,itemsep=1pt,topsep=2pt]
-  \item \textbf{Linguistic naturalness}: Does this sound like a real prompt a fluent speaker would write? (1 = completely artificial, 5 = indistinguishable from human)
-  \item \textbf{Semantic equivalence to English seed}: Does the variant preserve the meaning of the source English seed? (1 = different request, 5 = exact equivalent)
-  \item \textbf{Attack-vector validity}: For CF, is the persona/institutional cover plausible? For CS, is the code-mixing register realistic for the named demographic? (1 = invalid, 5 = perfectly executed)
+  \item \textbf{Linguistic naturalness}: ``Does this read like fluent, native-register \emph{<target language>}?'' (1~=~clearly translated/broken; 5~=~indistinguishable from native author). For code-switched items naturalness is judged against the casual code-mixed register a native young urban speaker would use on WhatsApp/Instagram.
+  \item \textbf{Semantic equivalence to English seed}: ``Does the variant preserve the meaning of the source English seed?'' (1~=~different request; 5~=~exact equivalent). The English seed is always supplied in the judge's context.
+  \item \textbf{Attack-vector validity}: ``If a real adversary using this attack technique sent this prompt to an Indian-deployed LLM, would it constitute a legitimate attack of the named type?'' (1~=~implausible cover/register; 5~=~perfectly executed). Direct-vector items receive an N/A code rather than a 1--5 score.
 \end{enumerate}
-Optional free-text comments are collected per item. Mean Likert score per cell (pooled across the 2 validators), standard deviation, and per-cell inter-validator Cohen's $\kappa$ on the binary $\geq 4$ vs $<4$ split are reported in \S\ref{sec:results-validation}.
 
-\textbf{Why Likert and not pass/fail.} A graded scale is sensitive to partial defects (e.g., a Tamil cultural-framing variant in which the persona is correct but the institutional name is wrong); it also makes downstream paper claims numerically defensible (``mean naturalness $\geq 4.0$'' is more diagnostic than ``passes validation''). This follows the recommendation of our endorser at Sarvam AI.
-
-\textbf{Annotator panel.} v3 targets two native validators per language. Sourcing is per-language and supports three tiers: (a)~first-author self-validation, currently complete on a 65-item Telugu subset and counting as one of the two Telugu validators; (b)~paid native validators via institutional recruitment at USD 6/hr (Indian rate); (c)~institutional collaboration through AI4Bharat or Sarvam AI's annotation teams. The v3 release will report which tier produced each language's numbers.
-
-\textbf{Power analysis.} To detect a mean Likert difference of $0.5$ on a 1--5 scale (medium effect, Cohen's $d \approx 0.4$) at $\alpha = 0.05$ with $80\%$ power, the minimum cell size is $n=30$, motivating the sampling above.
+\textbf{Statistics.} We report per-axis, per-language Cohen's linear-weighted $\kappa$ between all three judge pairs with bootstrap 95\% CIs (1{,}000 resamples), intra-judge Krippendorff's $\alpha$ across the five reruns (the Rating Roulette robustness check of \citealp{rouletteratings2025}), and a stratified taxonomy of judge-disagreement loci by harm category and code-switching density. As a calibration check we additionally report LLM-ensemble-vs-human agreement on a post-hoc native-speaker sample of $n{=}50$ items per language (Appendix~\ref{app:human-calibration}), with the explicit caveat that this sample is too small to constitute primary validation and is reported only to bound the gap between our ensemble protocol and a hypothetical fully-resourced native panel. All judge prompts, raw per-call outputs, bootstrap seeds, and model snapshots are released under \texttt{data/validation/panel/} to enable byte-reproducible re-validation --- a stronger reliability guarantee for a living benchmark than non-reproducible human annotation.
 
 \subsection{Statistical methods}
 \label{sec:method-stats}
@@ -620,8 +615,61 @@ See \texttt{src/attacks/transform.py}, \texttt{CODE\_SWITCH\_PROMPT} string. The
 \label{app:judge-rubric}
 See \texttt{src/pilot/llm\_judge.py}, \texttt{JUDGE\_PROMPT} string. The rubric is reproduced verbatim in \S\ref{sec:method-judges-llm} above for ease of reference.
 
-\section{Validation Likert questionnaire}
+\section{Validation Likert questionnaire and LLM-judge rubric}
 \label{app:validation}
-See \texttt{docs/VALIDATION\_PROTOCOL.md}. Three 1--5 Likert axes per item (linguistic naturalness, semantic equivalence to English seed, attack-vector validity) with optional free-text comment.
+See \texttt{docs/VALIDATION\_PROTOCOL.md} for the human-validation Likert questionnaire and \texttt{src/validation/llm\_judge\_panel.py} for the three reference-anchored LLM-judge rubrics (one per axis, scored independently). All three axes use the 1--5 Likert scale, with \texttt{attack\_validity}~=~0 reserved as an N/A code for direct-vector items.
+
+\section{Rater-failure taxonomy from the initial human-validation pilot}
+\label{app:rater-failures}
+
+We attempted a native-speaker human-validation pass on a stratified subset of the v3 corpus before adopting the LLM-ensemble protocol of \S\ref{sec:method-validation}. The pilot was conducted in May 2026 across Telugu, Tamil, Marathi, and Kannada with bilingual native raters recruited via the first author's personal network. The pilot surfaced two distinct annotator-quality failure modes that, to our knowledge, are not described in the prior Indic-safety-benchmark literature (which has implicitly avoided them through Karya-style ethical-crowd procedural design). We document them here both to justify our methodological pivot and to provide reusable detection signatures for future Indic-validation efforts.
+
+\subsection*{Failure mode 1: uniform rubber-stamping}
+\label{app:rater-failures-uniform}
+
+One Telugu validator returned 90 of 90 items with naturalness $=5$ (std $=0.00$) and 89 of 90 items with semantic-equivalence $=5$ (std $=0.11$), with attack-vector validity populated on only 3 of the expected 60 cultural-framing and code-switched rows. The validator left one substantive free-text comment, on a cultural-framing cybercrime item: \textit{``cyber security in business school?''} (a legitimate critique of the persona-institution match) --- yet still scored that same row 5/5/3, contradicting their own comment.
+
+\noindent\textbf{Diagnostic signatures.}
+\begin{itemize}[leftmargin=*,itemsep=1pt,topsep=2pt]
+  \item Per-axis standard deviation $\leq 0.10$ on $\geq 70$\% of items, despite the corpus containing items the validator's own comments flag as defective.
+  \item Univariate score histogram concentrated on the maximum value ($\geq 95$\% at score 5).
+  \item Comment-score contradiction: free-text comments noting issues paired with maximum scores.
+\end{itemize}
+
+\noindent\textbf{Likely cause.} Rater leniency / acquiescence bias under loose supervision; the validator likely conflated ``the corpus is broadly OK'' with ``every item deserves a 5,'' bypassing per-item scrutiny. Procedural fix: a paid pilot batch with gold-standard items of known low quality injected, plus a $\kappa \geq 0.4$ cutoff against gold before payment release.
+
+\subsection*{Failure mode 2: cross-language score copy-paste}
+\label{app:rater-failures-copypaste}
+
+A second validator returned three validation files for Tamil, Marathi, and Kannada. Each file contained 30 code-switched, 30 cultural-framing, and 30 direct items (with 5--7 items per file lost to a separate CSV-quoting issue documented in the repository). When we computed per-item agreement across the three files using the seed identifier and attack vector as the join key:
+
+\begin{itemize}[leftmargin=*,itemsep=1pt,topsep=2pt]
+  \item 82 of 82 items present in all three files had \emph{identical naturalness scores} across Tamil/Marathi/Kannada.
+  \item 30 of 30 cultural-framing items had \emph{identical attack-validity scores} across the three languages.
+  \item Aggregate per-cell mean and standard deviation were bit-identical: code-switched naturalness mean $=4.00$, std $=0.00$ in all three; cultural-framing attack-validity mean $=4.20$, std $=0.91$ in all three.
+\end{itemize}
+
+The prompts themselves were genuinely language-distinct --- Tamil in Tamil script, Marathi in Devanagari, Kannada in Kannada script (verified by direct inspection). Therefore the score identity is not explainable by content identity.
+
+\noindent\textbf{Diagnostic signatures.}
+\begin{itemize}[leftmargin=*,itemsep=1pt,topsep=2pt]
+  \item For any pair of validation files covering different target languages of the same English-source corpus, the Hamming distance of the per-item score vector (joined on \texttt{seed\_id} $\times$ \texttt{attack\_vector}) is zero.
+  \item Per-cell mean, standard deviation, and per-axis fill-rate are bit-identical across languages.
+  \item Per-cell score variance is non-trivial within each file, but between-file variance for matched items is exactly zero.
+\end{itemize}
+
+\noindent\textbf{Likely cause.} The validator scored Tamil first and then mechanically propagated scores to Marathi and Kannada items by matching on the English seed rather than re-reading the per-language text. Procedural fix: randomise per-language file delivery so the same rater does not see consecutive files joinable by seed, or require audio-spoken per-item justifications in the Pariksha~/~Samiksha style.
+
+\subsection*{Why neither failure mode appears in the published Indic-validation literature}
+
+PARIKSHA \citep{watts2024pariksha} and Samiksha use Karya, which screens raters with paid pilot batches against gold items and rejects any rater whose pilot $\kappa$ falls below a threshold; rubber-stamping fails this screen automatically. PARIKSHA also delivers items one-at-a-time with audio-spoken justifications, which makes cross-item score-copying detectable. The cross-language copy-paste mode is specifically defeated by Karya's per-language rater separation: different language packs are routed to different rater pools, eliminating the join-on-seed shortcut. Our pilot lacked these procedural safeguards, and the failure modes that followed are a predictable consequence. We document them as a cautionary signature for any future Indic-NLP project attempting native-speaker validation outside the Karya pipeline.
+
+\subsection*{What we discarded and what we kept}
+
+We discarded both validators' submissions from the primary v3 validation corpus. We retained their files in the released repository under \texttt{data/validation/} for reproducibility of this taxonomy, clearly marked as ``contaminated pilot, not used in primary validation.'' The LLM-ensemble protocol of \S\ref{sec:method-validation} is the actual v3 validation source of truth; the freshly-recruited native-speaker sample of $n{=}50$ items per language described in Appendix~\ref{app:human-calibration} serves as the post-hoc calibration check.
+
+\section{Post-hoc native-speaker calibration sample}
+\label{app:human-calibration}
+\textit{(v3 release plan)} A freshly-recruited bilingual native speaker per language scores $n{=}50$ items per language drawn from the same validation sample as the LLM ensemble. Recruitment proceeds via the first author's institutional network at NYU South Asian Studies and through Sumanth Doddapaneni's referrals; raters are screened with a 10-item gold-standard pilot batch and admitted only if pilot $\kappa \geq 0.4$ against gold. LLM-ensemble-vs-human agreement is reported as point-estimate Cohen's weighted $\kappa$ with bootstrap 95\% CIs per language per axis, with the explicit caveat that $n{=}50$ is too small to claim sub-language or sub-category sub-cell agreement and is intended only to bound the gap between the v3 LLM-primary ensemble and a hypothetical fully-resourced native panel. A properly-powered native panel is pre-registered for v4 (cf.\ \S\ref{sec:limits}), at which point we will report the v3-LLM-vs-v4-native delta as a longitudinal measurement of the LLM-as-prompt-quality-validator gap.
 
 \end{document}
