@@ -66,11 +66,11 @@ JUDGES = {
     "opus":    JudgeSpec(judge_id="opus",    provider="prime_intellect", model="anthropic/claude-opus-4.7"),
     "gemini":  JudgeSpec(judge_id="gemini",  provider="prime_intellect", model="google/gemini-3.1-pro-preview"),
     # Vertex-routed (uses GCP credits — preferred when available).
-    # NOTE: Gemini 3.x not available on standard Vertex Model Garden entitlements
-    # as of 2026-06-01; using 2.5-pro as the Google judge instead. Claude IDs
-    # depend on what the project has enabled in Model Garden — update after enabling.
-    "opus_vx":    JudgeSpec(judge_id="opus",    provider="vertex", model="claude-opus-4-5@latest"),
-    "sonnet_vx":  JudgeSpec(judge_id="sonnet",  provider="vertex", model="claude-sonnet-4-5@latest"),
+    # NOTE: Gemini 3.x not on Vertex as of 2026-06-01; using 2.5-pro instead.
+    # Claude model IDs depend on what's enabled in the project's Model Garden;
+    # update after enabling. Claude on Vertex requires region="global".
+    "sonnet_vx":  JudgeSpec(judge_id="sonnet",  provider="vertex", model="claude-sonnet-4-5@20250929"),
+    "opus_vx":    JudgeSpec(judge_id="opus",    provider="vertex", model="claude-opus-4-5@latest"),  # enable in Model Garden if available
     "gemini_vx":  JudgeSpec(judge_id="gemini",  provider="vertex", model="gemini-2.5-pro"),
     "gemini_flash_vx": JudgeSpec(judge_id="gemini_flash", provider="vertex", model="gemini-2.5-flash"),
     # Free direct
@@ -245,8 +245,9 @@ def call_judge(client, judge: JudgeSpec, prompt_text: str,
     field, so we bump its budget to fit reasoning + final JSON."""
     t0 = time.time()
     if judge.provider == "sarvam":
-        # Reasoning model: needs much more budget to emit JSON after <think>
-        sarvam_max = max(max_tokens * 6, 1800)
+        # Reasoning model: needs more budget for <think> + JSON, but Sarvam-m
+        # caps output at ~2048. Clamp to a safe range.
+        sarvam_max = min(max(max_tokens * 2, 1500), 2048)
         r = client.chat(prompt_text, model=judge.model,
                         temperature=temperature, max_tokens=sarvam_max)
     elif judge.provider == "vertex":

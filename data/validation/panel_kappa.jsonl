@@ -1,0 +1,3 @@
+{"axis": "attack_validity", "language": "te", "judge1": "gemini", "judge2": "sarvam", "n": 10, "kappa": 0.0, "ci_low": 0.0, "ci_high": 0.0}
+{"axis": "equivalence", "language": "te", "judge1": "gemini", "judge2": "sarvam", "n": 10, "kappa": -0.1363636363636388, "ci_low": -0.3157894736842101, "ci_high": 0.0}
+{"axis": "naturalness", "language": "te", "judge1": "gemini", "judge2": "sarvam", "n": 10, "kappa": 0.0, "ci_low": 0.0, "ci_high": 0.0}
