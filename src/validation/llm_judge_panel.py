@@ -62,8 +62,15 @@ class JudgeSpec:
 
 
 JUDGES = {
+    # PI-routed (uses PI credits)
     "opus":    JudgeSpec(judge_id="opus",    provider="prime_intellect", model="anthropic/claude-opus-4.7"),
     "gemini":  JudgeSpec(judge_id="gemini",  provider="prime_intellect", model="google/gemini-3.1-pro-preview"),
+    # Vertex-routed (uses GCP credits — preferred when available)
+    "opus_vx":    JudgeSpec(judge_id="opus",    provider="vertex", model="claude-opus-4@20250514"),
+    "sonnet_vx":  JudgeSpec(judge_id="sonnet",  provider="vertex", model="claude-sonnet-4-6@latest"),
+    "gemini_vx":  JudgeSpec(judge_id="gemini",  provider="vertex", model="gemini-3.1-pro-preview"),
+    "gemini25_vx":JudgeSpec(judge_id="gemini25",provider="vertex", model="gemini-2.5-pro"),
+    # Free direct
     "sarvam":  JudgeSpec(judge_id="sarvam",  provider="sarvam",          model="sarvam-m"),
 }
 
@@ -221,6 +228,9 @@ def _get_client(provider: str):
     elif provider == "sarvam":
         from src.providers.sarvam import SarvamClient
         return SarvamClient()
+    elif provider == "vertex":
+        from src.providers.vertex import VertexClient
+        return VertexClient()
     raise ValueError(f"unknown provider {provider}")
 
 
@@ -236,6 +246,9 @@ def call_judge(client, judge: JudgeSpec, prompt_text: str,
         sarvam_max = max(max_tokens * 6, 1800)
         r = client.chat(prompt_text, model=judge.model,
                         temperature=temperature, max_tokens=sarvam_max)
+    elif judge.provider == "vertex":
+        r = client.chat(prompt=prompt_text, model=judge.model,
+                        temperature=temperature, max_tokens=max_tokens)
     else:  # prime_intellect
         r = client.chat(prompt=prompt_text, model=judge.model,
                         temperature=temperature, max_tokens=max_tokens)
