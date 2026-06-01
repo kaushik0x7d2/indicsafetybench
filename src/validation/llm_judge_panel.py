@@ -65,11 +65,14 @@ JUDGES = {
     # PI-routed (uses PI credits)
     "opus":    JudgeSpec(judge_id="opus",    provider="prime_intellect", model="anthropic/claude-opus-4.7"),
     "gemini":  JudgeSpec(judge_id="gemini",  provider="prime_intellect", model="google/gemini-3.1-pro-preview"),
-    # Vertex-routed (uses GCP credits — preferred when available)
-    "opus_vx":    JudgeSpec(judge_id="opus",    provider="vertex", model="claude-opus-4@20250514"),
-    "sonnet_vx":  JudgeSpec(judge_id="sonnet",  provider="vertex", model="claude-sonnet-4-6@latest"),
-    "gemini_vx":  JudgeSpec(judge_id="gemini",  provider="vertex", model="gemini-3.1-pro-preview"),
-    "gemini25_vx":JudgeSpec(judge_id="gemini25",provider="vertex", model="gemini-2.5-pro"),
+    # Vertex-routed (uses GCP credits — preferred when available).
+    # NOTE: Gemini 3.x not available on standard Vertex Model Garden entitlements
+    # as of 2026-06-01; using 2.5-pro as the Google judge instead. Claude IDs
+    # depend on what the project has enabled in Model Garden — update after enabling.
+    "opus_vx":    JudgeSpec(judge_id="opus",    provider="vertex", model="claude-opus-4-5@latest"),
+    "sonnet_vx":  JudgeSpec(judge_id="sonnet",  provider="vertex", model="claude-sonnet-4-5@latest"),
+    "gemini_vx":  JudgeSpec(judge_id="gemini",  provider="vertex", model="gemini-2.5-pro"),
+    "gemini_flash_vx": JudgeSpec(judge_id="gemini_flash", provider="vertex", model="gemini-2.5-flash"),
     # Free direct
     "sarvam":  JudgeSpec(judge_id="sarvam",  provider="sarvam",          model="sarvam-m"),
 }
@@ -473,7 +476,10 @@ def main():
     p.add_argument("--limit", type=int, default=None,
                    help="Per-language item cap (for smoke testing)")
     p.add_argument("--temperature", type=float, default=0.3)
-    p.add_argument("--max-tokens", type=int, default=300)
+    p.add_argument("--max-tokens", type=int, default=2000,
+                   help="Output budget per judge call. Bumped to 2000 because "
+                        "reasoning-model judges (Vertex Gemini 2.5 Pro, Sarvam-M) "
+                        "burn most of the budget on internal thinking before the JSON answer.")
     p.add_argument("--seed", type=int, default=2026)
     args = p.parse_args()
 
