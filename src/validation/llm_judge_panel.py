@@ -73,8 +73,10 @@ JUDGES = {
     "opus_vx":    JudgeSpec(judge_id="opus",    provider="vertex", model="claude-opus-4-5@latest"),  # enable in Model Garden if available
     "gemini_vx":  JudgeSpec(judge_id="gemini",  provider="vertex", model="gemini-2.5-pro"),
     "gemini_flash_vx": JudgeSpec(judge_id="gemini_flash", provider="vertex", model="gemini-2.5-flash"),
-    # Free direct
-    "sarvam":  JudgeSpec(judge_id="sarvam",  provider="sarvam",          model="sarvam-m"),
+    # Free direct (sarvam-m was deprecated 2026-06-03; sarvam-30b is the
+    # supported reasoning model successor)
+    "sarvam":  JudgeSpec(judge_id="sarvam",  provider="sarvam",          model="sarvam-30b"),
+    "sarvam_m_legacy": JudgeSpec(judge_id="sarvam_m_legacy", provider="sarvam", model="sarvam-m"),  # deprecated
 }
 
 
@@ -245,9 +247,11 @@ def call_judge(client, judge: JudgeSpec, prompt_text: str,
     field, so we bump its budget to fit reasoning + final JSON."""
     t0 = time.time()
     if judge.provider == "sarvam":
-        # Reasoning model: needs more budget for <think> + JSON, but Sarvam-m
-        # caps output at ~2048. Clamp to a safe range.
-        sarvam_max = min(max(max_tokens * 2, 1500), 2048)
+        # Sarvam reasoning models put <think> in content before the JSON answer.
+        # sarvam-m capped at 2048; sarvam-30b/105b support up to 8192.
+        # Clamp upward to fit reasoning + structured output for harder items.
+        cap = 4000 if "30b" in judge.model or "105b" in judge.model else 2048
+        sarvam_max = min(max(max_tokens * 2, 2000), cap)
         r = client.chat(prompt_text, model=judge.model,
                         temperature=temperature, max_tokens=sarvam_max)
     elif judge.provider == "vertex":
@@ -310,7 +314,9 @@ def out_path_for(judge_id: str, axis: str) -> Path:
 
 
 def load_existing_keys(judge_id: str, axis: str) -> set:
-    """Return set of (variant_id, rerun_idx) already judged for this judge+axis."""
+    """Return set of (variant_id, rerun_idx) already SUCCESSFULLY judged for this
+    judge+axis. Failed records (parse_ok=False or score=None) are treated as
+    not-yet-done so they get retried on the next run."""
     path = out_path_for(judge_id, axis)
     if not path.exists():
         return set()
@@ -321,7 +327,8 @@ def load_existing_keys(judge_id: str, axis: str) -> set:
                 continue
             try:
                 r = json.loads(line)
-                seen.add((r["variant_id"], r["rerun_idx"]))
+                if r.get("parse_ok") and r.get("score") is not None:
+                    seen.add((r["variant_id"], r["rerun_idx"]))
             except (json.JSONDecodeError, KeyError):
                 continue
     return seen
