@@ -1,6 +1,6 @@
 # IndicSafetyBench v3 — Validation Panel Report
 
-Total judgments: 2911
+Total judgments: 2941
 Total items: 600
 Judges: gemini, sarvam
 Axes: attack_validity, equivalence, naturalness

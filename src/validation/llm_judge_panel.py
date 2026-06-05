@@ -248,9 +248,14 @@ def call_judge(client, judge: JudgeSpec, prompt_text: str,
     t0 = time.time()
     if judge.provider == "sarvam":
         # Sarvam reasoning models put <think> in content before the JSON answer.
-        # sarvam-m capped at 2048; sarvam-30b/105b support up to 8192.
-        # Clamp upward to fit reasoning + structured output for harder items.
-        cap = 4000 if "30b" in judge.model or "105b" in judge.model else 2048
+        # Empirical tier limits (Sarvam STARTER tier):
+        #   sarvam-m:    deprecated 2026-06-03
+        #   sarvam-30b:  HARD CAP 4096 — exceeding triggers HTTP 400
+        #   sarvam-105b: HARD CAP 4096 — same as 30b
+        # Expect ~40-50% parse failures on hard naturalness items because
+        # <think> chains exceed 4096; this is a starter-tier limit.
+        # Upgrading the Sarvam plan would lift the cap.
+        cap = 4096 if "30b" in judge.model or "105b" in judge.model else 2048
         sarvam_max = min(max(max_tokens * 2, 2000), cap)
         r = client.chat(prompt_text, model=judge.model,
                         temperature=temperature, max_tokens=sarvam_max)
