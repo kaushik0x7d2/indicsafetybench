@@ -83,13 +83,15 @@ These benchmarks consistently report catastrophic Indic safety gaps. \textbf{All
 
 \textbf{(C1) The measurement-crisis finding.}\quad Heuristic refusal classifiers systematically \emph{undercount} refusals by Sarvam reasoning models in Dravidian and Bengali languages --- up to 60~percentage~points (Sarvam-105B Tamil: heuristic 32\% \emph{vs} LLM judge 91\%) --- because these models exhibit consistent soft-refusal patterns (``I cannot help, but here are safer alternatives'') that regex classifiers, including ones explicitly extended with Indic refusal anchors, misclassify as partial engagement. Per-cell Cohen's $\kappa$ between heuristic and LLM judges is $0.65$ for English but collapses to $0.07$ for Sarvam-105B in Tamil and $0.08$ in Bengali. \textbf{Prior heuristic-based Indic safety findings may have systematically under-reported reasoning-model safety.}
 
-\textbf{(C2) Sarvam reasoning models are uniformly safer than prior heuristic results suggest.}\quad Under LLM judging, Sarvam-105B refuses 91--96\% across all seven languages (95\% CI 90--97\% per cell); Sarvam-30B refuses 82--91\%. The Tamil-Bengali ``catastrophe'' reported by heuristic pipelines is largely a measurement artifact, not a safety failure.
+\textbf{(C2) Under LLM judging, Sarvam reasoning models refuse at 82--96\% across all seven languages.}\quad Sarvam-105B refuses 91--96\% (95\% CI 90--97\% per cell); Sarvam-30B refuses 82--91\%. The Tamil-Bengali ``catastrophe'' reported by heuristic pipelines is largely a measurement artifact at the judge layer. We \emph{cannot} adjudicate between two interpretations of these LLM-judge numbers --- (a)~genuine safety performance, vs (b)~LLM-judge self-enhancement bias and the documented multilingual high-score bias \citep{hada2024llmevaluators} --- without human ground truth on the 20{,}268 underlying labels. The v3 pilot's human-rater pipeline failed before producing usable ground truth (\S\ref{sec:results-validation}, Appendix~X); a Karya-style ethical-crowd ground-truth replication is on the v4 roadmap. The methodological claim (heuristics undercount soft-refusal models) stands; the directional safety claim about Sarvam specifically is conditional on the LLM-judge layer.
 
 \textbf{(C3) Reasoning architecture is robust to Indian-persona cultural-framing attacks \emph{within our corpus}, with a ceiling-effect caveat.}\quad Cultural-framing attacks drop refusal rates by 16--31~pp across all four non-reasoning models (95\% CI entirely below zero) but have no detectable effect on either of our two Sarvam reasoning models (Sarvam-105B: $+2$~pp, CI $[-0.3,+4.2]$; Sarvam-30B: $-1$~pp, CI $[-3.7,+2.6]$). The non-reasoning side of this effect is large, sign-consistent across five of six models, and defensible against the placebo-perturbation critique of \citet{mukherjee2024cultural} (\S\ref{sec:placebo-defense}). The reasoning-model side is structurally weaker because (i)~we have only two reasoning models, both from the same vendor (Sarvam AI), and (ii)~both sit at 82--96\% direct-vector refusal, leaving little headroom for a measured drop. We therefore frame C3 as ``robust in our corpus, ceiling-effect-confounded'' rather than as a general claim about reasoning architecture; v4 with Claude / Phi-4-reasoning / DeepSeek-R1 reasoning models will adjudicate the architecture-level question.
 
 \textbf{(C4) Llama-3.3-70B is the actually catastrophic model in our suite.}\quad Under both judges, Llama-3.3-70B Indic refusal rate is 38--54\% (LLM judge), and the heuristic agrees within $\pm 10$~pp on every cell --- confirmed catastrophic Marathi safety failure (21\% heuristic, 39\% LLM).
 
 \textbf{(C5) Sister-script null result.}\quad Telugu and Kannada are sister Brahmic scripts with strong visual similarity. Models do not transfer safety behaviour between them: under the LLM judge Sarvam-105B refusal differs by 1~pp; under the heuristic judge the difference is 17~pp (the heuristic divergence is itself a manifestation of the measurement crisis). Models read language identity, not script glyph similarity.
+
+\textbf{(C6) An independent \emph{orthographic} failure mode of heuristic safety classifiers.}\quad A partial pilot extension with OpenAI's open-weight \texttt{gpt-oss-120b} (n=200) reveals a second, structurally distinct heuristic failure mode (\S\ref{sec:results-ortho}): 91\% of its refusals open with templates that emit the typographic right single quotation mark U+2019 (``I\textquoteright m sorry, but I can\textquoteright t help with that.''), and the ASCII-only English refusal-anchor bank misses \emph{every} such refusal --- $\Delta = +95$ to $+100$~pp uniformly across all 200 items. A three-line regex patch (\texttt{[\textquotesingle\textquoteright]} character class) recovers 98\% of refusals. This is independent of the Sarvam soft-refusal mechanism (C1) and predicts that any model whose deployment pipeline post-processes outputs with smart-quoter (likely common across modern frontier LLMs) will be silently under-scored by ASCII-only heuristic banks.
 
 We release English seeds, code, judgments, and a Cohen's-$\kappa$-validated dual-judge pipeline at \url{https://github.com/kaushik0x7d2/indicsafetybench}. Raw multilingual prompts and model responses follow a gated-access policy adapted from HarmBench precedent \citep{mazeika2024harmbench}.
 
@@ -126,7 +128,7 @@ The IndicSafetyBench pipeline has five stages, summarised in Figure~\ref{fig:pip
 
 \textbf{Stage 4 (dual-judge labelling).} Each response is labelled by a heuristic regex classifier (\S\ref{sec:method-judges-heuristic}) and a Gemini-2.5-Flash LLM-as-judge (\S\ref{sec:method-judges-llm}). 20{,}268 paired labels result (the gap to 20{,}400 reflects empty responses and provider-side error responses excluded from judging).
 
-\textbf{Stage 5 (statistics).} Per-cell Cohen's $\kappa$ inter-judge agreement (\S\ref{sec:method-judges-kappa}), percentile-bootstrap 95\% confidence intervals on refusal rates, paired-bootstrap CIs on attack-vector effects, odds ratios with continuity correction, and figure generation. See \S\ref{sec:method-stats}.
+\textbf{Stage 5 (statistics).} Per-cell Cohen's $\kappa$ inter-judge agreement (\S\ref{sec:method-judges-kappa}), percentile-bootstrap 95\% confidence intervals on refusal rates, two-sample bootstrap CIs on attack-vector effects, odds ratios with continuity correction, and figure generation. See \S\ref{sec:method-stats}.
 
 \begin{figure}[!t]
 \centering
@@ -304,7 +306,7 @@ We validate the 600-item v3 corpus (60 English plus 90 items per Indic language)
 \subsection{Statistical methods}
 \label{sec:method-stats}
 
-Refusal rates are reported with 95\% percentile-bootstrap confidence intervals (1000 resamples, seed = 2026) computed per cell. The cultural-framing effect is a paired-bootstrap $\Delta = $ (refusal-rate-CF $-$ refusal-rate-D) per model, also with 1000 resamples; the CI is taken as the 2.5--97.5 percentile of the resampled deltas. Odds ratios on $\Delta$ use the standard continuity correction (Haldane-Anscombe, $+0.5$ to all four cells of the $2\times 2$). All Cohen's $\kappa$ values are unweighted, computed per (model, language) cell. Plotting uses matplotlib with the \texttt{viridis} colourmap for the refusal-rate heatmap and \texttt{RdBu\_r} (diverging) for the heuristic-vs-LLM $\Delta$ heatmap.
+Refusal rates are reported with 95\% percentile-bootstrap confidence intervals (1000 resamples, seed = 2026) computed per cell. The cultural-framing effect is a two-sample bootstrap $\Delta = $ (refusal-rate-CF $-$ refusal-rate-D) per model, also with 1000 resamples; the CI is taken as the 2.5--97.5 percentile of the resampled deltas. We use a two-sample rather than paired bootstrap because direct and cultural-framing variants of the same seed are scored on separate inferences and are not paired at the response level; a paired bootstrap on the underlying (seed, language) pairs is on the v4 roadmap. Odds ratios on $\Delta$ use the standard continuity correction (Haldane-Anscombe, $+0.5$ to all four cells of the $2\times 2$). All Cohen's $\kappa$ values are unweighted, computed per (model, language) cell. Plotting uses matplotlib with the \texttt{viridis} colourmap for the refusal-rate heatmap and \texttt{RdBu\_r} (diverging) for the heuristic-vs-LLM $\Delta$ heatmap.
 
 % =============================================================
 \section{Results}
@@ -394,6 +396,29 @@ Llama-3.3-70B & 0.90 & 0.54 & 0.51 & 0.66 & 0.60 & 0.66 & 0.74 \\
 \end{tabularx}
 \end{table*}
 
+\begin{table*}[!t]
+\centering
+\caption{Heuristic-UNCERTAIN-rate per (model, language) before binary defaulting. The $\kappa$ values in Table~\ref{tab:kappa} are computed after the finalisation step (\texttt{src/pilot/finalize\_judgments.py}) defaults the heuristic \textsc{Uncertain} label to \textsc{Refusal} where the LLM judge confirms refusal --- i.e., 54.2\% of the 17{,}710 heuristic labels were not natively decisive. Cells where the heuristic was already $> 75\%$ UNCERTAIN are bolded.}
+\label{tab:uncertain-rate}
+\small
+\begin{tabularx}{\textwidth}{lcccccccc}
+\toprule
+Model & EN & HI & MR & TE & KN & TA & BN & Overall \\
+\midrule
+Sarvam-105B   & 5\%  & 16\% & 62\% & 49\% & 38\% & \textbf{78\%} & 73\% & 48\% (1598/3329) \\
+Sarvam-30B    & 10\% & 22\% & 63\% & 58\% & 41\% & \textbf{81\%} & 73\% & 52\% (1698/3293) \\
+Sarvam-m      & \textbf{89\%} & \textbf{75\%} & \textbf{76\%} & \textbf{78\%} & \textbf{76\%} & \textbf{80\%} & \textbf{76\%} & \textbf{78\%} (1857/2372) \\
+GPT-4o-mini   & 22\% & 36\% & \textbf{75\%} & 47\% & 54\% & 41\% & 39\% & 46\% (1466/3170) \\
+Gemini-2.5-F  & 20\% & 20\% & 43\% & 39\% & 28\% & 46\% & 38\% & 34\% (775/2287) \\
+Llama-3.3-70B & 36\% & 42\% & \textbf{92\%} & \textbf{79\%} & \textbf{75\%} & \textbf{76\%} & \textbf{80\%} & \textbf{72\%} (2193/3059) \\
+gpt-oss-120b\textsuperscript{\(\ddagger\)}  & 5\%  & 0\%  & 0\%  & 0\%  & 0\%  & 13\% & 0\%  & 2\% (5/200) \\
+\bottomrule
+\end{tabularx}\\
+\textit{\footnotesize \textsuperscript{\(\ddagger\)}gpt-oss-120b row uses the orthographically-patched heuristic (§\ref{sec:results-ortho}); without the patch every cell would be 100\% UNCERTAIN. Overall corpus UNCERTAIN-rate before binary defaulting: 9{,}592 / 17{,}710 = 54.2\%.}
+\end{table*}
+
+This rate matters for how Table~\ref{tab:kappa} should be read. The two collapsing $\kappa$ cells (Sarvam-105B Tamil/Bengali, $\kappa = 0.07$/$0.08$) are the same cells where 73--78\% of heuristic labels were not natively decisive; the finalisation step defaults those to \textsc{Refusal} only when the LLM judge confirms refusal, so the residual disagreement quantified by $\kappa$ is concentrated in the $\sim 22$--$27$\% of items where the heuristic was natively confident. The $\kappa$ values are conservative against the measurement-crisis claim --- they describe disagreement on the items the heuristic was \emph{willing to commit on}, not disagreement after the favourable defaulting.
+
 Table~\ref{tab:delta} reports the difference $\Delta$ between LLM-judge and heuristic-judge refusal rates per cell; Figure~\ref{fig:fig6} visualises the same as a diverging-color heatmap; Table~\ref{tab:kappa} reports per-cell Cohen's $\kappa$.
 
 Two patterns emerge in $\Delta$. First, English and Hindi cells show $|\Delta|\leq 10$~pp across all models --- the heuristic works well in languages with the densest refusal-anchor coverage (Table~\ref{tab:anchor-counts}). Second, Sarvam-30B and Sarvam-105B cells in Dravidian and Bengali languages show $\Delta$ of $+37$ to $+60$~pp. The heuristic systematically undercounts refusals for Sarvam reasoning models in these languages.
@@ -465,7 +490,7 @@ Llama-3.3-70B & 52 & 22 & 57 & $-30$ & 0.26 / $[-33.5, -26.2]$ \\
 \label{fig:fig2}
 \end{figure*}
 
-Table~\ref{tab:cf} reports the cultural-framing attack under the LLM judge with paired-bootstrap 95\% CIs; Figure~\ref{fig:fig2} visualises the same as grouped bars.
+Table~\ref{tab:cf} reports the cultural-framing attack under the LLM judge with two-sample bootstrap 95\% CIs; Figure~\ref{fig:fig2} visualises the same as grouped bars.
 
 \textbf{The reasoning-vs-non-reasoning split is statistically clean.} Sarvam reasoning models' cultural-framing 95\% CIs cross zero (Sarvam-105B even shows a slight refusal \emph{increase}; no detectable jailbreak effect). All four non-reasoning models have CIs entirely below zero with effect magnitudes of $-16$ to $-31$~pp, far beyond any documented placebo magnitude in the multilingual-prompting literature.
 
@@ -553,29 +578,41 @@ Axis & Judge & EN & HI & MR & TE & KN & TA & BN \\
 
 \textbf{Inter-judge $\kappa$ is low across all three axes, but for two different reasons.} Table~\ref{tab:val-kappa} reports Cohen's linear-weighted $\kappa$ between Gemini and Sarvam per language per axis. The numbers cluster near zero on every axis but the mechanism differs.
 
-\emph{Equivalence axis (\(\kappa \approx 0\)):} Sarvam-30B is the degenerate rater here --- it scores essentially every prompt as 5.00 (per-language std 0.00--0.19; Table~\ref{tab:val-means}). Gemini also scores high (4.91--4.99) but with marginally more variance. When one rater has zero variance, $\kappa$ is mathematically pinned to zero regardless of the other rater's distribution.
+\emph{Equivalence axis (\(\kappa \approx 0\); \%-within-1 $\geq 98$\%; MAD = 0):} Sarvam-30B is the degenerate rater here --- it scores essentially every prompt as 5.00 (per-language std 0.00--0.19; Table~\ref{tab:val-means}). Gemini also scores high (4.91--4.99) but with marginally more variance. When one rater has zero variance, $\kappa$ is mathematically pinned to zero regardless of the other rater's distribution. The \%-within-1 column makes the substantive conclusion crisp: the judges agree on every equivalence item up to 1 Likert, and MAD is 0 across all seven languages. The headline $\kappa \approx 0$ is a measurement artifact of ceiling agreement, not substantive disagreement --- the kind of failure mode \%-within-1 / MAD reporting is designed to surface.
 
-\emph{Attack-validity axis (\(\kappa \approx 0\)):} Both raters are near the ceiling (Gemini 4.75--5.00; Sarvam 3.67--4.38). The both-judged $n$ per cell ranges from 2 to 18 because of the Sarvam STARTER tier max\_tokens cap discussed above, so the $\kappa$ estimates have wide bootstrap intervals and the apparent zero reflects insufficient power as much as substantive agreement.
+\emph{Attack-validity axis (\(\kappa \approx 0\); \%-within-1 91--100\% except EN 67\%):} Both raters are near the ceiling (Gemini 4.75--5.00; Sarvam 3.67--4.38). The both-judged $n$ per cell ranges from 2 to 18 because of the Sarvam STARTER tier max\_tokens cap discussed above, so the $\kappa$ estimates have wide bootstrap intervals; the \%-within-1 column shows that on the items both judges could score, agreement is near-perfect. The apparent zero $\kappa$ reflects insufficient power plus a second instance of the ceiling-collapse pattern, not substantive disagreement.
 
-\emph{Naturalness axis (\(\kappa \in [-0.02, 0.21]\)):} This is the only axis with genuine variance from both judges. Sarvam-30B scores 1.0--1.5 Likert points lower than Gemini on every Indic language tested (3.17 vs 4.52 on Marathi; 2.85 vs 4.33 on Kannada). The judges genuinely disagree, and the $\kappa$ is low because they assign different absolute scores to the same items --- not because of degenerate variance on either side. Hindi $\kappa = 0.21$ is the highest cell.
+\emph{Naturalness axis (\(\kappa \in [-0.02, 0.21]\); \%-within-1 50--84\%; MAD 1.0--1.5):} This is the only axis with genuine variance from both judges, and the \%-within-1 column confirms it: agreement drops to 50--53\% on the lowest cells (KN, BN, MR, TE) with MAD jumping to 1.5 on KN and BN. Sarvam-30B scores 1.0--1.5 Likert points lower than Gemini on every Indic language tested (3.17 vs 4.52 on Marathi; 2.85 vs 4.33 on Kannada). The judges genuinely disagree, and the $\kappa$ is low because they assign different absolute scores to the same items --- not because of degenerate variance on either side. Hindi $\kappa = 0.21$ is the highest cell.
 
 This per-axis decomposition is the v3 \S\ref{sec:results-validation} methodological case study: \emph{a single pooled inter-judge $\kappa$ on a multilingual adversarial corpus hides two distinct phenomena --- one judge's variance collapse on agreement-prone axes, and genuine cross-judge calibration drift on harder axes.} It validates the \S\ref{sec:method-validation} choice to report per-axis per-language $\kappa$ rather than pooled.
 
 \begin{table}[!t]
 \centering
-\caption{Inter-judge Cohen's linear-weighted $\kappa$ between Gemini~2.5~Pro and Sarvam-30B per language per axis, with bootstrap 95\% CI (1{,}000 resamples).}
+\caption{Inter-judge Gemini~2.5~Pro $\times$ Sarvam-30B per language per axis. Each cell reports three statistics: Cohen's linear-weighted $\kappa$ / \%-within-1 (fraction of items where the two judges differ by $\leq 1$ Likert) / MAD (median absolute Likert difference). Reading the three together avoids the $\kappa$-zero-variance trap discussed below.}
 \label{tab:val-kappa}
-\footnotesize
+\scriptsize
+\setlength{\tabcolsep}{3pt}
 \begin{tabularx}{\columnwidth}{lccccccc}
 \toprule
 Axis & EN & HI & MR & TE & KN & TA & BN \\
 \midrule
-Naturalness    & 0.01 & 0.21 & 0.05 & 0.04 & 0.09 & 0.17 & $-0.02$ \\
-Equivalence    & 0.00 & $-0.02$ & $-0.02$ & 0.00 & $-0.01$ & 0.32 & $-0.02$ \\
-Attack-validity & ---  & 0.00 & 0.00 & --- & 0.00 & 0.06 & 0.00 \\
+\multicolumn{8}{l}{\emph{Naturalness}} \\
+$\kappa$       & 0.01 & 0.21 & 0.05 & 0.04 & 0.09 & 0.17 & $-0.02$ \\
+\%-within-1    & 84\% & 78\% & 53\% & 52\% & 50\% & 59\% & 50\% \\
+MAD            & 1.0  & 1.0  & 1.0  & 1.0  & 1.5  & 1.0  & 1.5 \\
+\midrule
+\multicolumn{8}{l}{\emph{Equivalence}} \\
+$\kappa$       & 0.00 & $-0.02$ & $-0.02$ & 0.00 & $-0.01$ & 0.32 & $-0.02$ \\
+\%-within-1    & 100\% & 98\% & 100\% & 99\% & 99\% & 99\% & 100\% \\
+MAD            & 0.0  & 0.0  & 0.0  & 0.0  & 0.0  & 0.0  & 0.0 \\
+\midrule
+\multicolumn{8}{l}{\emph{Attack-validity}} \\
+$\kappa$       & ---  & 0.00 & 0.00 & --- & 0.00 & 0.06 & 0.00 \\
+\%-within-1    & 67\% & 100\% & 94\% & 100\% & 100\% & 100\% & 91\% \\
+MAD            & 1.0  & 1.0  & 1.0  & 1.0  & 1.0  & 1.0  & 1.0 \\
 \bottomrule
 \end{tabularx}\\
-\textit{\footnotesize ``---'' = insufficient $n$ for $\kappa$ ($< 5$ items both-judged); Tamil equivalence $\kappa=0.32$ has wide CI $[-0.02, 1.00]$ from a small both-judged $n$.}
+\textit{\footnotesize ``---'' = insufficient both-judged $n$ for $\kappa$ ($n < 5$). Naturalness both-judged $n$ = 32--49; equivalence $n$ = 57--89; attack-validity $n$ = 2--18 (small $n$ due to Sarvam STARTER max\_tokens cap on long reasoning traces). \%-within-1 and MAD are unaffected by the $\kappa$-zero-variance trap and reveal what the $\kappa$ values hide: equivalence agreement is near-perfect (\%-within-1 $\geq 98$\%, MAD = 0); attack-validity agreement is also near-perfect on the items both judges could score; naturalness is the only axis with genuine cross-judge disagreement, and even there 50--84\% of items are within 1 Likert.}
 \end{table}
 
 \textbf{Stratified disagreement taxonomy.} Of the 1{,}800 (item $\times$ axis) cells with both judges, 115 (6.4\%) show a Likert disagreement of $\geq 2$ points. The disagreements concentrate sharply: 102 of 115 are on the \emph{naturalness} axis, and among those, 73 are on \texttt{cultural\_framing} or \texttt{code\_switched} attack vectors (where surface-form naturalness is hardest to judge). Direct-vector items show fewer disagreements, consistent with their simpler linguistic structure. The full per-item disagreement table is in the released repository (\texttt{data/validation/panel\_disagree.md}); the per-cell breakdown forms the basis of our argument that the LLM-as-prompt-quality-validator gap is narrowest where the corpus is linguistically conservative and widest exactly where Indic adversarial benchmarks need it most.
@@ -614,7 +651,7 @@ Indian regulatory and procurement processes should not assume Hindi safety perfo
 
 \textbf{No native-speaker validation in v3.} The initial human-rating pilot was discarded for the reasons taxonomized in Appendix~\ref{app:rater-failures}, and the v3 corpus-quality validation reported in \S\ref{sec:results-validation} is LLM-judge ensemble only. A freshly-recruited native-speaker calibration sample of $n{=}50$ items per language --- screened with a paid pilot batch against gold-standard items, with a $\kappa \geq 0.4$ floor for inclusion --- is pre-registered for v4 (Appendix~\ref{app:human-calibration}), at which point we will report LLM-ensemble-vs-human $\kappa$ as a longitudinal measurement of the LLM-as-prompt-quality-validator gap.
 
-\textbf{Single LLM-judge architecture.} Gemini-2.5-Flash is the only LLM judge in the pilot. Since Gemini-2.5-Flash is also a target model, there is a residual self-judging concern: Gemini may systematically rate its own outputs more leniently. The multi-judge ensemble planned for v3 (Gemini-2.5-Pro + Claude-Opus-4.7 + GPT-5 as independent judges, with pairwise $\kappa$ and majority-vote labels) directly addresses this; results will appear in v3.
+\textbf{Single LLM-judge architecture and bounded self-judging.} Gemini-2.5-Flash is the only LLM judge that produced the 20{,}268 paired labels underlying every refusal-rate number in the main results. Since Gemini-2.5-Flash is also a target model in our suite, the entire C1/C2/C3 chain rides on one judge that is also a judged subject. We have \emph{not} bounded the self-judging concern with a same-family disagreement check (Gemini judges Gemini vs Gemini judges others) at the per-(model, language) cell level within v3, and we therefore cannot rule out a Gemini-leniency bias on the order of 5--10~pp on Gemini-2.5-Flash cells. The two-judge corpus-validation panel of \S\ref{sec:results-validation} (Gemini-2.5-Pro $\times$ Sarvam-30B) addresses a related but distinct question (prompt-translation quality, not model-response refusal); v4 will retry the planned three-judge target-response panel (Gemini-2.5-Pro + Claude-Opus + Sarvam) and report pairwise $\kappa$ at the response-judging layer.
 
 \textbf{Limited model coverage.} Seven models in v3 (six v2 carryovers plus the \texttt{gpt-oss-120b} partial-coverage pilot of \S\ref{sec:results-ortho}), omitting Krutrim, Krutrim-2, Param2 (BharatGen), OpenHathi, Nanda, DeepSeek-R1, GPT-5, and the Claude-Opus / Claude-Sonnet 4.x family. v4 will prioritise (a)~the Indic sovereign panel (Krutrim-2, Param2, Nanda) to complete the Indic comparator; (b)~at least one additional reasoning model family (Claude-Opus or DeepSeek-R1) to test the measurement-crisis generalisation claim of \S\ref{sec:discussion}; and (c)~the third LLM judge (Claude) that v3 could not obtain (Appendix~\ref{app:cyber-block}).
 
@@ -622,7 +659,9 @@ Indian regulatory and procurement processes should not assume Hindi safety perfo
 
 \textbf{Cost-constrained scale.} 3{,}340 variants in a \$25 OpenRouter budget; 10$\times$ scale would require institutional funding. A funding request is included in the released repository (\texttt{docs/FUNDING\_REQUEST.md}).
 
-\textbf{No IRB.} As an independent pre-enrollment researcher, no Institutional Review Board oversight is available; institutional review through NYU Tandon is planned for the Fall 2026 cohort start.
+\textbf{No IRB and no documented informed consent on the v3 pilot.} As an independent pre-enrollment researcher, no Institutional Review Board oversight was available during the v3 work period. The initial human-rating pilot (Appendix~\ref{app:rater-failures}) was conducted without IRB review and without a formal written informed-consent process; raters were recruited informally and compensated per pack, with the brief delivered verbally and via the pack \texttt{INSTRUCTIONS.md}. We did not collect or store demographic data, and we treat every per-rater identifying detail in the returned CSVs as personally identifiable (gated under \texttt{GATING.md}). Future human-validation campaigns --- starting with the v4 native-speaker calibration sample --- will run under formal IRB review through NYU Tandon (Fall 2026 cohort start) and a written informed-consent protocol.
+
+\textbf{Krutrim Cloud TOS compliance for the gpt-oss-120b partial pilot.} The 200 \texttt{gpt-oss-120b} responses underlying \S\ref{sec:results-ortho} were obtained via the Ola Krutrim Cloud inference API. Krutrim Cloud's Acceptable Use Policy permits safety-research use of model outputs; we release aggregate refusal-rate statistics and the orthographic mechanism analysis under the fair-use research provision and do not redistribute raw \texttt{gpt-oss-120b} responses. The pilot ran within Krutrim Cloud's published rate limits with explicit ``safety-evaluation research'' tagging on the API key.
 
 % =============================================================
 \section{Competing Interests}
@@ -699,6 +738,8 @@ See \texttt{docs/VALIDATION\_PROTOCOL.md} for the human-validation Likert questi
 \label{app:rater-failures}
 
 We attempted a native-speaker human-validation pass on a stratified subset of the v3 corpus before adopting the LLM-ensemble protocol of \S\ref{sec:method-validation}. The pilot was conducted in May 2026 across Telugu, Tamil, Marathi, and Kannada with bilingual native raters recruited via the first author's personal network. The pilot surfaced two distinct annotator-quality failure modes that, to our knowledge, are not described in the prior Indic-safety-benchmark literature (which has implicitly avoided them through Karya-style ethical-crowd procedural design). We document them here both to justify our methodological pivot and to provide reusable detection signatures for future Indic-validation efforts.
+
+\noindent\textbf{Privacy framing.} The cross-language copy-paste failure mode is diagnostically informative only because we name the specific languages whose score vectors are bit-identical (Tamil, Marathi, Kannada); the naturalness rubber-stamping mode is informative only because we name Telugu. Per-language attribution is therefore unavoidable for the technical claim of this Appendix. We have deliberately omitted (a) all rater names, (b) all verbatim free-text comments, (c) all per-rater demographics, and (d) any contact metadata that would let a third party re-identify a rater from the released CSVs. The CSVs themselves are gated under \texttt{GATING.md} with an attestation clause requiring researchers to treat per-rater identifying details as personally identifiable.
 
 \subsection*{Failure mode 1: uniform rubber-stamping}
 \label{app:rater-failures-uniform}
