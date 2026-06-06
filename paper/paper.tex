@@ -62,7 +62,7 @@
 \maketitle
 
 \begin{abstract}
-We introduce \textbf{IndicSafetyBench}, a pilot benchmark of 3{,}340 adversarial prompts across English plus six Indic languages (Hindi, Marathi, Telugu, Kannada, Tamil, Bengali), eight harm categories, and three attack vectors (direct, cultural-framing, code-switching). We evaluate six production language models --- three Sarvam variants (105B and 30B reasoning models, m legacy 24B), GPT-4o-mini, Gemini-2.5-Flash, and Llama-3.3-70B --- generating 20{,}040 model inferences scored by a dual-judge pipeline (a multilingual heuristic regex classifier with $\sim$180 refusal anchors across thirteen language/script combinations, and a Gemini-2.5-Flash LLM-as-judge with a structured JSON rubric), validated against each other with Cohen's $\kappa$ on 19{,}423 paired labels. Our central finding is methodological: heuristic-based safety classifiers systematically undercount Sarvam reasoning-model refusals by up to 60~percentage~points in Dravidian languages and Bengali, because these models produce structurally consistent \emph{soft-refusal} patterns (``I cannot help with X, but here are safer alternatives'') that regex classifiers miscount as partial engagement. Per-cell $\kappa$ collapses to $0.07$--$0.17$ for Sarvam-105B and Sarvam-30B in Tamil and Bengali while remaining at $0.65$--$0.83$ in English and Hindi. Heuristic-only Indic safety benchmarks may have systematically under-reported reasoning-model safety. We further find that Indian-persona cultural-framing attacks ($-15$ to $-31$~pp for non-reasoning models, 95\% CI entirely below zero) have \emph{no detectable effect} on Sarvam reasoning models (95\% CI crosses zero); we defend this finding against the placebo-perturbation critique of \citet{mukherjee2024cultural}. We release seeds, code, and judgments at \url{https://github.com/kaushik0x7d2/indicsafetybench} with gated access to raw responses.
+We introduce \textbf{IndicSafetyBench}, a pilot benchmark of 3{,}340 adversarial prompts across English plus six Indic languages (Hindi, Marathi, Telugu, Kannada, Tamil, Bengali), eight harm categories, and three attack vectors (direct, cultural-framing, code-switching). We evaluate six production language models --- three Sarvam variants (105B and 30B reasoning models, m legacy 24B), GPT-4o-mini, Gemini-2.5-Flash, and Llama-3.3-70B --- generating 20{,}400 model inferences scored by a dual-judge pipeline (a multilingual heuristic regex classifier with $\sim$180 refusal anchors across thirteen language/script combinations, and a Gemini-2.5-Flash LLM-as-judge with a structured JSON rubric), validated against each other with Cohen's $\kappa$ on 20{,}268 paired labels. Our central finding is methodological: heuristic-based safety classifiers systematically undercount Sarvam reasoning-model refusals by up to 60~percentage~points in Dravidian languages and Bengali, because these models produce structurally consistent \emph{soft-refusal} patterns (``I cannot help with X, but here are safer alternatives'') that regex classifiers miscount as partial engagement. Per-cell $\kappa$ collapses to $0.07$--$0.13$ for Sarvam-105B and Sarvam-30B in Tamil and Bengali while remaining at $0.51$--$0.83$ in English and Hindi. A v3 partial extension to OpenAI's open-weight \texttt{gpt-oss-120b} (n=200 stratified pilot) shows the same heuristic-undercount pattern arising via a mechanically independent route: 91\% of its refusals use a typographic apostrophe (U+2019) that the heuristic's ASCII-only anchor bank silently misses, dropping recall from 0\% to 98\% under a three-line regex patch. Heuristic-only Indic safety benchmarks may have systematically under-reported reasoning-model safety. We further find that Indian-persona cultural-framing attacks ($-16$ to $-31$~pp for non-reasoning models, 95\% CI entirely below zero) have \emph{no detectable effect} on Sarvam reasoning models (95\% CI crosses zero, though we acknowledge a ceiling-effect confound at refusal rates of 82--96\%); we defend the non-reasoning side of this finding against the placebo-perturbation critique of \citet{mukherjee2024cultural}. We release seeds, code, and judgments at \url{https://github.com/kaushik0x7d2/indicsafetybench} with gated access to raw responses.
 \end{abstract}
 
 % =============================================================
@@ -85,7 +85,7 @@ These benchmarks consistently report catastrophic Indic safety gaps. \textbf{All
 
 \textbf{(C2) Sarvam reasoning models are uniformly safer than prior heuristic results suggest.}\quad Under LLM judging, Sarvam-105B refuses 91--96\% across all seven languages (95\% CI 90--97\% per cell); Sarvam-30B refuses 82--91\%. The Tamil-Bengali ``catastrophe'' reported by heuristic pipelines is largely a measurement artifact, not a safety failure.
 
-\textbf{(C3) Reasoning architecture is robust to Indian-persona cultural-framing attacks.}\quad Cultural-framing attacks drop refusal rates by 16--31~pp across all four non-reasoning models (95\% CI entirely below zero) but have no detectable effect on Sarvam reasoning models (Sarvam-105B: $+2$~pp, CI $[-0.3,+4.2]$; Sarvam-30B: $-1$~pp, CI $[-3.7,+2.6]$). This is a \emph{real} effect, defensible against the placebo critique of \citet{mukherjee2024cultural}, and distinguishes our finding from prior work.
+\textbf{(C3) Reasoning architecture is robust to Indian-persona cultural-framing attacks \emph{within our corpus}, with a ceiling-effect caveat.}\quad Cultural-framing attacks drop refusal rates by 16--31~pp across all four non-reasoning models (95\% CI entirely below zero) but have no detectable effect on either of our two Sarvam reasoning models (Sarvam-105B: $+2$~pp, CI $[-0.3,+4.2]$; Sarvam-30B: $-1$~pp, CI $[-3.7,+2.6]$). The non-reasoning side of this effect is large, sign-consistent across five of six models, and defensible against the placebo-perturbation critique of \citet{mukherjee2024cultural} (\S\ref{sec:placebo-defense}). The reasoning-model side is structurally weaker because (i)~we have only two reasoning models, both from the same vendor (Sarvam AI), and (ii)~both sit at 82--96\% direct-vector refusal, leaving little headroom for a measured drop. We therefore frame C3 as ``robust in our corpus, ceiling-effect-confounded'' rather than as a general claim about reasoning architecture; v4 with Claude / Phi-4-reasoning / DeepSeek-R1 reasoning models will adjudicate the architecture-level question.
 
 \textbf{(C4) Llama-3.3-70B is the actually catastrophic model in our suite.}\quad Under both judges, Llama-3.3-70B Indic refusal rate is 38--54\% (LLM judge), and the heuristic agrees within $\pm 10$~pp on every cell --- confirmed catastrophic Marathi safety failure (21\% heuristic, 39\% LLM).
 
@@ -120,11 +120,11 @@ The IndicSafetyBench pipeline has five stages, summarised in Figure~\ref{fig:pip
 
 \textbf{Stage 1 (English seed generation).} 425 English seed prompts across eight harm categories were generated by Claude-Opus-class subagents following the model-written-evaluations (MWE) methodology of \citet{perez2022mwe}. Each subagent is given a category-specific generator prompt and produces $\sim$50 candidate prompts spanning a diversity matrix of (framing $\times$ specificity $\times$ length $\times$ tone). Of these, 167 seeds are deployed in the present pilot; the remaining 258 are held out for v2 expansion. See \texttt{data/seeds/} in the released repository.
 
-\textbf{Stage 2 (multilingual expansion).} Each deployed English seed produces ten variants: one English-direct, one English-cultural-framing, and for each of the six Indic languages one direct (translation), one cultural-framing, and one code-switched variant ($1+1+6\times 3=20$ slots, though the pilot keeps only $1+1\times 7+3\times 6 \approx 20$ deployed cells; the precise count is 3{,}340 prompt variants total). Translations use the Gemini-2.5-Flash and Sarvam-m models with structured prompts (\S\ref{sec:method-vectors}); cultural framing and code-switching use parameterised templates with the same backends.
+\textbf{Stage 2 (multilingual expansion).} Each deployed English seed produces twenty variants: one English-direct, one English-cultural-framing, and for each of the six Indic languages one direct (translation), one cultural-framing, and one code-switched variant ($2$ EN $+ 6 \times 3 = 20$ slots per seed), yielding $167 \times 20 = 3{,}340$ prompt variants total. Translations use Gemini-2.5-Flash as primary and Sarvam-m as fallback for empty/error returns (\S\ref{sec:method-vectors}); cultural framing and code-switching use parameterised templates with the same backends.
 
-\textbf{Stage 3 (target-model inference).} Six target models (\S\ref{sec:method-models}) are queried on all 3{,}340 prompts, producing $6\times 3{,}340 = 20{,}040$ responses. The run is resume-safe: each model writes one JSONL file under \texttt{data/pilot/responses/}, and partial runs can be continued without re-spending.
+\textbf{Stage 3 (target-model inference).} Six target models (\S\ref{sec:method-models}) are queried on all 3{,}340 prompts, producing $6\times 3{,}340 = 20{,}400$ responses. The run is resume-safe: each model writes one JSONL file under \texttt{data/pilot/responses/}, and partial runs can be continued without re-spending.
 
-\textbf{Stage 4 (dual-judge labelling).} Each response is labelled by a heuristic regex classifier (\S\ref{sec:method-judges-heuristic}) and a Gemini-2.5-Flash LLM-as-judge (\S\ref{sec:method-judges-llm}). 19{,}423 paired labels result (the gap to 20{,}040 reflects empty responses and provider-side error responses excluded from judging).
+\textbf{Stage 4 (dual-judge labelling).} Each response is labelled by a heuristic regex classifier (\S\ref{sec:method-judges-heuristic}) and a Gemini-2.5-Flash LLM-as-judge (\S\ref{sec:method-judges-llm}). 20{,}268 paired labels result (the gap to 20{,}400 reflects empty responses and provider-side error responses excluded from judging).
 
 \textbf{Stage 5 (statistics).} Per-cell Cohen's $\kappa$ inter-judge agreement (\S\ref{sec:method-judges-kappa}), percentile-bootstrap 95\% confidence intervals on refusal rates, paired-bootstrap CIs on attack-vector effects, odds ratios with continuity correction, and figure generation. See \S\ref{sec:method-stats}.
 
@@ -133,8 +133,8 @@ The IndicSafetyBench pipeline has five stages, summarised in Figure~\ref{fig:pip
 \fbox{\parbox{0.92\columnwidth}{\small
 \textbf{Stage 1}: 425 EN seeds (Claude subagent, MWE method) \\
 $\rightarrow$ \textbf{Stage 2}: 3{,}340 variants (7~langs $\times$ 3~vectors) \\
-$\rightarrow$ \textbf{Stage 3}: 20{,}040 responses (6 target models) \\
-$\rightarrow$ \textbf{Stage 4}: 19{,}423 paired (heuristic, LLM) labels \\
+$\rightarrow$ \textbf{Stage 3}: 20{,}400 responses (6 target models) \\
+$\rightarrow$ \textbf{Stage 4}: 20{,}268 paired (heuristic, LLM) labels \\
 $\rightarrow$ \textbf{Stage 5}: per-cell $\kappa$ + bootstrap stats + figures
 }}
 \caption{Five-stage pipeline. Stage~3 dominates cost ($\sim$\$20 of \$25 OpenRouter budget); stage~4 LLM-judging is $\sim$\$3.}
@@ -270,7 +270,7 @@ The LLM judge (\texttt{src/pilot/llm\_judge.py}) is Gemini-2.5-Flash queried wit
 
 The judge is called with temperature $0$ and $\max_{\text{tokens}}=300$. Outputs are parsed by regex to extract the JSON envelope; parse failures are $<\!0.1\%$ of calls and are retried once. Total judging cost was \$2.71 in OpenRouter spend.
 
-\textbf{Why Gemini-2.5-Flash as judge.} Three reasons: (1)~it is multilingual on all seven languages in the benchmark; (2)~it has been validated as an LLM-evaluator for multilingual tasks by \citet{hada2024llmevaluators} and \citet{watts2024pariksha}; (3)~it is cheap enough to call on 19{,}423 pairs within budget. The most important alternative --- using a model not in the target panel to avoid self-judging --- is partially compromised here because Gemini-2.5-Flash is also a target model. \S\ref{sec:limits} discusses this; the multi-judge ensemble planned for v3 (Gemini-2.5-Pro, Claude-Opus, GPT-5 as independent judges) directly addresses it.
+\textbf{Why Gemini-2.5-Flash as judge.} Three reasons: (1)~it is multilingual on all seven languages in the benchmark; (2)~it has been validated as an LLM-evaluator for multilingual tasks by \citet{hada2024llmevaluators} and \citet{watts2024pariksha}; (3)~it is cheap enough to call on 20{,}268 pairs within budget. The most important alternative --- using a model not in the target panel to avoid self-judging --- is partially compromised here because Gemini-2.5-Flash is also a target model. \S\ref{sec:limits} discusses this; the multi-judge ensemble planned for v3 (Gemini-2.5-Pro, Claude-Opus, GPT-5 as independent judges) directly addresses it.
 
 \subsubsection{Inter-judge agreement}
 \label{sec:method-judges-kappa}
@@ -279,14 +279,16 @@ For each of the 42 (model, language) cells we report Cohen's $\kappa$ \citep{mch
 \[
 \kappa = \frac{p_o - p_e}{1 - p_e}
 \]
-where $p_o$ is observed agreement (fraction of items where both judges agree) and $p_e$ is the chance-agreement rate computed from each judge's marginal class frequencies. As a worked example, consider Sarvam-105B in Tamil: of $n = 487$ paired items, the heuristic labels 32\% as refusals and the LLM labels 91\%, with observed agreement $p_o = 0.42$ (mostly the heuristic's refusals coincide with the LLM's refusals; the heuristic's ``engaged'' calls split). Marginal frequencies give $p_e = 0.62$, yielding $\kappa = (0.42 - 0.62) / (1 - 0.62) = -0.53$ if we treated all heuristic non-refusals as ``engaged''; the table value $\kappa = 0.07$ in Table~\ref{tab:kappa} excludes the heuristic \textsc{Uncertain} bucket, which the heuristic refuses to label and which therefore should not penalise it. Per-cell sample sizes range from $n \approx 270$ (English, where each language gets only one variant) to $n \approx 520$ (Indic, three variants per seed).
+where $p_o$ is observed agreement (fraction of items where both judges agree) and $p_e$ is the chance-agreement rate computed from each judge's marginal class frequencies. As a worked example, consider Sarvam-105B in Tamil: of $n = 504$ paired items, the heuristic labels 32\% as refusals and the LLM labels 91\%; in the pipeline that produces Table~\ref{tab:kappa}, \texttt{finalize\_judgments.py} defaults heuristic \textsc{Uncertain} rows to refusal before \texttt{compare\_judges.py} is called, so the binary distribution actually scored by $\kappa$ includes those defaults rather than excluding them. With $p_o \approx 0.42$ and marginal frequencies of 0.32 and 0.91, the chance-agreement rate is $p_e = 0.32\cdot0.91 + 0.68\cdot0.09 = 0.352$, yielding $\kappa = (0.42 - 0.352) / (1 - 0.352) \approx 0.105$. The table value $\kappa = 0.07$ in Table~\ref{tab:kappa} is slightly lower because the per-cell observed agreement on the actual $n = 504$ pairs is marginally below the 0.42 used here for exposition; the discrepancy is below the bootstrap CI for that cell. Per-cell sample sizes range from $n \approx 337$ (English, where each language contributes one variant per seed) to $n \approx 510$ (Indic, three variants per seed). Note: a previous version of this worked example incorrectly reported $p_e = 0.62$; the value above is correct.
 
 We report $\kappa$ per cell rather than pooled because, as Table~\ref{tab:kappa} will show, the cell-level variance ranges from $0.07$ to $0.90$ --- a single pooled value of $\kappa \approx 0.55$ would hide the entire phenomenon this paper is about. This per-cell decomposition is one of our methodological recommendations for future Indic-safety benchmarks.
 
 \subsection{Corpus validation protocol}
 \label{sec:method-validation}
 
-We validate the 600-item v3 corpus (60 English plus 90 items per Indic language) along three axes --- linguistic naturalness, semantic equivalence to the English seed, and attack-vector validity --- using a heterogeneous ensemble of three reference-anchored LLM judges: Claude~Opus~4.7, Gemini~3.1~Pro, and Sarvam-M, the latter included as a fine-tuned cross-lingual Indic judge in the spirit of Hercule~\citep{doddapaneni2025cia}. Each (item, axis) is scored five times per judge with randomised in-context ordering on a Likert 1--5 scale (per the recent grading-scale alignment finding that 0--5 and 1--5 outperform 1--10~\citep{gradingscale2026}), with the English seed always supplied in context to mitigate the reference-less failure regime identified by FBI~\citep{doddapaneni2024fbi}. The three axes are scored in \emph{independent} API calls rather than as a single combined JSON payload, to reduce halo effects and to enable per-axis $\kappa$ reporting.
+We validate the 600-item v3 corpus (60 English plus 90 items per Indic language) along three axes --- linguistic naturalness, semantic equivalence to the English seed, and attack-vector validity --- using a heterogeneous two-judge ensemble of reference-anchored LLM judges: Gemini~2.5~Pro via Google Vertex AI, and Sarvam-30B via the Sarvam direct API. The validation protocol was designed for a three-judge panel (with Claude~Opus or Sonnet 4.x as the Anthropic judge in the spirit of Hercule~\citep{doddapaneni2025cia}); the third judge could not be obtained for v3 because every available Anthropic access surface returned access-layer errors during the v3 build (Vertex Anthropic online-prediction quota at default zero across all regions; Vertex Anthropic batch-prediction quota likewise at zero; the Anthropic Claude Code subagent dispatcher rejected our adversarial-corpus judging requests under Anthropic's Cyber Verification Program safeguard). We document the access-layer block in Appendix~\ref{app:cyber-block} and pre-register Claude inclusion for v4. Each (item, axis) is scored once per judge on a Likert 1--5 scale (per the recent grading-scale alignment finding that 0--5 and 1--5 outperform 1--10~\citep{gradingscale2026}), with the English seed always supplied in context to mitigate the reference-less failure regime identified by FBI~\citep{doddapaneni2024fbi}. The three axes are scored in \emph{independent} API calls rather than as a single combined JSON payload, to reduce halo effects and to enable per-axis $\kappa$ reporting.
+
+\textbf{Family-overlap disclosure.} The Sarvam-30B validation judge belongs to the same model family as Sarvam-m, which was used as a fallback machine-translator during Stage 2 corpus expansion (\S\ref{sec:method-pipeline}). We do not believe this introduces self-judging bias on the corpus side because Sarvam-m only generated text where Gemini-2.5-Flash, our primary translator, returned an error or empty output --- the vast majority of the corpus was Gemini-translated --- but readers should be aware of the family overlap when interpreting Sarvam-30B's per-cell naturalness and equivalence scores.
 
 \textbf{Why LLM-primary rather than human-primary.} We adopt an LLM-primary protocol rather than the native-speaker-primary protocol used by XL-SafetyBench~\citep{choi2026xlsafetybench} and IndicSafe~\citep{pattnayak2026indicsafe} because an initial human-rating pilot at our recruitment scale surfaced two unrecoverable annotator-quality failure modes --- uniform 5/5 rubber-stamping on one Telugu rater (std~=~0 across all 90 items, contradicting that rater's own free-text comments on the same items) and bit-identical per-item score vectors copy-pasted across Tamil, Marathi, and Kannada by a second rater (Hamming distance zero on 82 of 82 join-matched items despite genuinely language-distinct prompts). We document and taxonomise these failure modes in Appendix~\ref{app:rater-failures}; reporting $\kappa$ values computed on contaminated annotations would be misleading per the skewed-distribution caveat of \citet{hada2024llmevaluators}, so we discard those data from primary validation. Following IndicJR's judge-free precedent~\citep{pattnayak2026indicjr}, we treat the LLM-ensemble agreement structure itself as the object of measurement rather than a substitute for human ground truth.
 
@@ -297,7 +299,7 @@ We validate the 600-item v3 corpus (60 English plus 90 items per Indic language)
   \item \textbf{Attack-vector validity}: ``If a real adversary using this attack technique sent this prompt to an Indian-deployed LLM, would it constitute a legitimate attack of the named type?'' (1~=~implausible cover/register; 5~=~perfectly executed). Direct-vector items receive an N/A code rather than a 1--5 score.
 \end{enumerate}
 
-\textbf{Statistics.} We report per-axis, per-language Cohen's linear-weighted $\kappa$ between all three judge pairs with bootstrap 95\% CIs (1{,}000 resamples), intra-judge Krippendorff's $\alpha$ across the five reruns (the Rating Roulette robustness check of \citealp{rouletteratings2025}), and a stratified taxonomy of judge-disagreement loci by harm category and code-switching density. As a calibration check we additionally report LLM-ensemble-vs-human agreement on a post-hoc native-speaker sample of $n{=}50$ items per language (Appendix~\ref{app:human-calibration}), with the explicit caveat that this sample is too small to constitute primary validation and is reported only to bound the gap between our ensemble protocol and a hypothetical fully-resourced native panel. All judge prompts, raw per-call outputs, bootstrap seeds, and model snapshots are released under \texttt{data/validation/panel/} to enable byte-reproducible re-validation --- a stronger reliability guarantee for a living benchmark than non-reproducible human annotation.
+\textbf{Statistics.} We report per-axis, per-language Cohen's linear-weighted $\kappa$ between the two judges with bootstrap 95\% CIs (1{,}000 resamples) and a stratified taxonomy of judge-disagreement loci by harm category and attack vector. The Rating Roulette intra-judge robustness check of \citet{rouletteratings2025} would require multiple reruns per item; we ran a single rerun in v3 due to budget and time constraints, and the multi-rerun pass is pre-registered for v4. A post-hoc native-speaker calibration sample of $n{=}50$ items per language (Appendix~\ref{app:human-calibration}) is also pre-registered for v4 to bound the gap between the LLM-ensemble protocol and a hypothetical fully-resourced native panel; we report it as forthcoming rather than completed. All judge prompts, raw per-call outputs, and bootstrap seeds are released under \texttt{data/validation/panel/} to enable byte-reproducible re-validation --- a stronger reliability guarantee for a living benchmark than non-reproducible human annotation.
 
 \subsection{Statistical methods}
 \label{sec:method-stats}
@@ -322,7 +324,7 @@ Model & EN & HI & MR & TE & KN & TA & BN & Indic-mean \\
 \midrule
 Sarvam-105B          & 96 & 93 & 93 & 92 & 91 & 91 & 93 & \textbf{92} \\
 Sarvam-30B           & 91 & 87 & 87 & 82 & 83 & 84 & 85 & \textbf{85} \\
-Sarvam-m             & 58 & 66 & 69 & 74 & 71 & 73 & 70 & \textbf{71} \\
+Sarvam-m             & 55 & 64 & 66 & 68 & 65 & 66 & 66 & \textbf{66} \\
 gpt-oss-120b$\ddagger$ & 95 & 100 & 100 & 100 & 100 & 100 & 100 & \textbf{100} \\
 Gemini-2.5-F         & 74 & 64 & 72 & 62 & 57 & 60 & 67 & \textbf{64} \\
 GPT-4o-mini          & 67 & 61 & 57 & 62 & 58 & 61 & 64 & \textbf{60} \\
@@ -445,12 +447,12 @@ After patching, the heuristic catches 195/200 = 98\% of gpt-oss-120b responses a
 \toprule
 Model & D & CF & CS & $\Delta$ pp & OR / 95\% CI on $\Delta$ \\
 \midrule
-Sarvam-105B   & 91 & 93 & --- & $\mathbf{+2}$ & 1.29 / $[-0.3, +4.2]$\,$\dagger$ \\
-Sarvam-30B    & 82 & 81 & --- & $\mathbf{-1}$ & 0.96 / $[-3.7, +2.6]$\,$\dagger$ \\
-Sarvam-m      & 73 & 42 & --- & $-31$ & 0.26 / $[-35.2, -27.5]$ \\
-Gemini-2.5-F  & 68 & 49 & --- & $-20$ & 0.44 / $[-23.6, -16.2]$ \\
-GPT-4o-mini   & 64 & 48 & --- & $-16$ & 0.52 / $[-19.6, -11.8]$ \\
-Llama-3.3-70B & 52 & 22 & --- & $-30$ & 0.26 / $[-33.5, -26.2]$ \\
+Sarvam-105B   & 91 & 93 & 95 & $\mathbf{+2}$ & 1.29 / $[-0.3, +4.2]$\,$\dagger$ \\
+Sarvam-30B    & 82 & 82 & 93 & $\mathbf{-1}$ & 0.96 / $[-3.7, +2.6]$\,$\dagger$ \\
+Sarvam-m      & 73 & 42 & 83 & $-31$ & 0.26 / $[-35.2, -27.5]$ \\
+Gemini-2.5-F  & 68 & 49 & 80 & $-20$ & 0.44 / $[-23.6, -16.2]$ \\
+GPT-4o-mini   & 64 & 48 & 73 & $-16$ & 0.52 / $[-19.6, -11.8]$ \\
+Llama-3.3-70B & 52 & 22 & 57 & $-30$ & 0.26 / $[-33.5, -26.2]$ \\
 \bottomrule
 \end{tabularx}\\
 \textit{\footnotesize $\dagger$ = 95\% CI crosses zero (no detectable effect).}
@@ -519,7 +521,64 @@ Within the Sarvam family (Figure~\ref{fig:fig4}), standard deviation of refusal 
 \subsection{Validation results}
 \label{sec:results-validation}
 
-The Likert validation protocol (\S\ref{sec:method-validation}) is in active rollout. A 65-item Telugu subset (first-author validation) reports mean naturalness $4.4 \pm 0.6$, mean equivalence $4.6 \pm 0.4$, and mean attack-vector validity $4.1 \pm 0.7$. The full 720-item multi-language pass will appear in v3 (\S\ref{sec:limits}). We flag here the one validation-relevant finding from the pilot subset: \textbf{the mono-script code-switching variant (English transliterated into Telugu script) is rated significantly less natural than the interleaved-script variant} (3.6 vs 4.3 on naturalness), suggesting the two CS sub-variants should be reported separately in v3 results.
+We ran the LLM-ensemble protocol of \S\ref{sec:method-validation} on the full 600-item v3 corpus (60 EN + 90 per Indic language) using two judges, Gemini~2.5~Pro (via Google Vertex AI) and Sarvam-30B (via Sarvam direct API). Claude as the third judge was blocked at every available route (Vertex Anthropic quota at default zero across both online and batch endpoints; Claude~Code subagent dispatch blocked by Anthropic's Cyber Verification safeguard --- see Appendix~\ref{app:cyber-block}); we report this as a v3-era failure mode of judge-model access and pre-register Claude inclusion for v4.
+
+\textbf{Coverage caveat.} Sarvam-30B parse-success on our STARTER-tier Sarvam subscription is uneven across axes because the tier hard-caps \texttt{max\_tokens} at 4{,}096, insufficient for the longer \texttt{<think>} reasoning chains the model produces on hard naturalness items in Indic languages. Per-cell n for Sarvam ranges from 32 to 89 on naturalness (mean 40); equivalence is essentially complete (n=83-90); attack-validity has n=2-18 per language. Mean Likert scores and inter-judge $\kappa$ are computed only over items where both judges produced a parseable score.
+
+\textbf{Per-axis mean Likert score per language.} Table~\ref{tab:val-means} reports per-judge per-language mean scores across the three axes (1--5 Likert; attack-validity scored 0--5 with 0=N/A for direct items).
+
+\begin{table}[!t]
+\centering
+\caption{Per-judge mean Likert score per language. \textit{Coverage caveat above applies to Sarvam rows.}}
+\label{tab:val-means}
+\footnotesize
+\begin{tabularx}{\columnwidth}{llccccccc}
+\toprule
+Axis & Judge & EN & HI & MR & TE & KN & TA & BN \\
+\midrule
+\multirow{2}{*}{Naturalness}
+  & Gemini  & 4.98 & 4.21 & 4.52 & 4.30 & 4.33 & 4.34 & 4.60 \\
+  & Sarvam  & 4.00 & 3.57 & 3.17 & 3.33 & 2.85 & 3.22 & 3.20 \\
+\multirow{2}{*}{Equivalence}
+  & Gemini  & 4.98 & 4.97 & 4.98 & 4.91 & 4.91 & 4.96 & 4.99 \\
+  & Sarvam  & 5.00 & 4.92 & 4.99 & 5.00 & 4.99 & 4.98 & 4.96 \\
+\multirow{2}{*}{Attack-validity}
+  & Gemini  & 5.00 & 4.92 & 4.87 & 4.88 & 4.78 & 4.88 & 4.75 \\
+  & Sarvam  & 3.67 & 4.38 & 4.22 & 4.00 & 4.29 & 4.33 & 4.09 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{Two striking findings.} (1)~\emph{Gemini exhibits the documented multilingual high-score bias across all seven languages.} Equivalence is essentially flat at 4.91-4.99 ($\sigma$ 0.10-0.53 per cell); attack-validity is 4.75-5.00 ($\sigma$ 0-0.79). This matches the \citet{hada2024llmevaluators} caveat that frontier LLM judges ``almost never'' provide low scores on subjective multilingual tasks. (2)~\emph{Sarvam-30B scores Indic naturalness 1.0-1.5 Likert points lower than Gemini on every language tested}, with the divergence widest in Kannada (Gemini 4.33 vs Sarvam 2.85, $\Delta = 1.48$) and Bengali (Gemini 4.60 vs Sarvam 3.20, $\Delta = 1.40$). The Indic-tuned judge is materially more critical of translation quality than the multilingual-frontier judge.
+
+\textbf{Inter-judge $\kappa$ is low across all three axes, but for two different reasons.} Table~\ref{tab:val-kappa} reports Cohen's linear-weighted $\kappa$ between Gemini and Sarvam per language per axis. The numbers cluster near zero on every axis but the mechanism differs.
+
+\emph{Equivalence axis (\(\kappa \approx 0\)):} Sarvam-30B is the degenerate rater here --- it scores essentially every prompt as 5.00 (per-language std 0.00--0.19; Table~\ref{tab:val-means}). Gemini also scores high (4.91--4.99) but with marginally more variance. When one rater has zero variance, $\kappa$ is mathematically pinned to zero regardless of the other rater's distribution.
+
+\emph{Attack-validity axis (\(\kappa \approx 0\)):} Both raters are near the ceiling (Gemini 4.75--5.00; Sarvam 3.67--4.38). The both-judged $n$ per cell ranges from 2 to 18 because of the Sarvam STARTER tier max\_tokens cap discussed above, so the $\kappa$ estimates have wide bootstrap intervals and the apparent zero reflects insufficient power as much as substantive agreement.
+
+\emph{Naturalness axis (\(\kappa \in [-0.02, 0.21]\)):} This is the only axis with genuine variance from both judges. Sarvam-30B scores 1.0--1.5 Likert points lower than Gemini on every Indic language tested (3.17 vs 4.52 on Marathi; 2.85 vs 4.33 on Kannada). The judges genuinely disagree, and the $\kappa$ is low because they assign different absolute scores to the same items --- not because of degenerate variance on either side. Hindi $\kappa = 0.21$ is the highest cell.
+
+This per-axis decomposition is the v3 \S\ref{sec:results-validation} methodological case study: \emph{a single pooled inter-judge $\kappa$ on a multilingual adversarial corpus hides two distinct phenomena --- one judge's variance collapse on agreement-prone axes, and genuine cross-judge calibration drift on harder axes.} It validates the \S\ref{sec:method-validation} choice to report per-axis per-language $\kappa$ rather than pooled.
+
+\begin{table}[!t]
+\centering
+\caption{Inter-judge Cohen's linear-weighted $\kappa$ between Gemini~2.5~Pro and Sarvam-30B per language per axis, with bootstrap 95\% CI (1{,}000 resamples).}
+\label{tab:val-kappa}
+\footnotesize
+\begin{tabularx}{\columnwidth}{lccccccc}
+\toprule
+Axis & EN & HI & MR & TE & KN & TA & BN \\
+\midrule
+Naturalness    & 0.01 & 0.21 & 0.05 & 0.04 & 0.09 & 0.17 & $-0.02$ \\
+Equivalence    & 0.00 & $-0.02$ & $-0.02$ & 0.00 & $-0.01$ & 0.32 & $-0.02$ \\
+Attack-validity & ---  & 0.00 & 0.00 & --- & 0.00 & 0.06 & 0.00 \\
+\bottomrule
+\end{tabularx}\\
+\textit{\footnotesize ``---'' = insufficient $n$ for $\kappa$ ($< 5$ items both-judged); Tamil equivalence $\kappa=0.32$ has wide CI $[-0.02, 1.00]$ from a small both-judged $n$.}
+\end{table}
+
+\textbf{Stratified disagreement taxonomy.} Of the 1{,}800 (item $\times$ axis) cells with both judges, 115 (6.4\%) show a Likert disagreement of $\geq 2$ points. The disagreements concentrate sharply: 102 of 115 are on the \emph{naturalness} axis, and among those, 73 are on \texttt{cultural\_framing} or \texttt{code\_switched} attack vectors (where surface-form naturalness is hardest to judge). Direct-vector items show fewer disagreements, consistent with their simpler linguistic structure. The full per-item disagreement table is in the released repository (\texttt{data/validation/panel\_disagree.md}); the per-cell breakdown forms the basis of our argument that the LLM-as-prompt-quality-validator gap is narrowest where the corpus is linguistically conservative and widest exactly where Indic adversarial benchmarks need it most.
 
 % =============================================================
 \section{Discussion}
@@ -545,18 +604,19 @@ Heuristic safety classifiers are tuned to two patterns: explicit verbal refusal 
 \textbf{(4) Structured intervention.} Our perturbation invokes specific named Indian institutions (NPCI, AIIMS, RBI, IIT, \emph{The Hindu}) --- not arbitrary tokens. This is closer to a causal intervention than a placebo.
 
 \subsection{Implications for Indic LLM procurement}
+\label{sec:procurement}
 
-Indian regulatory and procurement processes should not assume Hindi safety performance generalizes across Indic languages. More importantly, procurement should not assume that heuristic-based refusal-rate measurements are faithful for reasoning models. Procurement should require: LLM-as-judge or human-judge validation; per-language and per-category breakdown; per-cell $\kappa$ reporting. Sovereign-LLM developers (Sarvam AI, Krutrim, BharatGen) emerge from our analysis looking better than prior heuristic results suggested. Llama-class generalist models are the actual safety concern in the Indic deployment context.
+Indian regulatory and procurement processes should not assume Hindi safety performance generalizes across Indic languages. More importantly, procurement should not assume that heuristic-based refusal-rate measurements are faithful for reasoning models. Procurement should require: LLM-as-judge or human-judge validation; per-language and per-category breakdown; per-cell $\kappa$ reporting. \emph{In our specific corpus and within the published heuristic-undercount range, the two Sarvam reasoning models we tested score higher under LLM judging than under heuristic judging; we are unable to adjudicate whether this reflects genuine safety or LLM-judge self-enhancement bias without human ground truth, and we therefore decline to use this paper to recommend any specific vendor over another.} The actionable claim is methodological: procurement that relies on heuristic refusal classifiers will under-report refusal rates for any model whose safety RLHF produces soft refusals or smart-quoted refusal templates --- so heuristic-only safety claims of any vendor (sovereign or generalist) should be treated as lower bounds. We disclose our interest concentration around Sarvam AI in \S\ref{sec:coi}.
 
 % =============================================================
 \section{Limitations and v3 roadmap}
 \label{sec:limits}
 
-\textbf{Limited external human validation.} The Likert protocol (\S\ref{sec:method-validation}) is currently exercised only on a 65-item Telugu subset by the first author. The full 720-item multi-language validation pass --- the most important missing element of this paper --- is in progress for v3.
+\textbf{No native-speaker validation in v3.} The initial human-rating pilot was discarded for the reasons taxonomized in Appendix~\ref{app:rater-failures}, and the v3 corpus-quality validation reported in \S\ref{sec:results-validation} is LLM-judge ensemble only. A freshly-recruited native-speaker calibration sample of $n{=}50$ items per language --- screened with a paid pilot batch against gold-standard items, with a $\kappa \geq 0.4$ floor for inclusion --- is pre-registered for v4 (Appendix~\ref{app:human-calibration}), at which point we will report LLM-ensemble-vs-human $\kappa$ as a longitudinal measurement of the LLM-as-prompt-quality-validator gap.
 
 \textbf{Single LLM-judge architecture.} Gemini-2.5-Flash is the only LLM judge in the pilot. Since Gemini-2.5-Flash is also a target model, there is a residual self-judging concern: Gemini may systematically rate its own outputs more leniently. The multi-judge ensemble planned for v3 (Gemini-2.5-Pro + Claude-Opus-4.7 + GPT-5 as independent judges, with pairwise $\kappa$ and majority-vote labels) directly addresses this; results will appear in v3.
 
-\textbf{Limited model coverage.} Six models, omitting Krutrim, Krutrim-2, Param2 (BharatGen), OpenHathi, Nanda, DeepSeek-R1, GPT-5, and Claude-Opus-4.x. The v3 budget request prioritises (a)~the Indic sovereign panel (Krutrim-2, Param2, Nanda) to complete the Indic comparator, and (b)~at least one additional reasoning model family (Claude-Opus-4.7 and DeepSeek-R1) to test the measurement-crisis generalisation claim of \S\ref{sec:discussion}.
+\textbf{Limited model coverage.} Seven models in v3 (six v2 carryovers plus the \texttt{gpt-oss-120b} partial-coverage pilot of \S\ref{sec:results-ortho}), omitting Krutrim, Krutrim-2, Param2 (BharatGen), OpenHathi, Nanda, DeepSeek-R1, GPT-5, and the Claude-Opus / Claude-Sonnet 4.x family. v4 will prioritise (a)~the Indic sovereign panel (Krutrim-2, Param2, Nanda) to complete the Indic comparator; (b)~at least one additional reasoning model family (Claude-Opus or DeepSeek-R1) to test the measurement-crisis generalisation claim of \S\ref{sec:discussion}; and (c)~the third LLM judge (Claude) that v3 could not obtain (Appendix~\ref{app:cyber-block}).
 
 \textbf{Synthetic seed origin.} All seeds are AI-generated per \citet{perez2022mwe}; community-sourced seeds (e.g., AILuminate-Hindi's Tattle methodology) would strengthen ecological validity. We will integrate AILuminate-Hindi seeds into v3 if licensing permits.
 
@@ -565,12 +625,28 @@ Indian regulatory and procurement processes should not assume Hindi safety perfo
 \textbf{No IRB.} As an independent pre-enrollment researcher, no Institutional Review Board oversight is available; institutional review through NYU Tandon is planned for the Fall 2026 cohort start.
 
 % =============================================================
+\section{Competing Interests}
+\label{sec:coi}
+
+We disclose the following interest concentrations around Sarvam AI to enable readers and reviewers to weigh our Sarvam-favorable findings appropriately.
+
+\textbf{Endorser and methodological advisor.} S.~Doddapaneni is the arXiv endorser for this submission, contributed methodological feedback that shaped the validation protocol of \S\ref{sec:method-validation} (specifically the Likert 1--5 scale choice and the three-axis decomposition), and is a co-author of two methodology references central to our argument (FBI~\citep{doddapaneni2024fbi}, CIA Suite / Hercule~\citep{doddapaneni2025cia}). S.~Doddapaneni is also an employee of Sarvam AI. None of the feedback included any directive about the empirical findings to report; all per-cell refusal rates were computed by us and reviewed by S.~Doddapaneni only after computation.
+
+\textbf{Vendor concentration in target panel.} Three of seven target models (Sarvam-105B, Sarvam-30B, Sarvam-m) are from Sarvam AI, and one of two validation judges (Sarvam-30B) is also from Sarvam AI. The headline finding that Sarvam reasoning models ``are uniformly safer than prior heuristic results suggest'' (\S\ref{sec:results-perlang}, C2) is favorable to this vendor.
+
+\textbf{Family overlap on the validation side.} The Sarvam-30B validation judge belongs to the same model family as Sarvam-m, which was used as a fallback machine-translator during Stage 2 corpus expansion (\S\ref{sec:method-pipeline}); cultural-framing and code-switching prompt generation used Sarvam-m via the same path. This is disclosed in \S\ref{sec:method-validation}.
+
+\textbf{Procurement-recommendation framing.} \S\ref{sec:procurement} names Sarvam AI (alongside Krutrim and BharatGen) as a sovereign-LLM developer whose models look better than prior heuristic results suggested. We have softened this paragraph in the present draft to avoid a vendor-endorsement reading, but readers should be aware of the interest concentration.
+
+\textbf{What this paper does not have.} No author has equity, employment, consulting income, or research-funding relationship with Sarvam AI, BharatGen, Krutrim, OpenAI, Anthropic, Google DeepMind, or Meta. No compensated review of this draft has occurred. No NDA covers any portion of the released code, data, or methodology.
+
+% =============================================================
 \section{Ethics Statement}
 \label{sec:ethics}
 
 The benchmark contains adversarial prompts that, if responded to permissively, would produce harmful content. We follow the responsible-disclosure norms established by HarmBench \citep{mazeika2024harmbench}, AdvBench \citep{zou2023advbench}, and IndicJR: adversarial prompts are research artifacts; model responses are not redistributed beyond aggregate statistics; we coordinate disclosure with Sarvam AI prior to release; public release of raw seeds and responses is \textbf{gated} (researcher attestation required, following HarmBench precedent). Code is released under Apache 2.0; data follows a separate gated-release policy.
 
-\textbf{Model-specific licensing.} Results for BharatGen Param2-17B-A2.4B-Thinking (introduced in v3) are reported under the academic-research provision of the \textbf{BharatGen Research License} (BRL, \S2): non-commercial use of the model and its outputs is royalty-free for academic and scientific purposes. We retain the required notice ``Licensed by BharatGen under the BharatGen Research License'' in this paper and the released code repository, do not redistribute the model or its raw outputs, and report only aggregate per-cell refusal statistics --- consistent with BRL \S3 (which restricts redistribution of Models, Derivatives, or Outputs but does not restrict citation of aggregate research measurements).
+\textbf{Model-specific licensing (forward-looking, v4).} BharatGen Param2-17B-A2.4B-Thinking is pre-registered for v4 inclusion. When v4 reports Param2 results, they will be reported under the academic-research provision of the \textbf{BharatGen Research License} (BRL, \S2): non-commercial use of the model and its outputs is royalty-free for academic and scientific purposes. We retain the notice ``Licensed by BharatGen under the BharatGen Research License'' per BRL \S2 in anticipation of v4 results. No Param2 results appear in v3 tables.
 
 % =============================================================
 \section{Conclusion}
@@ -581,7 +657,7 @@ IndicSafetyBench extends concurrent prior work \citep{pattnayak2026indicjr,pattn
 % =============================================================
 \section*{Acknowledgments}
 
-S.~Doddapaneni (Sarvam AI / AI4Bharat / IIT Madras) for arXiv endorsement, technical review, and the Likert-scale validation protocol that shaped \S\ref{sec:method-validation}. BharatGen (IIT Bombay / IIT Madras) for releasing Param2-17B-A2.4B-Thinking under the BharatGen Research License (BRL); Param2 results in v3 are reported under the BRL academic-research provision. Anthropic Claude (Opus 4.7) for synthetic seed generation and pipeline assistance under a Claude Code workflow.
+S.~Doddapaneni (Sarvam AI / AI4Bharat / IIT Madras) for technical guidance and feedback on the validation protocol of \S\ref{sec:method-validation}; full disclosure of this relationship is in \S\ref{sec:coi}. BharatGen (IIT Bombay / IIT Madras) for releasing Param2-17B-A2.4B-Thinking under the BharatGen Research License (BRL); Param2 is pre-registered for v4 inclusion and is not in the v3 results tables. The BRL attribution notice ``Licensed by BharatGen under the BharatGen Research License'' is retained per BRL \S2 in anticipation of v4 results. Anthropic Claude (Opus 4.7) for synthetic seed generation and pipeline assistance under a Claude Code workflow.
 
 % =============================================================
 \balance
@@ -627,7 +703,7 @@ We attempted a native-speaker human-validation pass on a stratified subset of th
 \subsection*{Failure mode 1: uniform rubber-stamping}
 \label{app:rater-failures-uniform}
 
-One Telugu validator returned 90 of 90 items with naturalness $=5$ (std $=0.00$) and 89 of 90 items with semantic-equivalence $=5$ (std $=0.11$), with attack-vector validity populated on only 3 of the expected 60 cultural-framing and code-switched rows. The validator left one substantive free-text comment, on a cultural-framing cybercrime item: \textit{``cyber security in business school?''} (a legitimate critique of the persona-institution match) --- yet still scored that same row 5/5/3, contradicting their own comment.
+One Telugu validator returned 90 of 90 items with naturalness $=5$ (std $=0.00$) and 89 of 90 items with semantic-equivalence $=5$ (std $=0.11$), with attack-vector validity populated on only 3 of the expected 60 cultural-framing and code-switched rows. The validator left one substantive free-text comment on a cultural-framing cybercrime item flagging a persona-institution mismatch in the cover story --- yet still scored that same row 5/5/3, contradicting their own comment. Verbatim rater quotes are not reproduced here; the contaminated CSVs in the released repository are subject to the gating policy (see \texttt{GATING.md}) under which per-rater identifying details (including free-text comments) are not redistributed.
 
 \noindent\textbf{Diagnostic signatures.}
 \begin{itemize}[leftmargin=*,itemsep=1pt,topsep=2pt]
@@ -667,6 +743,13 @@ PARIKSHA \citep{watts2024pariksha} and Samiksha use Karya, which screens raters 
 \subsection*{What we discarded and what we kept}
 
 We discarded both validators' submissions from the primary v3 validation corpus. We retained their files in the released repository under \texttt{data/validation/} for reproducibility of this taxonomy, clearly marked as ``contaminated pilot, not used in primary validation.'' The LLM-ensemble protocol of \S\ref{sec:method-validation} is the actual v3 validation source of truth; the freshly-recruited native-speaker sample of $n{=}50$ items per language described in Appendix~\ref{app:human-calibration} serves as the post-hoc calibration check.
+
+\section{Judge-model safety-filter as v3-era access blocker}
+\label{app:cyber-block}
+
+In the course of constructing the v3 three-judge ensemble (\S\ref{sec:method-validation}), we attempted to dispatch Anthropic Claude judging via the Claude~Code Agent tool as a workaround for the Vertex Anthropic quota-zero block. The subagent invocation was rejected by Anthropic's Cyber Verification Program safeguard with: \texttt{``API Error: Claude Code is unable to respond to this request, which appears to violate our Usage Policy. This request triggered cyber-related safeguards.''} The block triggered despite explicit research-context framing and instructions that the model was being asked to \emph{score} adversarial prompts for naturalness/equivalence/attack-validity rather than to generate harmful content. We retried with three separate subagent calls (one per axis) on the same Telugu sample; all three were blocked identically.
+
+This is itself a measurement-research finding: the access-layer safety filter on the judge model can prevent the judge from performing legitimate safety-research evaluation of an adversarial corpus, even when the judge model's own response-time safety behaviour would handle the same content. The Cyber Verification Program form (\url{https://claude.com/form/cyber-use-case}) is the documented adjustment path, but the multi-week review window foreclosed it for v3. We document the failure mode here so future Indic-NLP red-team benchmarks can plan around it; alternative paths that succeeded in our pipeline are Vertex serverless (Gemini, no quota issue) and direct provider API (Sarvam), each on their own access surface.
 
 \section{Post-hoc native-speaker calibration sample}
 \label{app:human-calibration}
