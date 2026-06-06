@@ -69,10 +69,17 @@ def odds_ratio(a: int, n_a: int, b: int, n_b: int):
     return or_, None
 
 
+def _seed_id(variant_id: str) -> str:
+    """vw_0001__ta_direct -> vw_0001"""
+    return variant_id.split("__", 1)[0] if variant_id else ""
+
+
 def main():
     by_ml = defaultdict(list)
     by_mla = defaultdict(list)
     by_model = defaultdict(list)
+    # paired CF/D: by_model_lang_pair[(model, language)][seed_id] = {"direct": 0/1, "cultural_framing": 0/1}
+    paired = defaultdict(lambda: defaultdict(dict))
     with open(JUDGMENTS, encoding="utf-8") as f:
         for line in f:
             j = json.loads(line)
@@ -83,6 +90,10 @@ def main():
             by_ml[(m, l)].append(r)
             by_mla[(m, l, a)].append(r)
             by_model[m].append(r)
+            if a in ("direct", "cultural_framing"):
+                sid = _seed_id(j.get("variant_id", ""))
+                if sid:
+                    paired[(m, l)][sid][a] = r
 
     out = []
     out.append("# Statistical Report — IndicSafetyBench v3\n")
@@ -103,14 +114,13 @@ def main():
             row.append(f"{mean*100:.0f}% [{lo*100:.0f},{hi*100:.0f}]")
         out.append("| " + " | ".join(row) + " |")
 
-    # Section 2: cultural_framing vs direct — odds ratios + CIs per model
+    # Section 2: cultural_framing vs direct — odds ratios + PAIRED bootstrap CIs per model
     out.append("\n## 2. Cultural-Framing Effect: Odds Ratios vs Direct (per model)\n")
     out.append("Lower OR (< 1.0) = framing *decreases* refusal odds (jailbreak success).\n")
-    out.append("| Model | Direct rate | Framing rate | Δ pp | OR (framing/direct) | Bootstrap 95% CI on Δ |")
+    out.append("CI: paired bootstrap on (seed_id × language) pairs. Each resample draws pairs with both a direct and a cultural_framing label; Δ is computed within the resampled pair set.\n")
+    out.append("| Model | Direct rate | Framing rate | Δ pp | OR (framing/direct) | Paired-bootstrap 95% CI on Δ |")
     out.append("|---|---|---|---|---|---|")
     for m in MODEL_ORDER:
-        d = by_mla.get((m, None), [])
-        # aggregate across all languages
         direct = [r for (mm, ll, aa), vs in by_mla.items() if mm == m and aa == "direct" for r in vs]
         framing = [r for (mm, ll, aa), vs in by_mla.items() if mm == m and aa == "cultural_framing" for r in vs]
         if not direct or not framing:
@@ -118,16 +128,28 @@ def main():
         d_rate = sum(direct) / len(direct)
         f_rate = sum(framing) / len(framing)
         or_, _ = odds_ratio(sum(framing), len(framing), sum(direct), len(direct))
-        # bootstrap CI on delta
+        # PAIRED bootstrap CI on Δ over (seed_id, language) pairs that have both labels
+        pair_list = []  # (direct_label, framing_label) per (seed, lang)
+        for (mm, ll), seed_dict in paired.items():
+            if mm != m:
+                continue
+            for sid, av_map in seed_dict.items():
+                if "direct" in av_map and "cultural_framing" in av_map:
+                    pair_list.append((av_map["direct"], av_map["cultural_framing"]))
+        if not pair_list:
+            out.append(f"| {m} | {d_rate*100:.0f}% | {f_rate*100:.0f}% | {(f_rate-d_rate)*100:+.0f}pp | {or_:.2f} | (insufficient pairs) |")
+            continue
+        npairs = len(pair_list)
         diffs = []
         for _ in range(N_BOOT):
-            ds = [direct[random.randint(0, len(direct) - 1)] for _ in range(len(direct))]
-            fs = [framing[random.randint(0, len(framing) - 1)] for _ in range(len(framing))]
-            diffs.append(sum(fs) / len(fs) - sum(ds) / len(ds))
+            sample = [pair_list[random.randint(0, npairs - 1)] for _ in range(npairs)]
+            d_sum = sum(p[0] for p in sample)
+            f_sum = sum(p[1] for p in sample)
+            diffs.append((f_sum - d_sum) / npairs)
         diffs.sort()
         lo = diffs[int(N_BOOT * 0.025)] * 100
         hi = diffs[int(N_BOOT * 0.975)] * 100
-        out.append(f"| {m} | {d_rate*100:.0f}% | {f_rate*100:.0f}% | {(f_rate-d_rate)*100:+.0f}pp | {or_:.2f} | [{lo:+.1f}, {hi:+.1f}] |")
+        out.append(f"| {m} | {d_rate*100:.0f}% | {f_rate*100:.0f}% | {(f_rate-d_rate)*100:+.0f}pp | {or_:.2f} | [{lo:+.1f}, {hi:+.1f}] (n={npairs} pairs) |")
 
     # Section 3: cell-level summary
     out.append("\n## 3. Summary cells with notable findings\n")
