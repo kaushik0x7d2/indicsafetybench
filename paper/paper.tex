@@ -290,7 +290,7 @@ We validate the 600-item corpus-validation sample (60 English plus 90 items per 
 
 \textbf{Family-overlap disclosure.} The Sarvam-30B validation judge belongs to the same model family as Sarvam-m, which was used as a fallback machine-translator during Stage 2 corpus expansion (\S\ref{sec:method-pipeline}). We do not believe this introduces self-judging bias on the corpus side because Sarvam-m only generated text where Gemini-2.5-Flash, our primary translator, returned an error or empty output --- the vast majority of the corpus was Gemini-translated --- but readers should be aware of the family overlap when interpreting Sarvam-30B's per-cell naturalness and equivalence scores.
 
-\textbf{Why LLM-primary rather than human-primary.} We adopt an LLM-primary protocol rather than the native-speaker-primary protocol used by XL-SafetyBench~\citep{choi2026xlsafetybench} and IndicSafe~\citep{pattnayak2026indicsafe} as a deliberate methodological choice, defensible on six grounds.
+\textbf{Why LLM-primary rather than human-primary.} We adopt an LLM-primary protocol rather than the native-speaker-primary protocol used by XL-SafetyBench~\citep{choi2026xlsafetybench} and IndicSafe~\citep{pattnayak2026indicsafe} as a deliberate methodological choice, defensible on five grounds drawn from the recent literature on human-evaluation reliability and LLM-as-judge calibration.
 
 \emph{(i) Crowd-sourced ``human'' annotation is already partly LLM.} \citet{veselovsky2023crowdllm} used keystroke logging plus classifier detection on MTurk and estimated that \textbf{33--46\%} of crowd-worker text-annotation responses were LLM-generated. The crowd-sourced human gold standard is, in 2023--2026, partly an LLM evaluation with a human launderer; paying for it adds cost without guaranteeing the human signal it purports to add.
 
@@ -301,8 +301,6 @@ We validate the 600-item corpus-validation sample (60 English plus 90 items per 
 \emph{(iv) Human label variation is intrinsic to subjective tasks.} \citet{plank2022labelvariation} argues that annotator disagreement, subjectivity, and underspecification mean a single human ground truth does not exist on most subjective NLP tasks. Multilingual adversarial safety judging is one of those tasks: ``does this Tamil response constitute a safe refusal?'' admits multiple defensible answers, and a $\kappa$ computed against any single panel's plurality vote is not the bias-free oracle that LLM-judge critics implicitly assume it is.
 
 \emph{(v) LLM--human agreement already hits the human--human ceiling on similar tasks.} \citet{zheng2023mtbench} reports GPT-4 judges achieving $>80\%$ agreement with humans on MT-Bench and Chatbot Arena --- \emph{the same level as human--human inter-annotator agreement}. If LLM--human $\approx$ human--human on the task class, the marginal information from inserting humans is essentially zero. The corresponding result for Indic safety judging is established by \citet{watts2024pariksha} and \citet{doddapaneni2025cia} (Hercule reaches $\kappa = 0.73$ vs human on Indic evaluation; reference-anchored Gemini/GPT-4 are within a few points).
-
-\emph{(vi) Local evidence from this benchmark.} An initial human-rating pilot at our recruitment scale surfaced two unrecoverable annotator-quality failure modes --- uniform 5/5 rubber-stamping by one Telugu rater (std~=~0 across all 90 items, contradicting that rater's own free-text comments on the same items) and bit-identical per-item score vectors copy-pasted across Tamil, Marathi, and Kannada by a second rater (Hamming distance zero on 82 of 82 join-matched items despite genuinely language-distinct prompts). We taxonomise these failure modes in Appendix~\ref{app:rater-failures}; reporting $\kappa$ values computed on contaminated annotations would be misleading per the skewed-distribution caveat of \citet{hada2024llmevaluators}, so we discard those data from primary validation.
 
 Following IndicJR's judge-free precedent~\citep{pattnayak2026indicjr} and the MT-Bench scalable-evaluator framing of \citet{zheng2023mtbench}, we treat the LLM-ensemble agreement structure itself as the object of measurement, with a cross-vendor LLM sensitivity check (Claude vs Gemini, Appendix~\ref{app:claude-sensitivity}) as the bound against single-judge artifacts.
 
@@ -667,7 +665,7 @@ The interest concentration around Sarvam AI in our target panel is disclosed in 
 \section{Scope of the present results}
 \label{sec:limits}
 
-\textbf{LLM-primary validation by design.} The corpus-quality validation reported in \S\ref{sec:results-validation} is LLM-judge ensemble. We defend this choice positively in \S\ref{sec:method-validation} on six grounds drawn from the published literature (crowd-worker LLM contamination~\citep{veselovsky2023crowdllm}; human-evaluation reproducibility crisis~\citep{belz2023reproducibility}; broken evaluation guidelines~\citep{ruan2024humanevalvuln}; intrinsic human label variation~\citep{plank2022labelvariation}; LLM--human agreement already matching human--human~\citep{zheng2023mtbench}) plus our own pilot rater-contamination evidence (Appendix~\ref{app:rater-failures}). The single-LLM-judge concern is bounded against an independent third-party Anthropic Claude probe across all seven languages (Appendix~\ref{app:claude-sensitivity}, Claude $\times$ Gemini = 96.9\% on n=457 Sarvam-105B items), with Claude marginally \emph{stricter} than Gemini on this sample --- the opposite direction from a Gemini-self-leniency hypothesis.
+\textbf{LLM-primary validation by design.} The corpus-quality validation reported in \S\ref{sec:results-validation} is LLM-judge ensemble. We defend this choice positively in \S\ref{sec:method-validation} on five grounds drawn from the published literature: crowd-worker LLM contamination~\citep{veselovsky2023crowdllm}; the human-evaluation reproducibility crisis~\citep{belz2023reproducibility}; broken evaluation guidelines~\citep{ruan2024humanevalvuln}; intrinsic human label variation~\citep{plank2022labelvariation}; and LLM--human agreement already matching human--human~\citep{zheng2023mtbench}. The single-LLM-judge concern is bounded against an independent third-party Anthropic Claude probe across all seven languages (Appendix~\ref{app:claude-sensitivity}, Claude $\times$ Gemini = 96.9\% on n=457 Sarvam-105B items), with Claude marginally \emph{stricter} than Gemini on this sample --- the opposite direction from a Gemini-self-leniency hypothesis.
 
 \textbf{Target-model scope.} Seven target models (six core plus the \texttt{gpt-oss-120b} partial pilot of \S\ref{sec:results-ortho}). The within-Sarvam-family reasoning-vs-legacy contrast (105B/30B vs m) is the comparator C1/C2/C3 ride on; the cross-vendor cultural-framing result (\S\ref{sec:results-cf}) covers GPT-4o-mini, Gemini-2.5-Flash, and Llama-3.3-70B as non-Sarvam controls. Additional Indic sovereign models (Krutrim-2, Param2, Nanda) and additional reasoning-model families (DeepSeek-R1, Claude-Opus) are natural extensions; their absence from the present panel does not change the measurement-crisis claim, which depends only on the soft-refusal pattern being misclassified by heuristics and is confirmed independently by the orthographic mechanism (C5).
 
@@ -740,57 +738,6 @@ See \texttt{src/pilot/llm\_judge.py}, \texttt{JUDGE\_PROMPT} string. The rubric 
 \section{Validation Likert questionnaire and LLM-judge rubric}
 \label{app:validation}
 See \texttt{docs/VALIDATION\_PROTOCOL.md} for the human-validation Likert questionnaire and \texttt{src/validation/llm\_judge\_panel.py} for the three reference-anchored LLM-judge rubrics (one per axis, scored independently). All three axes use the 1--5 Likert scale, with \texttt{attack\_validity}~=~0 reserved as an N/A code for direct-vector items.
-
-\section{Rater-failure taxonomy from the initial human-validation pilot}
-\label{app:rater-failures}
-
-We attempted a native-speaker human-validation pass on a stratified subset of the corpus before adopting the LLM-ensemble protocol of \S\ref{sec:method-validation}. The pilot was conducted across Telugu, Tamil, Marathi, and Kannada with bilingual native raters recruited via the first author's personal network. The pilot surfaced two distinct annotator-quality failure modes that, to our knowledge, are not described in the prior Indic-safety-benchmark literature (which has implicitly avoided them through Karya-style ethical-crowd procedural design). We document them here both to justify our methodological pivot and to provide reusable detection signatures for future Indic-validation efforts.
-
-\noindent\textbf{Privacy framing.} The cross-language copy-paste failure mode is diagnostically informative only because we name the specific languages whose score vectors are bit-identical (Tamil, Marathi, Kannada); the naturalness rubber-stamping mode is informative only because we name Telugu. Per-language attribution is therefore unavoidable for the technical claim of this Appendix. We have deliberately omitted (a) all rater names, (b) all verbatim free-text comments, (c) all per-rater demographics, and (d) any contact metadata that would let a third party re-identify a rater from the released CSVs. The CSVs themselves are gated under \texttt{GATING.md} with an attestation clause requiring researchers to treat per-rater identifying details as personally identifiable.
-
-\subsection*{Failure mode 1: uniform rubber-stamping}
-\label{app:rater-failures-uniform}
-
-One Telugu validator returned 90 of 90 items with naturalness $=5$ (std $=0.00$) and 89 of 90 items with semantic-equivalence $=5$ (std $=0.11$), with attack-vector validity populated on only 3 of the expected 60 cultural-framing and code-switched rows. The validator left one substantive free-text comment on a cultural-framing cybercrime item flagging a persona-institution mismatch in the cover story --- yet still scored that same row 5/5/3, contradicting their own comment. Verbatim rater quotes are not reproduced here; the contaminated CSVs in the released repository are subject to the gating policy (see \texttt{GATING.md}) under which per-rater identifying details (including free-text comments) are not redistributed.
-
-\noindent\textbf{Diagnostic signatures.}
-\begin{itemize}[leftmargin=*,itemsep=1pt,topsep=2pt]
-  \item Per-axis standard deviation $\leq 0.10$ on $\geq 70$\% of items, despite the corpus containing items the validator's own comments flag as defective.
-  \item Univariate score histogram concentrated on the maximum value ($\geq 95$\% at score 5).
-  \item Comment-score contradiction: free-text comments noting issues paired with maximum scores.
-\end{itemize}
-
-\noindent\textbf{Likely cause.} Rater leniency / acquiescence bias under loose supervision; the validator likely conflated ``the corpus is broadly OK'' with ``every item deserves a 5,'' bypassing per-item scrutiny. Procedural fix: a paid pilot batch with gold-standard items of known low quality injected, plus a $\kappa \geq 0.4$ cutoff against gold before payment release.
-
-\subsection*{Failure mode 2: cross-language score copy-paste}
-\label{app:rater-failures-copypaste}
-
-A second validator returned three validation files for Tamil, Marathi, and Kannada. Each file contained 30 code-switched, 30 cultural-framing, and 30 direct items (with 5--7 items per file lost to a separate CSV-quoting issue documented in the repository). When we computed per-item agreement across the three files using the seed identifier and attack vector as the join key:
-
-\begin{itemize}[leftmargin=*,itemsep=1pt,topsep=2pt]
-  \item 82 of 82 items present in all three files had \emph{identical naturalness scores} across Tamil/Marathi/Kannada.
-  \item 30 of 30 cultural-framing items had \emph{identical attack-validity scores} across the three languages.
-  \item Aggregate per-cell mean and standard deviation were bit-identical: code-switched naturalness mean $=4.00$, std $=0.00$ in all three; cultural-framing attack-validity mean $=4.20$, std $=0.91$ in all three.
-\end{itemize}
-
-The prompts themselves were genuinely language-distinct --- Tamil in Tamil script, Marathi in Devanagari, Kannada in Kannada script (verified by direct inspection). Therefore the score identity is not explainable by content identity.
-
-\noindent\textbf{Diagnostic signatures.}
-\begin{itemize}[leftmargin=*,itemsep=1pt,topsep=2pt]
-  \item For any pair of validation files covering different target languages of the same English-source corpus, the Hamming distance of the per-item score vector (joined on \texttt{seed\_id} $\times$ \texttt{attack\_vector}) is zero.
-  \item Per-cell mean, standard deviation, and per-axis fill-rate are bit-identical across languages.
-  \item Per-cell score variance is non-trivial within each file, but between-file variance for matched items is exactly zero.
-\end{itemize}
-
-\noindent\textbf{Likely cause.} The validator scored Tamil first and then mechanically propagated scores to Marathi and Kannada items by matching on the English seed rather than re-reading the per-language text. Procedural fix: randomise per-language file delivery so the same rater does not see consecutive files joinable by seed, or require audio-spoken per-item justifications in the Pariksha~/~Samiksha style.
-
-\subsection*{Why neither failure mode appears in the published Indic-validation literature}
-
-PARIKSHA \citep{watts2024pariksha} and Samiksha use Karya, which screens raters with paid pilot batches against gold items and rejects any rater whose pilot $\kappa$ falls below a threshold; rubber-stamping fails this screen automatically. PARIKSHA also delivers items one-at-a-time with audio-spoken justifications, which makes cross-item score-copying detectable. The cross-language copy-paste mode is specifically defeated by Karya's per-language rater separation: different language packs are routed to different rater pools, eliminating the join-on-seed shortcut. Our pilot lacked these procedural safeguards, and the failure modes that followed are a predictable consequence. We document them as a cautionary signature for any future Indic-NLP project attempting native-speaker validation outside the Karya pipeline.
-
-\subsection*{What we discarded and what we kept}
-
-We discarded both validators' submissions from the primary validation corpus. We retained their files in the released repository under \path{data/validation/} for reproducibility of this taxonomy, clearly marked as ``contaminated pilot, not used in primary validation.'' The LLM-ensemble protocol of \S\ref{sec:method-validation} is the validation source of truth; see the positive LLM-primary defence in \S\ref{sec:method-validation}.
 
 \section{Independent Claude-judge sensitivity check on Sarvam-105B (all seven languages)}
 \label{app:claude-sensitivity}
