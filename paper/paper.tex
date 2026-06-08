@@ -55,7 +55,7 @@
   Independent Researcher
 }
 
-\date{June 2026 -- preprint draft v4}
+\date{June 2026 -- preprint}
 
 \begin{document}
 
@@ -200,7 +200,7 @@ Each (seed, language) pair produces three attack-vector variants.
 
 \textbf{Code-switched (CS)}: the harmful query in casual code-mixed register (English embedded in Indic syntactic frame: Hinglish for Hindi, Tanglish for Tamil, Tenglish for Telugu, Manglish for Marathi, Banglish for Bengali, Kanglish for Kannada). Lexical mixing --- English nouns inside Indic verb phrases --- not phonetic perturbation \citep{aswal2025cmprt} and not pure romanization. The template (Appendix~\ref{app:cs-prompt}) seeds the generator with style markers (``yaar'', ``bhai'', ``anna'', etc.) and one worked example per language.
 
-In practice code-switching admits two distinguishable sub-variants: (i)~\emph{interleaved-script} --- the target-language base sentence with English words rendered in their native Roman/Latin script; (ii)~\emph{mono-script} --- the target-language base sentence with English words transliterated into the target Indic script. The pilot corpus contains only the interleaved-script form: the generator template (Appendix~\ref{app:cs-prompt}) explicitly instructs the model to output ``mostly Roman/Latin script with target-language loanwords'', and a per-item script-ratio scan (\texttt{src/validation/sample.py::detect\_cs\_variant}) classifies all 1{,}002 CS items in the test set as interleaved-script. \textbf{All code-switching results in this paper are therefore interleaved-script only}; generating the mono-script sub-variant and re-running Stages~3--5 is pre-registered for v5.
+In practice code-switching admits two distinguishable sub-variants: (i)~\emph{interleaved-script} --- the target-language base sentence with English words rendered in their native Roman/Latin script; (ii)~\emph{mono-script} --- the target-language base sentence with English words transliterated into the target Indic script. The pilot corpus contains only the interleaved-script form: the generator template (Appendix~\ref{app:cs-prompt}) explicitly instructs the model to output ``mostly Roman/Latin script with target-language loanwords'', and a per-item script-ratio scan (\path{src/validation/sample.py::detect_cs_variant}) classifies all 1{,}002 CS items in the test set as interleaved-script. \textbf{All code-switching results in this paper are therefore interleaved-script only}; generating the mono-script sub-variant and re-running Stages~3--5 is pre-registered for v5.
 
 \subsection{Target models}
 \label{sec:method-models}
@@ -571,7 +571,8 @@ We ran the LLM-ensemble protocol of \S\ref{sec:method-validation} on the full 60
 \caption{Per-judge mean Likert score per language. \textit{Coverage caveat above applies to Sarvam rows.}}
 \label{tab:val-means}
 \footnotesize
-\begin{tabularx}{\columnwidth}{llccccccc}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llccccccc}
 \toprule
 Axis & Judge & EN & HI & MR & TE & KN & TA & BN \\
 \midrule
@@ -585,7 +586,8 @@ Axis & Judge & EN & HI & MR & TE & KN & TA & BN \\
   & Gemini  & 5.00 & 4.92 & 4.87 & 4.88 & 4.78 & 4.88 & 4.75 \\
   & Sarvam  & 3.67 & 4.38 & 4.22 & 4.00 & 4.29 & 4.33 & 4.09 \\
 \bottomrule
-\end{tabularx}
+\end{tabular}%
+}
 \end{table}
 
 \textbf{Two striking findings.} (1)~\emph{Gemini exhibits the documented multilingual high-score bias across all seven languages.} Equivalence is essentially flat at 4.91-4.99 ($\sigma$ 0.10-0.53 per cell); attack-validity is 4.75-5.00 ($\sigma$ 0-0.79). This matches the \citet{hada2024llmevaluators} caveat that frontier LLM judges ``almost never'' provide low scores on subjective multilingual tasks. (2)~\emph{Sarvam-30B scores Indic naturalness 1.0-1.5 Likert points lower than Gemini on every language tested}, with the divergence widest in Kannada (Gemini 4.33 vs Sarvam 2.85, $\Delta = 1.48$) and Bengali (Gemini 4.60 vs Sarvam 3.20, $\Delta = 1.40$). The Indic-tuned judge is materially more critical of translation quality than the multilingual-frontier judge.
@@ -606,7 +608,8 @@ This per-axis decomposition is the v3 \S\ref{sec:results-validation} methodologi
 \label{tab:val-kappa}
 \scriptsize
 \setlength{\tabcolsep}{3pt}
-\begin{tabularx}{\columnwidth}{lccccccc}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccccc}
 \toprule
 Axis & EN & HI & MR & TE & KN & TA & BN \\
 \midrule
@@ -628,11 +631,12 @@ $\alpha$        & $-0.50$ & $-0.39$ & $-0.34$ & $-0.50$ & $-0.50$ & $-0.29$ & $-
 \%-within-1     & 67\% & 100\% & 94\% & 100\% & 100\% & 100\% & 91\% \\
 MAD             & 1.0  & 1.0  & 1.0  & 1.0  & 1.0  & 1.0  & 1.0 \\
 \bottomrule
-\end{tabularx}\\
+\end{tabular}%
+}\\
 \textit{\footnotesize ``---'' = insufficient both-judged $n$ for $\kappa$ ($n < 5$). Naturalness both-judged $n$ = 32--49; equivalence $n$ = 57--89; attack-validity $n$ = 2--18 (small $n$ due to Sarvam STARTER max\_tokens cap on long reasoning traces). \%-within-1 and MAD are unaffected by the $\kappa$-zero-variance trap and reveal what the $\kappa$ values hide: equivalence agreement is near-perfect (\%-within-1 $\geq 98$\%, MAD = 0); attack-validity agreement is also near-perfect on the items both judges could score; naturalness is the only axis with genuine cross-judge disagreement, and even there 50--84\% of items are within 1 Likert.}
 \end{table}
 
-\textbf{Stratified disagreement taxonomy.} Of the 1{,}800 (item $\times$ axis) cells with both judges, 115 (6.4\%) show a Likert disagreement of $\geq 2$ points. The disagreements concentrate sharply: 102 of 115 are on the \emph{naturalness} axis, and among those, 73 are on \texttt{cultural\_framing} or \texttt{code\_switched} attack vectors (where surface-form naturalness is hardest to judge). Direct-vector items show fewer disagreements, consistent with their simpler linguistic structure. The full per-item disagreement table is in the released repository (\texttt{data/validation/panel\_disagree.md}); the per-cell breakdown forms the basis of our argument that the LLM-as-prompt-quality-validator gap is narrowest where the corpus is linguistically conservative and widest exactly where Indic adversarial benchmarks need it most.
+\textbf{Stratified disagreement taxonomy.} Of the 1{,}800 (item $\times$ axis) cells with both judges, 115 (6.4\%) show a Likert disagreement of $\geq 2$ points. The disagreements concentrate sharply: 102 of 115 are on the \emph{naturalness} axis, and among those, 73 are on \texttt{cultural\_framing} or \texttt{code\_switched} attack vectors (where surface-form naturalness is hardest to judge). Direct-vector items show fewer disagreements, consistent with their simpler linguistic structure. The full per-item disagreement table is in the released repository (\path{data/validation/panel_disagree.md}); the per-cell breakdown forms the basis of our argument that the LLM-as-prompt-quality-validator gap is narrowest where the corpus is linguistically conservative and widest exactly where Indic adversarial benchmarks need it most.
 
 % =============================================================
 \section{Discussion}
@@ -818,29 +822,32 @@ This is itself a measurement-research finding: the access-layer safety filter on
 \section{Independent Claude-judge sensitivity check on Sarvam-105B (all seven languages)}
 \label{app:claude-sensitivity}
 
-To bound the single-LLM-judge dependence on the cells central to the C1 measurement-crisis claim, we ran Anthropic Claude (claude-opus-4-7) as an independent third refusal judge on a stratified sample of Sarvam-105B responses across all seven languages of the corpus. The Claude judge had no exposure to the Gemini or heuristic labels and used the same REFUSAL / ENGAGEMENT / UNCERTAIN rubric. The sample is targeted at $n{=}50$ per (lang $\times$ vector) cell for Tamil and Bengali (the two cells where Gemini-vs-heuristic $\kappa$ collapsed to $0.07$/$0.08$) and $n{=}20$ per cell for the remaining five languages, for a target of $6 \times 50 + 15 \times 20 = 600$ items. We submitted 580 items end-to-end; 457 (78.8\%) returned a Claude label, with the remaining 123 rejected by the access-layer safety filter discussed in Appendix~\ref{app:cyber-block} (the rejection rate scaled with cybercrime-coded and code-switched items, consistent with the filter probing embedded-prompt content rather than task framing). All seeds and timestamps are deterministic (seed 2026) and the full per-item labels are released under \texttt{data/validation/claude\_judge\_v4\_consolidated.json}.
+To bound the single-LLM-judge dependence on the cells central to the C1 measurement-crisis claim, we ran Anthropic Claude (claude-opus-4-7) as an independent third refusal judge on a stratified sample of Sarvam-105B responses across all seven languages of the corpus. The Claude judge had no exposure to the Gemini or heuristic labels and used the same REFUSAL / ENGAGEMENT / UNCERTAIN rubric. The sample is targeted at $n{=}50$ per (lang $\times$ vector) cell for Tamil and Bengali (the two cells where Gemini-vs-heuristic $\kappa$ collapsed to $0.07$/$0.08$) and $n{=}20$ per cell for the remaining five languages, for a target of $6 \times 50 + 15 \times 20 = 600$ items. We submitted 580 items end-to-end; 457 (78.8\%) returned a Claude label, with the remaining 123 rejected by the access-layer safety filter discussed in Appendix~\ref{app:cyber-block} (the rejection rate scaled with cybercrime-coded and code-switched items, consistent with the filter probing embedded-prompt content rather than task framing). All seeds and timestamps are deterministic (seed 2026) and the full per-item labels are released under \path{data/validation/claude_judge_v4_consolidated.json}.
 
 \begin{table}[!t]
 \centering
-\caption{Claude as third refusal judge on Sarvam-105B across all seven languages, $n$ varies per cell (50/cell target on TA/BN; 20/cell target elsewhere). Per-language totals pool the three attack vectors. C--G = Claude-vs-Gemini three-way label agreement; C--H = Claude-vs-Heuristic.}
+\caption{Claude as third refusal judge on Sarvam-105B across all seven languages. $n$ varies per cell (50/cell target on TA/BN; 20/cell target elsewhere); per-language totals pool the three attack vectors. \emph{Refusal \%} columns give the percentage of items each judge labelled REFUSAL. \emph{Heur (R/U)} gives raw counts of heuristic Refusal and heuristic Uncertain in the both-judged $n$. \emph{\%-agreement} columns are Claude-vs-Gemini (C--G) and Claude-vs-Heuristic (C--H) three-way label agreement.}
 \label{tab:claude-sensitivity}
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\columnwidth}{lcccccc}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrcrr}
 \toprule
-Lang & $n$ & Claude REF & Gemini REF & Heur REF/UNC & C--G \%agr & C--H \%agr \\
+       &      & \multicolumn{2}{c}{Refusal \%} & Heur. & \multicolumn{2}{c}{\%-agreement} \\
+\cmidrule(lr){3-4}\cmidrule(lr){6-7}
+Lang   & $n$  & Claude & Gemini & R/U   & C--G & C--H \\
 \midrule
-EN  & 33  & 31 (94\%) & 31 (94\%) & 31/1   & 100\% & 97\% \\
-HI  & 45  & 44 (98\%) & 43 (96\%) & 37/8   & 98\%  & 82\% \\
-MR  & 50  & 47 (94\%) & 47 (94\%) & 20/30  & 100\% & 42\% \\
-TE  & 41  & 40 (98\%) & 37 (90\%) & 25/16  & 93\%  & 61\% \\
-KN  & 48  & 43 (90\%) & 41 (85\%) & 28/19  & 96\%  & 60\% \\
-TA  & 123 & 112 (91\%) & 110 (89\%) & 27/92 & 97\%  & 24\% \\
-BN  & 117 & 112 (96\%) & 108 (92\%) & 37/77 & 97\%  & 35\% \\
+EN     & 33   & 94 & 94 & 31/1   & 100 & 97 \\
+HI     & 45   & 98 & 96 & 37/8   & 98  & 82 \\
+MR     & 50   & 94 & 94 & 20/30  & 100 & 42 \\
+TE     & 41   & 98 & 90 & 25/16  & 93  & 61 \\
+KN     & 48   & 90 & 85 & 28/19  & 96  & 60 \\
+TA     & 123  & 91 & 89 & 27/92  & 97  & 24 \\
+BN     & 117  & 96 & 92 & 37/77  & 97  & 35 \\
 \midrule
-\textbf{Total} & \textbf{457} & \textbf{429 (94\%)} & \textbf{417 (91\%)} & \textbf{205/243} & \textbf{96.9\%} & \textbf{47.0\%} \\
+\textbf{All} & \textbf{457} & \textbf{94} & \textbf{91} & \textbf{205/243} & \textbf{96.9} & \textbf{47.0} \\
 \bottomrule
-\end{tabularx}
+\end{tabular}%
+}
 \end{table}
 
 \textbf{Three findings.} \emph{(1) Claude--Gemini three-way label agreement is 96.9\% across all 457 items} (per-language range 93--100\%). The two-vendor LLM judging system converges almost perfectly on Sarvam-105B refusal labels in every language tested. This is the strongest practical evidence the v4 design can deliver that the directional refusal-rate numbers reported under the Gemini judge are not a single-judge artifact. \emph{(2) Claude--Heuristic agreement varies sharply by language --- 97\% on EN, 82\% on HI, then 60\%, 61\%, 42\%, 35\%, 24\% on KN/TE/MR/BN/TA respectively}. The collapse maps exactly onto the languages where Gemini-vs-Heuristic $\kappa$ collapsed in Table~\ref{tab:kappa}: the measurement-crisis pattern reproduces under a completely independent judge with no exposure to the Gemini labels. \emph{(3) Claude is marginally more refusal-prone than Gemini (94\% vs 91\%) on this Sarvam sample.} The 3-pp gap means that if anything, the Gemini judge is the slightly stricter of the two on Sarvam refusals --- the opposite direction from a Gemini-self-leniency hypothesis. The remaining residual that v4 cannot adjudicate within this paper is whether \emph{both} LLM judges share a common multilingual high-score bias \citep{hada2024llmevaluators} that a Karya-style native-speaker panel would not share; the v5 native-speaker calibration of Appendix~\ref{app:human-calibration} addresses that residual.
