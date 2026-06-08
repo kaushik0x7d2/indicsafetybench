@@ -81,3 +81,12 @@ paper/*.toc
 paper/*.synctex.gz
 paper/*.fls
 paper/*.fdb_latexmk
+
+# v4 cleanup additions (paper no longer references these)
+indicsafetybench_overleaf/
+indicsafetybench_v*_review.zip
+final/
+data/validation/te/
+data/validation/ta/
+data/validation/mr/
+data/validation/kn/
